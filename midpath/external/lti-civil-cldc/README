@@ -1,0 +1,11 @@
+README
+======
+
+CIVIL-CLDC is a port of LTI-CIVIL (http://lti-civil.sourceforge.net) to CLDC 
+
+CIVIL stands for Capturing Images from Video Library, a simplified Java library
+to capture images from a camera.
+
+CIVIL-CLDC is implemented for Linux for now (Video4Linux2)
+
+CIVIL-CLDC is based on LTI-CIVIL 20070914-1213 currently.

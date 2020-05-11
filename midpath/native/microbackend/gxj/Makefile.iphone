@@ -1,0 +1,40 @@
+JNI_INCLUDE = -I/usr/include
+
+CC=arm-apple-darwin9-gcc
+CFLAGS = -I"/var/include" $(JNI_INCLUDE)
+LD=$(CC)
+LDFLAGS = -arch arm -lgcc_s.1 -lSystem
+LDFLAGS += -multiply_defined suppress
+
+SOURCES = gxapi_anchor.c \
+	  gxj_font_bitmap.c \
+	  gxj_graphics_asm.c \
+	  gxj_graphics.c \
+	  gxj_image.c \
+	  gxj_putpixel.c \
+	  gxj_text.c \
+	  gxj_util.c \
+	  gxj_screen_buffer.c \
+	  midp_logging.c \
+	  org_thenesis_microbackend_ui_graphics_toolkit_gxj_GXJFont.c \
+	  org_thenesis_microbackend_ui_graphics_toolkit_gxj_GXJGraphics.c \
+	  org_thenesis_microbackend_ui_graphics_toolkit_gxj_ImageData.c \
+	  org_thenesis_microbackend_ui_graphics_toolkit_gxj_ImageDataFactory.c
+
+OBJECTS=$(patsubst %.c, %.o, $(SOURCES))
+
+all: libmicrobackend-gxj.jnilib
+
+# Prevent automatic deletion of intermediate files
+.PRECIOUS: %.o
+
+%.o : %.c
+	$(CC) $(CFLAGS) -fPIC -O1 -finline-functions -fstrict-aliasing -g -std=c99 -fno-common -c -Wall -o $(patsubst %.c, %.o, $<) $<
+
+%.jnilib: $(OBJECTS)
+	$(CC) $(LDFLAGS) -shared -o $@ $^
+	/usr/bin/ldid -S $@
+
+clean:
+	rm -f *.jnilib *.o
+

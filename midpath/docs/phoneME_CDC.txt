@@ -1,0 +1,63 @@
+The JVM distributed with midpath4dingoo is phoneME Advanced CDC,
+revision 20200. CDC JVM has MIPS JIT, unlike CLDC JVM from phoneME
+Feature.
+
+2 modifications were made to the source when building for Dingoo,
+
+Index: src/linux/javavm/runtime/globals_md.c
+===================================================================
+--- src/linux/javavm/runtime/globals_md.c	(revision 20200)
++++ src/linux/javavm/runtime/globals_md.c	(working copy)
+@@ -185,7 +185,8 @@
+ 
+     linuxNetInit();
+ 
+-    sigignore(SIGPIPE);
++    //DINGOO sigignore(SIGPIPE);
++    signal(SIGPIPE, SIG_IGN);
+     
+ #ifdef __VFP_FP__    
+     /* TODO: Needed for armboard5. Should be moved to ARM specific code. */
+Index: src/linux/javavm/runtime/java_props_md.c
+===================================================================
+--- src/linux/javavm/runtime/java_props_md.c	(revision 20200)
++++ src/linux/javavm/runtime/java_props_md.c	(working copy)
+@@ -337,6 +337,10 @@
+             if (strcmp(p, "EUC-JP") == 0) {
+                 std_encoding = "EUC-JP-LINUX";
+             }
++/* for Dingux */
++#ifdef __UCLIBC__
++	    std_encoding = "UTF-8";
++#endif
+             sprops->encoding = std_encoding;
+ #ifdef JAVASE 
+             sprops->sun_jnu_encoding = sprops->encoding;
+
+
+To build for Dingoo running Dingux, create a sub-directory linux-mips-dingux
+in build/ and create the following GNUMakefile. Simply run 'make' will build
+the CDC JVM and class library.
+==============================================================================
+#
+# platform specific architecture flags
+#
+ASM_ARCH_FLAGS          = -mips32
+CC_ARCH_FLAGS           = -Os -mips32 -mtune=mips32 -mno-mips16 -msoft-float -mno-shared -mbranch-likely -pipe -G0 -ffast-math -fsingle-precision-constant -funsafe-math-optimizations -fno-common -fpeel-loops
+# Fix gcc fp extra precision bug on mips 
+CC_ARCH_FLAGS_FDLIB     = -ffloat-store
+CC_ARCH_FLAGS_LOOP      =
+LINK_ARCH_FLAGS         =
+LINK_ARCH_LIBS          = -lm
+
+# assume the JIT is enabled for this device unless told otherwise
+CVM_JIT ?= true
+# assume floating point hardware on this device unless told otherwise
+CVM_JIT_USE_FP_HARDWARE ?= false
+
+CVM_TARGET_TOOLS_PREFIX ?= \
+        /opt/mipsel-linux-uclibc/usr/bin/mipsel-linux-
+
+J2ME_CLASSLIB=foundation
+include ../share/top.mk
+==============================================================================

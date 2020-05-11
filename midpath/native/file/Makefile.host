@@ -1,0 +1,24 @@
+JNI_INCLUDE = -I/usr/include/classpath
+
+#CC = /opt/mipsel-linux-uclibc/usr/bin/mipsel-linux-gcc
+#CFLAGS = $(JNI_INCLUDE) -Os -mips32 -mtune=mips32 -mno-mips16 -mbranch-likely -pipe -G0 -fno-common -fpeel-loops
+CFLAGS = $(JNI_INCLUDE) 
+LDFLAGS = -s
+
+SOURCES = jcl.c javaio.c org_thenesis_midpath_io_backend_cldc_File.c \
+org_thenesis_midpath_io_backend_cldc_RandomAccessFile.c
+		  
+
+OBJECTS=$(patsubst %.c, %.o, $(SOURCES))
+
+all: libmidpathfile.so
+
+%.o : %.c
+	$(CC) $(CFLAGS) -fPIC -g -c -Wall -o $(patsubst %.c, %.o, $<) $<
+
+%.so: $(OBJECTS)
+	$(CC) $(LDFLAGS) -shared -Wl,-soname,$@ -lc -o $@ $^
+
+clean:
+	rm -f *.so *.o
+

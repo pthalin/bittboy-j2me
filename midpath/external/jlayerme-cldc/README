@@ -1,0 +1,7 @@
+This directory contains a port of JLayerME 0.1.3 for CLDC (with some classes taken from JLayerME-cldc 0.2).
+
+Changes:
+========
+- Allowed several instances of the decoder simulteanously (removed static attributes)
+
+More informations about JLayerME : http://www.javazoom.net/javalayer/javalayerme.html

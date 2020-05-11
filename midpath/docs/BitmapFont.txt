@@ -1,0 +1,7 @@
+Bitmap Font rendering class is adapted from DictionaryForMIDs project
+(http://dictionarymid.sourceforge.net/).
+
+Bitmap Font files are generated using BitmapFontGenerator tool of 
+DictionaryForMIDs. The font used is WenQuanYi (wqy-zenhei.ttc), 14 point. 
+Dictionary used is DictionaryForMIDs_3.4.0_ChiEng_CEDICT.zip
+

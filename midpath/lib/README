@@ -1,0 +1,9 @@
+This directory contains libraries needed by MIDPath:
+
+* swt.jar (needed at build time): swt-3.2.2-gtk-linux-x86.zip, http://www.eclipse.org/swt/
+* kxml2-2.3.0.jar (required at build and run time): http://kxml.sourceforge.net/kxml2/
+
+The build system optionally allows specifying the location of those files allowing you to
+use the ones your distribution ships or build environment provides.
+
+

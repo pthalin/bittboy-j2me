@@ -1,0 +1,37 @@
+JNI_INCLUDE = -I/usr/include
+
+CC=arm-apple-darwin9-gcc
+CFLAGS = -I"/var/include" $(JNI_INCLUDE)
+LD=$(CC)
+LDFLAGS = -arch arm -lgcc_s.1 -lSystem 
+LDFLAGS += -multiply_defined suppress 
+
+SOURCES = JAbstractSurface.c \
+	  PiscesBlit.c \
+	  PiscesPipelines.c \
+	  PiscesTransform.c \
+	  JNativeSurface.c \
+	  JPiscesRenderer.c \
+	  PiscesLibrary.c \
+	  PiscesRenderer.c \
+	  PiscesUtil.c \
+	  JNIUtil.c \
+	  JTransform.c \
+	  PiscesMath.c \
+	  PiscesSysutils.c
+
+OBJECTS=$(patsubst %.c, %.o, $(SOURCES))
+
+all: libmidpath-pisces.jnilib
+
+%.o : %.c
+	$(CC) $(CFLAGS) -fPIC -O2 -g -fno-common -c -Wall -o $(patsubst %.c, %.o, $<) $<
+
+%.jnilib: $(OBJECTS)
+	$(CC) $(LDFLAGS) -shared -o $@ $^
+	/usr/bin/ldid -S $@	
+#libtool -dynamic -lgcc_s.1  -lSystem  -o libmidpath-pisces.jnilib *.O
+
+clean:
+	rm -f *.jnilib *.o
+

@@ -1,0 +1,2 @@
+Nokia ui classes (external/nokia/src/com/nokia) are adapted from pspkvm (http://www.pspkvm.org/).
+

@@ -1,0 +1,18 @@
+This folder contains:
+
+* cacao-cldc-patch: Patches needed by cacao 0.97 and cacao 0.98 (not needed anymore in more recent versions)
+
+* src: cldc1.1 sources
+
+How to sync from the phoneME SVN trunk:
+=======================================
+
+# cd $MIDPATH_HOME/external/cldc1.1
+# svn export https://phoneme.dev.java.net/svn/phoneme/components/cldc/trunk cldc-phoneme
+# cp -rf cldc-phoneme/src/javaapi/share/*  cldc-phoneme/src/javaapi/cldc1.1/* src
+# rm -rf cldc-phoneme
+
+Revision: Synched with phoneME revision 4266 (2007-04-07)
+
+
+

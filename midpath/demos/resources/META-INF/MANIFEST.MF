@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
+MIDlet-Vendor: MIDPath
+MIDlet-Version: 1.0.0
+MIDlet-Name: MIDPath Demos
+MIDlet-1: Hello World,,org.thenesis.midpath.demo.ui.HelloWorldMIDlet
+MIDlet-2: Testris,,org.thenesis.midpath.demo.game.testris.Testris
+MIDlet-3: Tile Puzzle,,org.thenesis.midpath.demo.game.tilepuzzle.TilePuzzle
+MIDlet-4: Worm,,org.thenesis.midpath.demo.game.wormgame.WormMain
+MIDlet-5: City Guide,,org.thenesis.midpath.demo.location.CityGuideMIDlet
+MIDlet-6: M3G Demo,,org.thenesis.midpath.demo.m3g.M3GDemo
+MIDlet-7: Audio Player,,org.thenesis.midpath.demo.media.PlayerMIDlet
+MIDlet-8: SMS Send,,org.thenesis.midpath.demo.messaging.sms.SMSSend
+MIDlet-9: SMS Receive,,org.thenesis.midpath.demo.messaging.sms.SMSReceive
+MIDlet-10: OpenGL Demo,,org.thenesis.midpath.demo.opengl.Cube
+MIDlet-11: SVG Basic Demo,,org.thenesis.midpath.demo.svg.basic.RenderSVGImageDemo
+MIDlet-12: SVG Contact List Demo,,org.thenesis.midpath.demo.svg.contactlist.ContactListSkin1
+MIDlet-13: Alert Demo,,org.thenesis.midpath.demo.ui.alert.AlertDemo
+MIDlet-14: ChoiceGroup Demo,,org.thenesis.midpath.demo.ui.choicegroup.ChoiceGroupDemo
+MIDlet-15: CustomItem Demo,,org.thenesis.midpath.demo.ui.customitem.CustomItemDemo
+MIDlet-16: Gauge Demo,,org.thenesis.midpath.demo.ui.gauge.GaugeDemo
+MIDlet-17: List Demo,,org.thenesis.midpath.demo.ui.list.ListDemo
+MIDlet-18: StringItem Demo,,org.thenesis.midpath.demo.ui.stringitem.StringItemDemo
+MIDlet-19: TextBox Demo,,org.thenesis.midpath.demo.ui.textbox.TextBoxDemo
+MIDlet-20: TextField Demo,,org.thenesis.midpath.demo.ui.textfield.TextFieldDemo
+MIDlet-21: Ticker Demo,,org.thenesis.midpath.demo.ui.ticker.TickerDemo
+MIDlet-22: Push Puzzle,,org.thenesis.midpath.demo.game.pushpuzzle.PushPuzzle

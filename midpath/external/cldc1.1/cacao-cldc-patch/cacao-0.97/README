@@ -1,0 +1,17 @@
+This folder contains patches needed by cacao 0.97
+
+How to patch cacao-cldc
+=======================
+
+1) 
+# cp $MIDPATH_HOME/external/cldc1.1/cacao-cldc-patch/cacao-0.97/com_sun_cldc_io_ResourceInputStream.c $CACAO_0.97/src/native/vm/cldc1.1/
+
+or
+ 
+# cd $CACAO_TRUNK_PATH
+# patch -p0 < $MIDPATH_HOME/external/cldc1.1/cacao-cldc-patch/cacao-0.97/cacao-svn-diff.patch
+
+2)
+cp -rf $MIDPATH_HOME/external/cldc1.1/cacao-cldc-patch/cacao-0.97/ResourceInputStream.java $CACAO_0.97/src/com/sun/cldc/io/
+
+

@@ -1,0 +1,85 @@
+0.3rc2 (20/10/2008)
+-------------------
+
+* Improved key handling in SWT and AWT backends
+* Fixed window redrawing problem in SWT backend
+* Fixed resources loading bug (allows phoneME Advanced VM to work)
+* Added CLDC and JNI test suites
+* Moved zip and png packages to MicroBackend
+* Fixed start failures caused by trailing whitespace in system properties file
+
+Contributions:
+- Robert Schuster
+- Henning Heinold
+
+0.3rc1 (21/05/2008)
+-------------------
+
+* Added J2ME Web Services API (JSR172)
+* Added Location API (JSR179)
+* Added Wireless Messaging API (JSR205) (not functional yet)
+* Added Scalable 2D Vector Graphics API (JSR226)
+* Added OpenGL ES 1.0 API (JSR239)
+* Added Mobile 3D Graphics API (JSR184)
+* New build system (contributed by Robert Schuster)
+* Added Qtopia4 support (contributed by Henning Heinold)
+* Improved UI look & feel
+* Added new demos
+
+Contributions:
+- Robert Schuster
+- Henning Heinold
+
+0.2 (28/11/2007)
+----------------
+
+* Added QT4 support (contributed by Henning Heinold)
+* Added JSR82/Bluetooth support (port of AvetanaBluetooth library to CLDC)
+* Added Linux Framebuffer backend
+* Added full DataSource support (allowing real-time audio streaming)
+* Added a native file access backend (to be used with cacao-cldc)
+* Moved UI backends in a separate library : MicroBackend
+
+Contributions/help:
+- Robert Schuster
+- Henning Heinold
+
+0.1 (20/08/2007)
+----------------
+
+* Added an internal virtual keyboard (useful for devices without native hard/soft keyboard) 
+* Fixed clipping bugs
+* Added PulseAudio backend 
+* Added Qt3 backend
+* Added ESounD backend
+* Fixed problem with palettized PNG images 
+* Improved build system (Robert Schuster)
+* Added graphical MIDlet manager
+* Added Maemo support in the GTK backend (Sebastian Mancke)
+* Improved event infrastructure (in particular window closing) 
+* New sound infrastructure with embedded resampler, audio format converter and mixer
+* Added an ALSA backend
+* Added MP3/OGG support with help of JLayerME and JOrbis 
+* Added GTK backend
+
+Contributions/help:
+- Sebastian Mancke
+- Robert Schuster
+- Henning Heinold
+
+Special thanks to Christian Thalinger for having helped to make MIDPath 
+working out-of-the-box with cacao-cldc.
+
+0.1-alpha2 (11/04/2007)
+-----------------------
+
+* Added a Virtual Toolkit (pure Java rendering)
+* Added BDF font support (thanks to Stephane Meslin-Weber)
+* Added pure Java PNG library (based on Sixlegs PNG library)
+* Added AWT, SWT, (socket-based) X11 backends
+* MIDPath works with cacao-cldc now (thanks to Christian Thalinger -a.k.a twisti- for his help)
+
+0.1-alpha1 (20/12/2006)
+-----------------------
+
+* Initial version

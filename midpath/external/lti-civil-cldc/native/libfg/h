@@ -1,0 +1,11 @@
+Binary file camview matches
+capture.h:#define FG_SOURCE_TV            0
+capture.h:#define FG_SOURCE_COMPOSITE     1
+capture.h:#define FG_SOURCE_SVIDEO        2
+capture.h:///     \param          src         Source id (eg. FG_SOURCE_SVIDEO)
+capture.h:///     \param     src         Source id (eg. FG_SOURCE_TV)
+Binary file capture.o matches
+Binary file libfg.a matches
+Binary file test_capture matches
+test_capture.c:    _T( fg_set_source( fg, FG_SOURCE_TV ) );
+Binary file test_capture.o matches
