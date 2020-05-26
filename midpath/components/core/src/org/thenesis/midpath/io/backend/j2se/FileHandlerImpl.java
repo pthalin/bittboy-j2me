@@ -181,19 +181,15 @@ public class FileHandlerImpl extends AbstractFileHandler {
 
 	public void openForRead() throws IOException {
 		if (randomAccessFile == null) {
-		    // Try to get maximum rights to avoid closing the stream if openForWrite is called next 
-            if (file.canWrite()) {
-                randomAccessFile = new RandomAccessFile(file, "rws");
-            } else {
-                randomAccessFile = new RandomAccessFile(file, "r");
-            }
+			//stream = new FileRandomAccessStream(file);
+			randomAccessFile = new RandomAccessFile(file, "rws");
 		}
 	}
 
 	public void openForWrite() throws IOException {
 		if (randomAccessFile == null) {
 			randomAccessFile = new RandomAccessFile(file, "rws");
-		} 
+		}
 	}
 
 	public void positionForWrite(long offset) throws IOException {

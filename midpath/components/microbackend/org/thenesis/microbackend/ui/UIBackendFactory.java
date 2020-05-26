@@ -17,53 +17,38 @@
  */
 package org.thenesis.microbackend.ui;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-
-//import org.thenesis.microbackend.ui.awt.AWTBackend;
-//import org.thenesis.microbackend.ui.awt.AWTWrapperBackend;
-//import org.thenesis.microbackend.ui.awtgrabber.AWTGrabberBackend;
-//import org.thenesis.microbackend.ui.fb.FBBackend;
-//import org.thenesis.microbackend.ui.gtk.GTKBackend;
-//import org.thenesis.microbackend.ui.qt.QTBackend;
+import org.thenesis.microbackend.ui.awt.AWTBackend;
+import org.thenesis.microbackend.ui.awt.AWTWrapperBackend;
+import org.thenesis.microbackend.ui.awtgrabber.AWTGrabberBackend;
+import org.thenesis.microbackend.ui.fb.FBBackend;
+import org.thenesis.microbackend.ui.gtk.GTKBackend;
+import org.thenesis.microbackend.ui.qt.QTBackend;
 import org.thenesis.microbackend.ui.sdl.SDLBackend;
-//import org.thenesis.microbackend.ui.swt.SWTBackend;
-//import org.thenesis.microbackend.ui.swt.SWTWrapperBackend;
-//import org.thenesis.microbackend.ui.x11.X11Backend;
+import org.thenesis.microbackend.ui.swt.SWTBackend;
+import org.thenesis.microbackend.ui.swt.SWTWrapperBackend;
+import org.thenesis.microbackend.ui.x11.X11Backend;
 
 public class UIBackendFactory {
 
     //public static final String BACKEND_PACKAGE_PREFIX = "org.thenesis.microbackend.ui.";
-    
-    private static Hashtable backendRegistry = new Hashtable();
 
     public static final String BACKEND_SDL = "SDL";
-//    public static final String BACKEND_AWT = "AWT";
-//    public static final String BACKEND_AWTGRABBER = "AWTGRABBER";
-//    public static final String BACKEND_SWT = "SWT";
-//    public static final String BACKEND_X11 = "X11";
-//    public static final String BACKEND_GTK = "GTK";
-//    public static final String BACKEND_QT = "QT";
-//    public static final String BACKEND_FB = "FB";
+    public static final String BACKEND_AWT = "AWT";
+    public static final String BACKEND_AWTGRABBER = "AWTGRABBER";
+    public static final String BACKEND_SWT = "SWT";
+    public static final String BACKEND_X11 = "X11";
+    public static final String BACKEND_GTK = "GTK";
+    public static final String BACKEND_QT = "QT";
+    public static final String BACKEND_FB = "FB";
     public static final String BACKEND_NULL = "NULL";
 
     public static UIBackend createBackend(String name) {
 
         UIBackend backend = null;
-        
-        // First look at the registry
-        Enumeration e = backendRegistry.keys();
-        while(e.hasMoreElements()) {
-            String key = (String)e.nextElement();
-            if (name.equalsIgnoreCase(key)) {
-                return (UIBackend)backendRegistry.get(key);
-            }
-        }
 
-        // Create new backend 
         if (name.equalsIgnoreCase(BACKEND_SDL)) {
             backend = new SDLBackend();
-/*        } else if (name.equalsIgnoreCase(BACKEND_AWT)) {
+        } else if (name.equalsIgnoreCase(BACKEND_AWT)) {
             backend = new AWTBackend();
         } else if (name.equalsIgnoreCase(BACKEND_AWTGRABBER)) {
             backend = new AWTGrabberBackend();
@@ -76,7 +61,7 @@ public class UIBackendFactory {
         } else if (name.equalsIgnoreCase(BACKEND_QT)) {
             backend = new QTBackend();
         } else if (name.equalsIgnoreCase(BACKEND_FB)) {
-            backend = new FBBackend(); */
+            backend = new FBBackend();
         } else {
             return null;
         }
@@ -94,11 +79,7 @@ public class UIBackendFactory {
         if (m instanceof UIBackend) {
             return (UIBackend) m;
         }
-        
-        if (m instanceof String) {
-            return  createBackend((String)m);
-        }
-/*
+
         Class containerClass = null;
         try {
             containerClass = Class.forName("java.awt.Container");
@@ -117,7 +98,7 @@ public class UIBackendFactory {
         } catch (ClassNotFoundException e) {
             //e.printStackTrace();
         }
-*/
+
         return null;
 
     }
@@ -155,7 +136,7 @@ public class UIBackendFactory {
 
         // Try to create an object from the configuration file or system properties
         if (backend == null) {
-            String backendName = backendConfig.getParameter("org.thenesis.microbackend.ui.backend");
+            String backendName = backendConfig.getParameterDefault("org.thenesis.microbackend.ui.backend", "AWT");
             backend = createBackend(backendName);
         }
 
@@ -166,17 +147,13 @@ public class UIBackendFactory {
         }
 
         // Get requested screen size
-        int w = backendConfig.getIntParameter("org.thenesis.microbackend.ui.screenWidth", 100);
-        int h = backendConfig.getIntParameter("org.thenesis.microbackend.ui.screenHeight", 100);
+        int w = backendConfig.getIntParameter("org.thenesis.lwuit.microbackend.screenWidth", 100);
+        int h = backendConfig.getIntParameter("org.thenesis.lwuit.microbackend.screenHeight", 100);
 
         backend.configure(backendConfig, w, h);
         backend.setBackendEventListener(listener);
 
         return backend;
-    }
-    
-    public static void registerBackend(String name, UIBackend backend) {
-        backendRegistry.put(name, backend);
     }
 
 }

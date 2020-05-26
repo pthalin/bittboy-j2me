@@ -140,9 +140,9 @@ public class FBBackend implements UIBackend {
 		//			System.out.println("Right button pressed: " + x + " " + y);
 		//		}
 		if (button != 0) {
-			listener.pointerPressed(x, y, 0);
+			listener.mousePressed(x, y, 0);
 		} else {
-			listener.pointerReleased(x, y, 0);
+			listener.mouseReleased(x, y, 0);
 		}
 
 	}
@@ -151,7 +151,7 @@ public class FBBackend implements UIBackend {
 		if (Logging.TRACE_ENABLED)
 			System.out.println("[DEBUG] FBBackend.motionEvent()");
 
-		listener.pointerMoved(x, y, 0);
+		listener.mouseMoved(x, y, 0);
 	}
 
 	public synchronized void onRawMouseEvent(int dx, int dy, int button) {

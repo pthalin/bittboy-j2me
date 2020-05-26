@@ -105,9 +105,9 @@ public class GTKBackend implements UIBackend {
 			System.out.println("[DEBUG] GTKBackend.buttonEvent(): " + pressed);
 
 		if (pressed) {
-			listener.pointerPressed(x, y, 0);
+			listener.mousePressed(x, y, 0);
 		} else {
-			listener.pointerReleased(x, y, 0);
+			listener.mouseReleased(x, y, 0);
 		}
 	}
 
@@ -133,7 +133,7 @@ public class GTKBackend implements UIBackend {
 	public void onMotionEvent(int x, int y, int state) {
 		if (Logging.TRACE_ENABLED)
 			System.out.println("[DEBUG] GTKBackend.motionEvent()");
-		listener.pointerMoved(x, y, 0);
+		listener.mouseMoved(x, y, 0);
 	}
 
 	/* (non-Javadoc)

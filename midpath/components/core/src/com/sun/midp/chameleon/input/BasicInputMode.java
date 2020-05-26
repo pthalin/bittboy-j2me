@@ -546,7 +546,7 @@ abstract class BasicInputMode implements InputMode, Runnable {
         if (c != KEYCODE_NONE) {
             log("[commitPendingChar] commiting "+String.valueOf((char)c));
             committed = true;
-            mediator.commit(String.valueOf((char)c), false);
+            mediator.commit(String.valueOf((char)c));
         }
         
         lastKey = -1;

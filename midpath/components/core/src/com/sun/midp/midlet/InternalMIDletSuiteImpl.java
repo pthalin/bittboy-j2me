@@ -150,9 +150,7 @@ public class InternalMIDletSuiteImpl implements MIDletSuite {
 	}
 
 	public static String buildSuiteID(String suiteName) {
-		// ':' is not a valid char for VFAT filename which
-		// is used by Dingux 
-		return suiteName.replace(' ', '_').replace(':', '_');
+		return suiteName.replace(' ', '_');
 	}
 
 	/**

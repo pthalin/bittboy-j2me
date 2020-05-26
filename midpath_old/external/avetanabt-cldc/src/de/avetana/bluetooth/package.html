@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <title> The Avetana Bluetooth JSR82 implementation
+    </title>
+  </head>
+  <body bgcolor="white">
+
+  This package provides an implementation of the JSR 82 specification from Sun Microsystems (c).
+  The aim of this specification is to easily develop Bluetooth-based applications in java. It
+  does not exist (as I am writing these comments) any universal implementation of the Sun Specification.
+  <br>
+  The Avetana Bluetooth package is available under three operating systems: Linux (GPL version), Windows
+  and Mac OS X (commercial versions) and is NOT a 100 % pure Java implementation. The use of JNI technologies
+  allows to communicate with the hardware and system-specific bluetooth stack.
+  <br>
+  Under Linux you must have a kernel version &gt; 2.4.20 or at least you must have the BlueZ kernel modules
+  installed AND loaded.
+
+  <h2>Package Specification</h2>
+  For JSR82-Specification, please see
+  <ul>
+    <li><a href="http://www.jcp.org/en/jsr/detail?id=82">The Java Community Process - JSR 82</a></li>
+    <li><a href="http://developers.sun.com/techtopics/mobility/midp/articles/bluetooth2/index.html">
+  Article - The Java API s for Bluetooth Wireless Technology
+       </a>
+    </li>
+  </ul>
+  <h2>Related Documentation</h2>
+
+    For overviews, examples, guides, and tool documentation, please see the API documentation
+    and the documents stored in the directory named "doku".
+    <br> The class de.avetana.bluetooth.JSRTest2 gives an overview of the possibilities offered by this
+    implementation.
+    <br>Please refer to the following tutorial, too.
+
+  <h2>Quick Tutorial</h2>
+  <h3>Management of the local Device</h3>
+  The JSR82 Specification allows to work only with one Local Device, which is accessible with the help
+  of the static method:<br><br>
+  <code>LocalDevice m_local=LocalDevice.getLocalDevice();</code><br><br>
+  <br><br>
+
+  You can now retrieve some properties of your local device:<br><br>
+  <code>
+    <i>//retrieves the BT address of the local device</i><br>
+    LocalDevice.getBluetoothAdress() <br><br>
+    <i>//retrieves the name of the local device</i><br>
+    LocalDevice.getFriendlyName() <br><br>
+    <i>// retrieves the discoverable mode. Beware, this method often requires root privileges</i><br>
+    LocalDevice.getDiscoverableMode()  <br><br><br>
+  </code>
+
+  The method <code>getRecord(ConnectionNotifier)</code> and <code>updateRecord(ServiceRecord)</code> cannot be
+  directly used here. <br>
+  They suppose that you have already created a service waiting for incoming connections.
+
+  <h3>Device/Service Search</h3>
+
+  With your <code>LocalDevice</code> you can retrieve the DiscoveryAgent which will help you to perform an HCI inquiry
+  (Device search) or a service Search.
+  <br><br><code>
+    <i>//retrieves the DiscoveryAgent</i><br>
+   DiscoveryAgent m_agent=LocalDevice.getDiscoveryAgent() <br><br>
+  </code>
+  Whatever the search you want to perforn you need beside your DiscoveryAgent a DiscoveryListener.
+  <br>The DiscoveryListener
+  will set the way your application react each time a new device or a new service is found, but also when
+  the searches terminate normally or abnormally.
+
+  <br><br><b>Example of a device search</b><br><br>
+  <code>
+   DiscoveryListener myListener=new DiscoveryListener() {<br>
+   &nbsp;&nbsp;public void servicesDiscovered(int transID, ServiceRecord[] servRecord) {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;//does nothing<br>
+   &nbsp;&nbsp;}      <br><br>
+   &nbsp;&nbsp;public void deviceDiscovered(RemoteDevice btDevice, DeviceClass cod) {<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;try {<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("New Device "+btDevice.getBluetoothAddress()+" found!");<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Remote Name of the device is "+btDevice.getFriendlyName(true));<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;}catch(Exception ex) {}<br>
+   &nbsp;&nbsp;}<br><br>
+
+   &nbsp;&nbsp;public void inquiryCompleted(int discType) {<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Device Search completed!");<br>
+   &nbsp;&nbsp;}<br><br>
+
+   &nbsp;&nbsp;public void serviceSearchCompleted(int transID, int respCode) {<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;// does nothing<br>
+   &nbsp;&nbsp;}<br>
+ };<br><br>
+ try {<br>
+    &nbsp;&nbsp;  m_agent.startInquiry(DiscoveryAgent.GIAC, myListener);<br>
+    }<br>
+    catch(Exception ex) {ex.printStackTrace();}<br><br>
+  </code>
+  This example does not implement the part of the DiscoveryListener class used to
+  manage the result of a service search. In this case this does not have any influence, since
+  this little code-fragment is only performing a device search. <br>A more complete example
+  performing a service search as soon as the device search is completed can be found
+  in the de.avetana.bluetooth.util.ServiceFinderPane class. <br><br>
+  I strongly recommand to refer to this class for a pratical example.
+
+  <h3>Client connection and data exchange</h3>
+
+  After a service search and the choice of the service you want to connect to, you
+  know the connection URL used to perform a client connection (this URL is given by the
+  method javax.bluetooth.ServiceRecord#getConnectionURL(...)).<br><br>
+
+  Let's suppose that the choosen service waits for RFCOMM protocol based-connections. The form of the URL is:<br><br>
+  <code>
+    String connectionURL="btspp://123456123456:1;encrypt=false;authenticate=false;master=true"
+  </code>
+  <br><br>
+  To connect to this service, assuming that <i>running</i> is a class variable set to <b>false</b>, when
+the user presses an UI button labelled <i>Close</i>:<br><br>
+  <code>
+    &nbsp;&nbsp;Connection con=Connector.open(connectionURL);<br>
+    &nbsp;&nbsp;Runnable r=new Runnable() {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;public void run() {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte b[] = new byte[200];<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {<br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (running) {<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataReceived.setText("Received " + received);<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a = is.read(b);<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;received += a;<br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (Exception e) {e.printStackTrace();running=false; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    &nbsp;&nbsp;<i>//Starts the thread used to read data</i><br>
+    &nbsp;&nbsp;new Thread(r).run();<br><br>
+    &nbsp;&nbsp;<i>//Write some data</i><br>
+    &nbsp;&nbsp;((StreamConnection)streamCon).openDataOutputStream().writeChars("Try to write");
+  </code>
+
+
+  <h3>License</h3>
+  In each file related to this project, you will find the following header:<br><br>
+  <i>
+  <b>COPYRIGHT:</b><br> (c) Copyright 2004 Avetana GmbH ALL RIGHTS RESERVED. <br><br>
+
+ This file is part of the Avetana bluetooth API for Linux.<br><br>
+
+ The Avetana bluetooth API for Linux is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2 of
+ the License, or (at your option) any later version. <br><br>
+
+ The Avetana bluetooth API is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.<br><br>
+
+ The development of the Avetana bluetooth API is based on the work of
+ Christian Lorenz (see the Javabluetooth Stack at http://www.javabluetooth.org) for some classes,
+ on the work of the jbluez team (see http://jbluez.sourceforge.net/) and
+ on the work of the bluez team (see the BlueZ linux Stack at http://www.bluez.org) for the C code.
+ Classes, part of classes, C functions or part of C functions programmed by these teams and/or persons
+ are explicitly mentioned.<br><br>
+ </i>
+ Please RESPECT the terms of this license and commit any changes!!!.
+
+  <h3>Conclusion</h3>
+  The JSR82 specification is really an easy-to-use development tool for Bluetooth. Moreover the use
+  of the Avetana Bluetooth implementation is transparent for the end-programmer. <br><br>
+  This quick tutorial has made a short presentation of the possibilities offered by the Avetana Bluetooth implementation but
+  a look at the JSRTest class could complete this HOWTO.<br><br>
+  Several turorials are available on the internet and I strongly suggest to consult them if you are not familiar with
+  Bluetooth, Java or the use of JSR82. <br>
+  But please keep two things in mind:
+ <ul><li>Only RFCOMM and L2CAP protocols are currently supported. </li>
+ <li>The linux implementation is free under the terms of the GPL. So if you want to modify some files, please
+  do it and commit any modifications with our CVS Server.</li></ul>
+  <br><br>
+
+  <h3>Authors and Copyrigth</h3>
+  This implementation was mostly written by Julien Campana with the help of Moritz Gmelin for the Avetana GmbH.<br>
+  <a href="http://www.avetana.de">The Avetana Medical Portal</a><br>
+  <a href="http://www.avetana-gmbh.de">Avetana Technologies Web-Site</a><br>
+  <br><br>
+  <b>Copyright Avetana GmbH 2004</b>
+
+  </body>
+</html>
+

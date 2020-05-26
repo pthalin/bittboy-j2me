@@ -29,17 +29,17 @@ public class NullBackendEventListener implements BackendEventListener {
 
 	}
 
-	public void pointerMoved(int x, int y, int modifiers) {
+	public void mouseMoved(int x, int y, int modifiers) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void pointerPressed(int x, int y, int modifiers) {
+	public void mousePressed(int x, int y, int modifiers) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void pointerReleased(int x, int y, int modifiers) {
+	public void mouseReleased(int x, int y, int modifiers) {
 		// TODO Auto-generated method stub
 
 	}

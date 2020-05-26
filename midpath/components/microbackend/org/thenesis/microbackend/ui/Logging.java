@@ -31,7 +31,7 @@ public class Logging {
 
     public static final boolean TRACE_ENABLED = false;
 
-    public static int currentLevel = 1;
+    public static int currentLevel = 4;
 
     public static int getLevel() {
         return currentLevel;

@@ -56,6 +56,10 @@ public class MIDPPerseusToolkit extends PerseusToolkit {
 		return ResourceHandler.getDefaultFontResource();
 	}
 	
+	public String getConfigurationProperty(String s) {
+		return com.sun.midp.main.Configuration.getProperty(s);
+	}
+	
 	 public ScalableGraphics createScalableGraphics() {
 		 return new ScalableGraphicsIpml();
 	 }

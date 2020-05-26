@@ -28,7 +28,6 @@ import org.kxml2.io.KXmlParser;
 import org.xmlpull.v1.XmlPullParser;
 
 import com.sun.midp.log.Logging;
-import com.sun.midp.main.Configuration;
 
 abstract class LocalizedStringsBase {
 	
@@ -60,16 +59,8 @@ abstract class LocalizedStringsBase {
     	
     	KXmlParser parser = new KXmlParser();
 
-		String loc = System.getProperty("microedition.locale");
-		if (loc == null) loc = "en-US";
-		InputStream is = null;
-		try {
-			is = LocalizedStringsBase.class.getResourceAsStream("/com/sun/midp/configuration/l10n/" + loc + ".xml");
-		} catch (Exception e) {
-			is = LocalizedStringsBase.class.getResourceAsStream("/com/sun/midp/configuration/l10n/en-US.xml");
-		}
-		//parser.setInput(is, "ISO-8859-1");
-		parser.setInput(is, "UTF-8");
+		InputStream is = LocalizedStringsBase.class.getResourceAsStream("/com/sun/midp/configuration/l10n/en-US.xml");
+		parser.setInput(is, "ISO-8859-1");
 
 		//		parser.relaxed = true;
 		parser.nextTag();

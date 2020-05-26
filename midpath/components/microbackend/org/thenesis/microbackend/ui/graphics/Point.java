@@ -17,7 +17,7 @@
  */
 package org.thenesis.microbackend.ui.graphics;
 
-public class Point {
+class Point {
 	public int x, y;
 	
 	public void set(int x0, int y0) {

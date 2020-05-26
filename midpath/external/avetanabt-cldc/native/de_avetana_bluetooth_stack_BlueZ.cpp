@@ -649,11 +649,7 @@ JNIEXPORT jstring JNICALL Java_de_avetana_bluetooth_stack_BlueZ_hciLocalName
 
 	//printf("Function called: %s, %i\n"__FILE__, __LINE__);
 
-#ifdef BLUEZ_4    
-	if (hci_read_local_name(dd, sizeof(name_str), name_str, timeOut) < 0)
-#else
-    if (hci_local_name(dd, sizeof(name_str), name_str, timeOut) < 0)
-#endif
+	if (hci_local_name(dd, sizeof(name_str), name_str, timeOut) < 0)
 	{
 		throwException(env, "Java_de_avetana_bluetooth_stack_BlueZ_hciLocalName: Unable to read local name");
 		return 0;

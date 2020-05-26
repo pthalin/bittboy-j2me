@@ -1,12 +1,13 @@
-CC = /opt/mipsel-linux-uclibc/usr/bin/mipsel-linux-gcc
+JNI_INCLUDE=-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux
+SDL_INCLUDE=-I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include/SDL -I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include
 
-CFLAGS=-Os -fPIC -g -mips32 -mtune=mips32 -mno-mips16 -mbranch-likely -pipe -G0 -fno-common -fpeel-loops
 
-JNI_INCLUDE=-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
+CROSS_COMPILE=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-
+CC = $(CROSS_COMPILE)gcc
 
-SDL_INCLUDE=-I/usr/include/SDL -I/usr/local/include -I/usr/local/include/SDL
+CFLAGS=-Os -fPIC 
 
-INCLUDE=-I. $(JNI_INCLUDE) $(SDL_INCLUDE)
+INCLUDE=$(JNI_INCLUDE) $(SDL_INCLUDE)
 
 SDLJAVA_OBJ=SDLAudio_wrap.o\
             SDLEvent_wrap.o\

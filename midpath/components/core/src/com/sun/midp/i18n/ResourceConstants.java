@@ -1783,36 +1783,4 @@ public class ResourceConstants {
      */
     public final static int JSR177_PINDIALOG_NEWVALUE = 353;
 
-    public final static int ALARM = 354;
-    public final static int CONFIRM = 355;
-    public final static int KEY_UP = 356;
-    public final static int KEY_DOWN = 357;
-    public final static int KEY_LEFT = 358;
-    public final static int KEY_RIGHT = 359;
-    public final static int KEY_UNMAPPED = 360;
-    public final static int PHONEPAD_UP = 361;
-    public final static int PHONEPAD_DOWN = 362;
-    public final static int PHONEPAD_LEFT = 363;
-    public final static int PHONEPAD_RIGHT = 364;
-    public final static int PHONEPAD_SELECT = 365;
-    public final static int PHONEPAD_SOFTBUTTON1 = 366;
-    public final static int PHONEPAD_SOFTBUTTON2 = 367;
-    public final static int PHONEPAD_STAR = 368;
-    public final static int PHONEPAD_POUND = 369;
-    public final static int PHONEPAD_0 = 370;
-    public final static int PHONEPAD_1 = 371;
-    public final static int PHONEPAD_2 = 372;
-    public final static int PHONEPAD_3 = 373;
-    public final static int PHONEPAD_4 = 374;
-    public final static int PHONEPAD_5 = 375;
-    public final static int PHONEPAD_6 = 376;
-    public final static int PHONEPAD_7 = 377;
-    public final static int PHONEPAD_8 = 378;
-    public final static int PHONEPAD_9 = 379;
-    public final static int SCREEN_RESOLUTION= 380;
-    public final static int KEY_MAPPING = 381;
-    public final static int MIDLET_MANAGER = 382;
-    public final static int LOADING = 383;
-    public final static int INSTALLING = 384;
-    public final static int E61_NUMERIC_KEY = 385;
 }

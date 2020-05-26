@@ -30,9 +30,6 @@ import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.TextField;
 
-import com.sun.midp.chameleon.input.VirtualKeyboardInputMode.VirtualKeyboardForm;
-import com.sun.midp.main.Configuration;
-
 /**
  * The BasicTextInputSession represents the relationship between the 
  * system's key input, the TextInputComponent, the available InputModes, 
@@ -63,29 +60,21 @@ public class BasicTextInputSession implements
     
     /** The text component receiving the input */
     protected TextInputComponent textComponent;
-    
-    /** 
-     * Flag to set if the virtual keyboard must be shown automatically 
-     * when key/pointer events are received by the text component.
-     */
-    private boolean virtualKeyboardAutoEnabled = false;
 
+    
     /**
      * Construct a new BasicTextInputSession
      */
     public BasicTextInputSession() { 
         inputModeSet = new InputMode[] { 
             new KeyboardInputMode(),
-            new VirtualKeyboardInputMode(), // Must be in second position
             new NumericInputMode(),
             new AlphaNumericInputMode(),
-//            //new PredictiveTextInputMode(),
+            //new PredictiveTextInputMode(),
             new SymbolInputMode(),
-            
+            new VirtualKeyboardInputMode()
         };
-        
-        String value = Configuration.getPropertyDefault("com.sun.midp.chameleon.input.virtualKeyboardAutoEnabled", "false");
-        virtualKeyboardAutoEnabled = value.equalsIgnoreCase("true") ? true : false; 
+
     }
     
     /**
@@ -207,18 +196,13 @@ public class BasicTextInputSession implements
      *         InputMode (not all keys apply to input)
      */
     public int processKey(int keyCode, boolean longPress) {
-        if (virtualKeyboardAutoEnabled) {
-            setCurrentInputMode(inputModeSet[1]);
-        } else {
-            try {
-                return currentMode.processKey(keyCode, longPress);
-            } catch (Throwable t) {
-                // Since InputModes are pluggable, we'll catch any possible
-                // Throwable when calling into one
-                // IMPL_NOTE : log the throwable
-            }
+        try {
+            return currentMode.processKey(keyCode, longPress);
+        } catch (Throwable t) {
+            // Since InputModes are pluggable, we'll catch any possible
+            // Throwable when calling into one
+            // IMPL_NOTE : log the throwable
         }
-        
         return InputMode.KEYCODE_NONE;
     }
 
@@ -315,9 +299,9 @@ public class BasicTextInputSession implements
      * character.
      * @param input text to commit
      */
-    public void commit(String input, boolean replace) {
+    public void commit(String input) {
         if (input != null && textComponent != null) {
-            textComponent.commit(input, replace);
+            textComponent.commit(input);
         }
     }
 
@@ -442,13 +426,6 @@ public class BasicTextInputSession implements
                 currentDisplay = textComponent.getDisplay();
                 previousScreen = currentDisplay.getCurrent();
                 currentDisplay.setCurrent(currentMode.getDisplayable());
-                
-                // Hack to get keyboard focus first
-                if (currentMode.getDisplayable() instanceof VirtualKeyboardForm) {
-                    VirtualKeyboardForm form = (VirtualKeyboardForm)currentMode.getDisplayable();
-                    currentDisplay.setCurrentItem(form.getFirstFocusableItem());
-                }
-                
                 stickyMode = oldMode;
             } else {
                 stickyMode = currentMode;
@@ -509,14 +486,5 @@ public class BasicTextInputSession implements
     public int getAvailableSize() {
         return textComponent != null ? textComponent.getAvailableSize() : 0;
     }
-    
-    public String getInitialText() {
-        return textComponent.getInitialText();
-    }
-    
-    public boolean isVirtualKeyboardAutoEnabled() {
-        return virtualKeyboardAutoEnabled;
-    }
-    
 }
 

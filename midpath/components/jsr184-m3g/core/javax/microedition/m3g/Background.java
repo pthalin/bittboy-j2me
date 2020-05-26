@@ -178,15 +178,11 @@ public class Background extends Object3D {
 
 		// Draw the background image if any
 		if (backgroundImage != null) {
-		    
-		    int w = Graphics3D.getInstance().getViewportWidth();
-            int h = Graphics3D.getInstance().getViewportHeight();
 
-            gl.glMatrixMode(GL10.GL_PROJECTION);
-            gl.glPushMatrix();
-            gl.glLoadIdentity();
-            gl.glOrthof(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
 			gl.glMatrixMode(GL10.GL_MODELVIEW);
+			gl.glPushMatrix();
+			gl.glLoadIdentity();
+			gl.glMatrixMode(GL10.GL_PROJECTION);
 			gl.glPushMatrix();
 			gl.glLoadIdentity();
 
@@ -203,6 +199,8 @@ public class Background extends Object3D {
 			backgroundTexture.setupGL(gl, new float[] { 1, 0, 0, 0 });
 
 			// Calculate crop
+			int w = Graphics3D.getInstance().getViewportWidth();
+			int h = Graphics3D.getInstance().getViewportHeight();
 
 			if (cropWidth <= 0)
 				cropWidth = w;

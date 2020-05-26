@@ -27,8 +27,6 @@
 
 package com.sun.midp.chameleon.skins.resources;
 import javax.microedition.lcdui.Graphics;
-import com.sun.midp.i18n.Resource;
-import com.sun.midp.i18n.ResourceConstants;
 
 public final class RomizedSkin {
 
@@ -298,9 +296,9 @@ public final class RomizedSkin {
         // BUSYCRSR_IMAGE_FRAME
         85,
         // CHOICE_WIDTH_IMAGE
-        32,
+        16,
         // CHOICE_HEIGHT_IMAGE
-        32,
+        16,
         // CHOICE_WIDTH_SCROLL
         15,
         // CHOICE_WIDTH_THUMB
@@ -536,7 +534,7 @@ public final class RomizedSkin {
         // PBAR_METER_X
         36,
         // PBAR_METER_Y
-        2,
+        0,
         // PBAR_VALUE_X
         4,
         // PBAR_VALUE_Y
@@ -1108,16 +1106,6 @@ public final class RomizedSkin {
         }
 
         props.properties = properties;
-
-	/* substitue strings with localized version */
-	stringValues[0] = Resource.getString(ResourceConstants.MENU);
-	stringValues[1] = Resource.getString(ResourceConstants.BACK);
-	stringValues[2] = Resource.getString(ResourceConstants.INFO);
-	stringValues[3] = Resource.getString(ResourceConstants.WARNING);
-	stringValues[4] = Resource.getString(ResourceConstants.ERROR);
-	stringValues[5] = Resource.getString(ResourceConstants.ALARM);
-	stringValues[6] = Resource.getString(ResourceConstants.CONFIRM);
-
         props.stringValues = stringValues;
         props.fontValues = fontValues;
         props.imageValues = imageValues;

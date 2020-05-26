@@ -856,9 +856,6 @@ public final class PngImage implements ImageProducer {
 			case Chunk.gIFx : 
 				chunk = new Chunk_gIFx ();
 				break;
-			default : 
-				chunk = new Chunk(type);
-				break;
 			}
 			
 			registerChunk(chunk);
@@ -893,17 +890,14 @@ public final class PngImage implements ImageProducer {
 		try {
 			long file_gamma = ((Long) getProperty("gamma")).longValue();
 			int max = (data.header.paletteUsed ? 0xFF : (1 << data.header.outputDepth) - 1);
-                        /* floating point not working in Dingoo. Intialise a linear gamma table */
-			/* double decoding_exponent = (USER_EXPONENT * 100000d / (file_gamma * DISPLAY_EXPONENT)); */
+			double decoding_exponent = (USER_EXPONENT * 100000d / (file_gamma * DISPLAY_EXPONENT));
 			for (int i = 0; i <= max; i++) {
-			/*	int v = (int) (Util.pow((double) i / max, decoding_exponent) * 0xFF);
+				int v = (int) (Util.pow((double) i / max, decoding_exponent) * 0xFF);
 				if (!data.header.colorUsed) {
 					data.gammaTable[i] = v | v << 8 | v << 16;
 				} else {
 					data.gammaTable[i] = v;
 				}
-                        */
-					data.gammaTable[i] = i;
 			}
 			if (data.palette != null)
 				data.palette.calculate();

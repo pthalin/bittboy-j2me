@@ -1,0 +1,134 @@
+Install from the distribution
+==============================
+
+Step 1 : Get the distro
+-----------------------
+
+ # tar -zxf midpath-<VERSION>.tar.gz
+
+We obtain a directory named midpath. We will refer to it below by this environment variable: $MIDPATH_HOME
+
+Step 2: Set the Java environment
+--------------------------------
+
+* Install your favorite JVM
+
+ - JamVM 
+ 	# apt-get install jamvm
+ - Kaffe 
+    # apt-get install kaffe
+ - Cacao 
+    # apt-get install cacao
+ - Cacao-cldc: See "How to compile cacao-cldc for MIDPath" below 
+
+Step 3: Install Classpath
+--------------------------
+	
+# apt-get install classpath-common
+
+Step 4: Configure your MIDP2 environment
+----------------------------------------
+
+Modify configuration.cfg file in configuration/com/sun/midp/configuration/ directory
+Set the screen size and choose your backend (see below). 
+
+Extract of the configuration file:
+
+	##========================================
+	## Graphics parameters
+	##========================================
+	javax.microedition.lcdui.screenWidth:176
+	javax.microedition.lcdui.screenHeight:210
+	# Toolkit configuration (possible values: SDL, virtual)
+	# The toolkit parameter should be set to "virtual" unless you know what you do.
+	# (to change the UI backend, see the backend parameter of the virtual toolkit below)
+	javax.microedition.lcdui.toolkit:virtual
+	
+	##======================================
+	## Parameters for the Virtual UI Toolkit
+	##======================================
+	# Possible backend values: NULL, SDL, AWT, AWT_GRABBER, SWT, X11, GTK, QT
+	org.thenesis.midpath.ui.backend:AWT
+
+Notes: 
+ - Do not modify the parameter javax.microedition.lcdui.toolkit. Let it to "virtual" value)
+ - If don't use the AWT backend, you'll need a native one (see "Compile the native backends")
+
+Step 5: Start the demo MIDlet suite
+------------------------------------
+
+# cd $MIDPATH_HOME/bin
+# chmod u+x midpath-demo.sh midpath-midlet_launcher.sh
+# ./midpath-demo.sh
+
+Notes:
+ - You may have to change the java command in the midpath-midlet_launcher.sh script
+ - For cacao-cldc, adapt the midpath-demo.sh script to use midpath-midlet_launcher-cacao_cldc.sh
+
+Install from the source repository
+==================================
+
+Step A : Grab the sources
+-------------------------
+
+# svn export https://midpath.svn.sourceforge.net/svnroot/midpath/trunk
+# export MIDPATH_HOME=$(pwd)/trunk
+
+Step B : Set the compilation Java environment
+---------------------------------------------
+
+* Complete Step 3
+* Install ecj (or a package which contains javac) 
+
+  # apt-get install ecj
+
+Step C : Build
+--------------
+
+# cd $MIDPATH_HOME
+# chmod u+x build.sh
+# ./build.sh
+
+Note:
+ - For cacao-cldc, use this command instead : ./build.sh --enable-cldc-vm
+
+Now complete steps 2, 4 and 5
+
+How to compile cacao-cldc for MIDPath
+=====================================
+
+Compile CDLC classes
+--------------------
+
+The MIDPath build script (build.sh) compile cldc automatically
+
+Compile cacao-cldc
+------------------
+
+* Grab cacao sources from SVN 
+
+# hg clone http://mips.complang.tuwien.ac.at/hg/cacao/
+
+* Compile cacao-cldc 
+
+# cd cacao
+# ./configure --prefix=/install/cacao-cldc \
+--enable-java=cldc1.1 --with-java-runtime-library=cldc1.1 \
+--with-java-runtime-library-classes=$MIDPATH_HOME/dist/cldc1.1.jar \
+--with-jni_h=/install/classpath/include \
+--with-jni_md_h=/install/classpath/include \
+--enable-jni --enable-annotations=no --enable-assertion=no
+# make
+# make install
+
+Compile the native backends
+============================
+
+Type ./build.sh --help to get the list of available backends 
+
+For example, to compile GTK and ALSA:
+# ./build.sh --gtk --alsa
+
+Note:
+The build script always builds the java part by default. You can prevent it by 
+modifying flags on top of the script.

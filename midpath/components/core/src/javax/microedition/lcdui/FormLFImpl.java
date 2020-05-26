@@ -27,8 +27,6 @@ package javax.microedition.lcdui;
 
 /* import  javax.microedition.lcdui.KeyConverter; */
 
-import org.thenesis.midpath.ui.UIToolkit;
-
 import com.sun.midp.chameleon.skins.PTISkin;
 import com.sun.midp.chameleon.skins.ScreenSkin;
 import com.sun.midp.configurator.Constants;
@@ -701,27 +699,7 @@ class FormLFImpl extends ScreenLFImpl implements FormLF {
             }
         }
     }
-    
-    /**
-     * Return the item containing the pointer {x, y}
-     * @param x - x demension
-     * @param y - y demension
-     * @return the item containing pointer,
-     * if such item is not found returns null
-     */
-    private ItemLFImpl findItemByPointer(int x, int y) {
-        ItemLFImpl item = null;
-        for (int i = 0; i < numOfLFs; i++) {
-            if (!itemLFs[i].shouldSkipTraverse()) {
-                if (itemLFs[i].itemContainsPointer(x + viewable[X], y + viewable[Y])) {
-                    item = itemLFs[i];
-                    break;
-                }
-            }
-        }
-        return item;
-    }
-    
+
     /**
      * Handle a pointer pressed event
      *
@@ -730,27 +708,33 @@ class FormLFImpl extends ScreenLFImpl implements FormLF {
      */
     void uCallPointerPressed(int x, int y) {
         ItemLFImpl v = null;
+
         synchronized (Display.LCDUILock) {
-            if (numOfLFs == 0) {
+            if (numOfLFs == 0 || traverseIndex < 0) {
                 return;
             }
-            
-            v = findItemByPointer(x, y);
+
+            v = itemLFs[traverseIndex];
+
+            x = (x + viewable[X]) - v.bounds[X];
+            y = (y + viewable[Y]) - v.bounds[Y];
+
+            if (x < 0 
+                || x > v.bounds[WIDTH]
+                || y < 0
+                || y > v.bounds[HEIGHT]) {
+                return;
+            }
+
             pointerPressed = true;
         }
-        
+
         // SYNC NOTE: this call may result in a call to the
         // application, so we make sure we do this outside of the
         // LCDUILock
-        if (v != null) {
-            x = (x + viewable[X]) - v.getInnerBounds(X);
-            y = (y + viewable[Y]) - v.getInnerBounds(Y);
-            v.uCallPointerPressed(x, y);
-
-            lScrollToItem(v.item);
-        }
+        v.uCallPointerPressed(x, y);
     }
-    
+
     /**
      * Handle a pointer released event
      *
@@ -766,7 +750,11 @@ class FormLFImpl extends ScreenLFImpl implements FormLF {
                 return;
             }
 
-            v = findItemByPointer(x, y);
+            v = itemLFs[traverseIndex];
+
+            x = (x + viewable[X]) - v.bounds[X];
+            y = (y + viewable[Y]) - v.bounds[Y];
+
             pointerPressed = false;
 
         }
@@ -774,13 +762,9 @@ class FormLFImpl extends ScreenLFImpl implements FormLF {
         // SYNC NOTE: this call may result in a call to the
         // application, so we make sure we do this outside of the
         // LCDUILock
-        if (v != null) {
-            x = (x + viewable[X]) - v.getInnerBounds(X);
-            y = (y + viewable[Y]) - v.getInnerBounds(Y);
-            v.uCallPointerReleased(x, y);
-        }
+        v.uCallPointerReleased(x, y);
     }
-    
+
     /**
      * Handle a pointer dragged event
      *
@@ -798,8 +782,8 @@ class FormLFImpl extends ScreenLFImpl implements FormLF {
 
             v = itemLFs[traverseIndex];
 
-            x = (x + viewable[X]) - v.getInnerBounds(X);
-            y = (y + viewable[Y]) - v.getInnerBounds(Y);
+            x = (x + viewable[X]) - v.bounds[X];
+            y = (y + viewable[Y]) - v.bounds[Y];
 
         }
 

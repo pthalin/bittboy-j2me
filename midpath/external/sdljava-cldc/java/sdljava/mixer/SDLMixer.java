@@ -962,8 +962,6 @@ public class SDLMixer {
 	 */
 	public static void freeMusic(MixMusic music) throws SDLException {
 		SWIG_SDLMixer.Mix_FreeMusic(music.getSwigMixMusic());
-		// to avoid finalizer doing a double free 
-		music.setSwigMixMusic(null);
 	}
 
 	/**

@@ -56,6 +56,10 @@ public class AWTPerseusToolkit extends PerseusToolkit {
 		return ResourceHandler.getDefaultFontResource();
 	}
 	
+	public String getConfigurationProperty(String s) {
+		return System.getProperty(s);
+	}
+	
 	 public ScalableGraphics createScalableGraphics() {
 		 return new ScalableGraphicsImpl();
 	 }

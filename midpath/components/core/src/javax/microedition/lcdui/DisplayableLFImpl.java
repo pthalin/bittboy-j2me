@@ -27,8 +27,6 @@ package javax.microedition.lcdui;
 
 import javax.microedition.lcdui.game.GameCanvas;
 
-import org.thenesis.midpath.ui.UIToolkit;
-
 import com.sun.midp.chameleon.skins.ScreenSkin;
 import com.sun.midp.chameleon.skins.SoftButtonSkin;
 import com.sun.midp.chameleon.skins.TickerSkin;

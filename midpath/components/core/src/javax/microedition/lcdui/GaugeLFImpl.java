@@ -791,8 +791,7 @@ class GaugeLFImpl extends ItemLFImpl implements GaugeLF {
         } else {
             body_full =
                 (n * ProgressBarSkin.WIDTH - ProgressBarSkin.VALUE_WIDTH - 
-                    2) / 100;
-            g.setColor(0x0000FF);
+                    10) / 100;
             g.fillRect(ProgressBarSkin.METER_X, ProgressBarSkin.METER_Y,
                        body_full, ProgressBarSkin.HEIGHT - 
                             (2 * ProgressBarSkin.METER_Y));            
@@ -812,8 +811,8 @@ class GaugeLFImpl extends ItemLFImpl implements GaugeLF {
         } else {
             body_empty = 
                 (ProgressBarSkin.WIDTH - ProgressBarSkin.VALUE_WIDTH -
-                    2) - body_full;
-            g.setColor(0);
+                    10) - body_full;
+            g.setColor(0xFFFFFF);
             g.fillRect(ProgressBarSkin.METER_X + body_full,
                        ProgressBarSkin.METER_Y,
                        body_empty,

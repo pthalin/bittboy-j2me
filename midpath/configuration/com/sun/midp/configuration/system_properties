@@ -2,7 +2,7 @@ javax.microedition.io.Connector.protocolpath=com.sun.midp.io
 microedition.profiles=MIDP-2.0
 microedition.configuration=CLDC-1.1
 microedition.locale=en-US
-microedition.platform=MIDPATH_PHONEME_CDC
+microedition.platform=j2me
 microedition.encoding=ISO8859_1
 microedition.hostname=localhost
 microedition.commports= 
@@ -38,8 +38,6 @@ xml.rpc.subset.version=1.0
 wireless.messaging.version=2.0
 wireless.messaging.sms.smsc=+17815511212
 wireless.messaging.mms.mmsc=+17815511212
-file.separator=/
-com.sun.midp.io.backend=CLDC
 
 # microedition.pim.version=
 # microedition.global.version=

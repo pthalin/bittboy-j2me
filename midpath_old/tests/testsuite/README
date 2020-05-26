@@ -1,0 +1,22 @@
+README
+======
+
+The CLDC and JNI test suites aim to test the Cacao JVM compiled for the JavaME/CLDC configuration.
+
+Compiling the test suites
+-------------------------
+
+> ./build.sh --with-cldc-jar=/path/to/cldc1.1.jar
+
+Flags to disable building of the CLDC or the JNI test suite:
+ --disable-cldc-testsuite
+ --disable-jni-testsuite
+
+To see the other available flags, type:
+> ./build.sh --help
+
+Running the test suites
+------------------------
+
+> ./start-testsuites.sh
+

@@ -156,8 +156,7 @@ PACKAGES = \
 	com.sun.midp.io.j2me.file \
 	org.thenesis.midpath.image.png \
 	org.thenesis.midpath.mmedia \
-	org.thenesis.midpath.io \
-	org.thenesis.midpath.ui
+	org.thenesis.midpath.io
 
 
 # All packages that can be recursively compiled.

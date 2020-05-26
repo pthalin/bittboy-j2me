@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink" 
+     xmlns:demo="http://www.sun.com/svg/demo"
+     id="root"
+     width="100%" height="100%" viewBox="0 0 240 320" 
+     xml:space="preserve"
+     preserveAspectRatio="none">
+
+    <rect fill="#35556B" width="240" height="320"/>
+    <g id="processingIndicator" transform="translate(120, 97) scale(0.5)" >
+	<g id="processingIndicator.outerCircle">
+		<path transform="translate(-120, -97)" fill="#C1CBD1" d="M73.426,97.169c0,25.681,20.894,46.575,46.575,46.575c25.681,0,46.574-20.894,46.574-46.575
+			c0-9.251-2.708-18.192-7.83-25.854c-1.688-2.525-5.104-3.204-7.629-1.516s-3.204,5.104-1.516,7.629
+			c3.908,5.847,5.975,12.673,5.975,19.741c0,19.616-15.959,35.575-35.574,35.575c-19.616,0-35.575-15.958-35.575-35.575
+			c0-19.616,15.959-35.575,35.575-35.575c6.063,0,12.048,1.551,17.307,4.485c2.652,1.48,6.002,0.53,7.482-2.123
+			c1.48-2.653,0.529-6.003-2.123-7.483c-6.893-3.846-14.73-5.879-22.666-5.879C94.319,50.594,73.426,71.488,73.426,97.169z"/>
+	</g>
+	<g id="processingIndicator.innerCircle">
+		<path transform="translate(-120, -97)" fill="#738999" d="M120.001,69.772c-5.441,0-10.701,1.592-15.21,4.607c-2.525,1.688-3.204,5.104-1.516,7.629
+			c1.688,2.525,5.104,3.204,7.629,1.516c2.693-1.8,5.838-2.752,9.096-2.751c4.38,0,8.498,1.705,11.594,4.802
+			c3.098,3.097,4.803,7.214,4.803,11.594c0,9.042-7.355,16.397-16.397,16.397c-9.041,0-16.396-7.355-16.396-16.397l0.065-1.479
+			c0.134-3.034-2.201-5.848-5.236-5.981c-3.034-0.134-5.587,1.972-5.721,5.007l-0.108,2.454c0,15.107,12.29,27.397,27.396,27.397
+			c15.107,0,27.397-12.291,27.397-27.397c0-7.318-2.85-14.198-8.024-19.373S127.318,69.772,120.001,69.772z"/>
+	</g>
+	<g id="processingIndicator.center" >
+		<circle fill="white" transform="translate(-120, -97)" cx="120" cy="97.169" r="9.349"/>
+		<circle display="none" fill="#35556B" transform="translate(-120, -97)" cx="122.321" cy="92.551" r="2.078"/>
+	</g>
+    </g>
+
+         <defs>
+            <animateTransform id="processingIndicatorAnim" xlink:href="#processingIndicator.innerCircle" attributeName="transform" type="rotate"
+                            values="0;360" begin="0s" dur="3s" repeatDur="indefinite"/>
+            <animateTransform xlink:href="#processingIndicator.outerCircle" attributeName="transform" type="rotate"
+                            values="0;-360" begin="0s" dur="2s" repeatDur="indefinite"/>
+            <animateTransform xlink:href="#processingIndicator.center" attributeName="transform" type="rotate"
+                            values="0;-360" begin="0s" dur="1s" repeatDur="indefinite"/>
+         </defs>
+<g id="loadProgressBar">
+        <rect id="loadProgressBar.bkg" fill="#A3B8CB" x="45" y="250" width="150" height="10" />
+        <rect id="loadProgressBar.progress" fill="white" x="45" y="250" width="20" height="10" />
+        <text transform="translate(120,230)" fill="#BDBEC0" font-size="12" text-anchor="middle">loading application</text>    
+        <text id="loadProgressBar.text" text-anchor="middle" transform="translate(120,275)" fill="#FFFFFF" font-size="12">0%</text>
+</g>
+</svg>

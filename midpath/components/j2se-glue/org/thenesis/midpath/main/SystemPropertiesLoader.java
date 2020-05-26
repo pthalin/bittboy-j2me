@@ -25,14 +25,14 @@ public class SystemPropertiesLoader {
 			String key = (String)e.nextElement();
 			String value = properties.getProperty(key);
 			
-/*			// Fix for the Sun JDK. FIXME: why ?
+			// Fix for the Sun JDK. FIXME: why ?
 			String javaVendor = System.getProperty("java.vendor");
 			if ((javaVendor != null) && (javaVendor.indexOf("Sun") != -1)) {
 				if (key.equals("microedition.locale")) {
 					continue;
 				}
 			}
-*/			
+			
 			System.setProperty(key, value);
 		}
 		

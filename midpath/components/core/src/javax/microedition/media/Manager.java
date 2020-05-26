@@ -26,9 +26,6 @@ package javax.microedition.media;
 import java.io.IOException;
 import java.io.InputStream;
 
-import java.util.Vector;
-import java.util.Iterator;
-
 import javax.microedition.media.protocol.DataSource;
 
 import org.thenesis.midpath.mmedia.BasicPlayer;
@@ -491,8 +488,6 @@ public final class Manager {
 
 	private final static boolean DEBUG = false;
 
-	private static Vector players = new Vector();
-
 	/**
 	 * This private constructor keeps anyone from actually
 	 * getting a <CODE>Manager</CODE>.
@@ -625,22 +620,7 @@ public final class Manager {
 			try {
 				// Try and instance the player ....
 				Class protoClass = Class.forName(className);
-				Iterator it = players.iterator();
-				p = null;
-				while (it.hasNext()) {
-					Object o = it.next();
-					if (o.getClass() == protoClass) {
-						p = (BasicPlayer) o;
-						if (p.getState() == BasicPlayer.CLOSED) {
-							p = null;
-							it.remove();
-						}
-					}
-				}
-				if (p == null) {
-					p = (BasicPlayer) protoClass.newInstance();
-					players.add(p);
-				}
+				p = (BasicPlayer) protoClass.newInstance();
 				p.setLocator(locator.toLowerCase());
 				return p;
 			} catch (Exception e) {
@@ -760,26 +740,10 @@ public final class Manager {
 		try {
 			// ... try and instantiate the handler ...
 			Class handlerClass = Class.forName(className);
-			Iterator it = players.iterator();
-			p = null;
-			while (it.hasNext()) {
-				Object o = it.next();
-				if (o.getClass() == handlerClass) {
-					p = (BasicPlayer) o;
-					if (p.getState() == BasicPlayer.CLOSED) {
-						p = null;
-						it.remove();
-					}
-				}
-			}
-			if (p == null) {
-				p = (BasicPlayer) handlerClass.newInstance();
-				players.add(p);
-			}
+			p = (BasicPlayer) handlerClass.newInstance();
 		} catch (Exception e) {
 			if (DEBUG)
 				System.out.println("Class not found " + className);
-			e.printStackTrace();
 			throw new MediaException(PL_ERR + e.getMessage());
 		}
 		return p;

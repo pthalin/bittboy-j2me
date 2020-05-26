@@ -1,5 +1,5 @@
 #
-# Makefile created at Wed Jan  7 16:31:43 2009, by mmake
+# Makefile created at Thu Aug  7 11:00:32 2008, by mmake
 #
 
 # Programs (with common options):
@@ -104,7 +104,6 @@ endif
 
 # Packages we should compile
 PACKAGES = \
-	org.thenesis.midpath.test.suite.cldc.sub \
 	org.thenesis.midpath.test.suite.cldc \
 	org.thenesis.midpath.test.suite
 
@@ -408,7 +407,6 @@ org : $(call PACKAGE_OBJS,org)
 org.thenesis.midpath : $(call PACKAGE_OBJS,org.thenesis.midpath)
 org.thenesis : $(call PACKAGE_OBJS,org.thenesis)
 org.thenesis.midpath.test : $(call PACKAGE_OBJS,org.thenesis.midpath.test)
-org.thenesis.midpath.test.suite.cldc.sub : $(call PACKAGE_OBJS,org.thenesis.midpath.test.suite.cldc.sub)
 org.thenesis.midpath.test.suite.cldc : $(call PACKAGE_OBJS,org.thenesis.midpath.test.suite.cldc)
 org.thenesis.midpath.test.suite : $(call PACKAGE_OBJS,org.thenesis.midpath.test.suite)
 

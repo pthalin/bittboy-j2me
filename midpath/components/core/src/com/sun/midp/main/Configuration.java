@@ -34,10 +34,6 @@ public class Configuration {
 	private static ConfigurationProperties fileProperties = new ConfigurationProperties();
 	
 	static {
-		load();
-	}
-
-	public static void load() {
 		
 		try {
 			fileProperties.load(Configuration.class.getResourceAsStream("/com/sun/midp/configuration/configuration.cfg"));
@@ -50,9 +46,6 @@ public class Configuration {
 		
 	}
 	
-	public static void setProperty(String key, String value) {
-		fileProperties.setProperty(key, value);
-	}
 	
     /** Don't let anyone instantiate this class */
     private Configuration() {

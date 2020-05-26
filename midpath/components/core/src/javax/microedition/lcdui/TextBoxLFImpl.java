@@ -377,38 +377,38 @@ class TextBoxLFImpl extends TextFieldLFImpl implements TextFieldLF {
 	    break;
 	    
 	case Canvas.UP:
-	        if (editable) {
+	    if (editable) {
                 keyClicked(dir);
-                cursor.y -= ScreenSkin.FONT_INPUT_TEXT.getHeight();
-                if (cursor.y > 0) {
-                    cursor.option = Text.PAINT_GET_CURSOR_INDEX;
-                    myInfo.scrollY = true;
+		cursor.y -= ScreenSkin.FONT_INPUT_TEXT.getHeight();
+		if (cursor.y > 0) {
+		    cursor.option = Text.PAINT_GET_CURSOR_INDEX;
+		    myInfo.scrollY = true;
                     keyUsed = true;
-                } else {
-                    cursor.y += ScreenSkin.FONT_INPUT_TEXT.getHeight();
-                }
-            } else {
-                myInfo.scroll(TextInfo.BACK);
+		} else { 
+		    cursor.y += ScreenSkin.FONT_INPUT_TEXT.getHeight();
+		}
+	    } else {
+		myInfo.scroll(TextInfo.BACK);
                 keyUsed = true;
-            }
-            break;
+	    }
+	    break;
 
 	case Canvas.DOWN:
-	        if (editable) {
+	    if (editable) {
                 keyClicked(dir);
-                cursor.y += ScreenSkin.FONT_INPUT_TEXT.getHeight();
-                if (cursor.y <= myInfo.height) {
-                    cursor.option = Text.PAINT_GET_CURSOR_INDEX;
-                    myInfo.scrollY = true;
+		cursor.y += ScreenSkin.FONT_INPUT_TEXT.getHeight();
+		if (cursor.y <= myInfo.height) {
+		    cursor.option = Text.PAINT_GET_CURSOR_INDEX;
+		    myInfo.scrollY = true;
                     keyUsed = true;
-                } else {
-                    cursor.y -= ScreenSkin.FONT_INPUT_TEXT.getHeight();
-                }
-            } else {
-                myInfo.scroll(TextInfo.FORWARD);
+		} else {
+		    cursor.y -= ScreenSkin.FONT_INPUT_TEXT.getHeight();
+		}
+	    } else {
+		myInfo.scroll(TextInfo.FORWARD);
                 keyUsed = true;
-            }
-            break;
+	    }
+	    break;
 	default:
 	    // no-op
 	    break;

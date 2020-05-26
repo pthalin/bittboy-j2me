@@ -19,9 +19,7 @@ package org.thenesis.microbackend.ui.awt;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Panel;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -29,7 +27,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.MemoryImageSource;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import org.thenesis.microbackend.ui.BackendEventListener;
@@ -39,9 +37,7 @@ import org.thenesis.microbackend.ui.UIBackend;
 public abstract class AbstractAWTBackend implements UIBackend {
 
     Panel panel;
-    protected Image screenImage;
-    protected MemoryImageSource memorySource;
-    protected int[] pixels;
+    protected BufferedImage screenImage;
 
     int canvasWidth;
     int canvasHeight;
@@ -94,41 +90,16 @@ public abstract class AbstractAWTBackend implements UIBackend {
         return canvasHeight;
     }
 
-    public void updateARGBPixels(int[] argbPixels, int x, int y, int width, int height) {
+    public void updateARGBPixels(int[] argbPixels, int x, int y, int width, int heigth) {
+
+        int w = canvasWidth;
+        int h = canvasHeight;
 
         if (screenImage == null) {
-            pixels = new int[canvasWidth * canvasHeight];
-            memorySource = new MemoryImageSource(canvasWidth, canvasHeight, pixels, 0, canvasWidth);
-            memorySource.setAnimated(true);
-            screenImage = Toolkit.getDefaultToolkit().createImage(memorySource);
+            screenImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         }
-        
-        // Clipping
-        if (x < 0) {
-            x = 0;
-        }
-        if  (x >= canvasWidth) {
-            return;
-        }
-        if (y < 0) {
-            y = 0;
-        }
-        if  (y >= canvasHeight) {
-            return;
-        }
-        if (x + width > canvasWidth) {
-            width = canvasWidth - x;
-        }
-        if (y + height > canvasHeight) {
-            height = canvasHeight - y;
-        }
-        
-        for (int i = 0; i < height; i++) {
-            int offset = (y + i) * canvasWidth + x;
-            System.arraycopy(argbPixels, offset, pixels, offset, width);
-        }
-        memorySource.newPixels(x, y, width, height);
 
+        screenImage.setRGB(0, 0, w, h, argbPixels, 0, w);
         panel.repaint();
     }
 
@@ -160,22 +131,21 @@ public abstract class AbstractAWTBackend implements UIBackend {
         }
 
         public void mouseDragged(MouseEvent e) {
-            listener.pointerMoved(e.getX(), e.getY(), e.getModifiers());
         }
 
         public void mousePressed(MouseEvent e) {
             //System.out.println("[DEBUG] AWTBackend.mousePressed()");
-            listener.pointerPressed(e.getX(), e.getY(), e.getModifiers());
+            listener.mousePressed(e.getX(), e.getY(), e.getModifiers());
         }
 
         public void mouseReleased(MouseEvent e) {
             //System.out.println("[DEBUG] AWTBackend.mouseReleased()");
-            listener.pointerReleased(e.getX(), e.getY(), e.getModifiers());
+            listener.mouseReleased(e.getX(), e.getY(), e.getModifiers());
         }
 
         public void mouseMoved(MouseEvent e) {
             //System.out.println("[DEBUG] AWTBackend.mouseMoved()");
-            listener.pointerMoved(e.getX(), e.getY(), e.getModifiers());
+            listener.mouseMoved(e.getX(), e.getY(), e.getModifiers());
         }
 
         public void windowClosing(WindowEvent e) {

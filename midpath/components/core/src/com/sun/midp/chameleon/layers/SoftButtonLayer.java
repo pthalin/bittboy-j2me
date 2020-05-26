@@ -367,23 +367,12 @@ public class SoftButtonLayer extends CLayer implements CommandListener {
             if (type == EventConstants.PRESSED) {
                 soft1();
             }
-            // DINGOO - Some MIDlets do not register command for soft1.
-            // Apparently it's handled inside program logic. Since
-            // these kind of MIDlets work with Sun WTK, we do not
-            // absorb the key event here in this case.
-            if (soft1 == null)
-                return false;
-            else
-                return true;
+            return true;
         } else if (keyCode == EventConstants.SOFT_BUTTON2) {
             if (type == EventConstants.PRESSED) {
                 soft2();
             }
-            // DINGOO - ditto for soft2
-            if (soft2 == null)
-                return false;
-            else
-                return true;
+            return true;
         }
         return false;
     }

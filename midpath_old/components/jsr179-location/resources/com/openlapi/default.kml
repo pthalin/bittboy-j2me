@@ -1,0 +1,130 @@
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Placemark>
+  <description><![CDATA[<a href="http://www.google.com/">Google Search!</a>]]></description>
+  <name>Google Headquarters</name>
+  <LookAt>
+    <longitude>-122.0839</longitude>
+    <latitude>37.4219</latitude>
+    <range>540.68</range>
+    <tilt>0</tilt>
+    <heading>3</heading>
+  </LookAt>
+  <Point>
+    <coordinates>-122.0839,37.4219,0</coordinates>
+  </Point>
+</Placemark>
+<Folder>
+  	<description>A 3 element deep folder to test the recursive method of OpenLAPI</description>
+  	<name>Top level</name>
+  <Folder>
+     	<description>Some arbitrary GEO Points</description>
+		<name>Arbitrary</name>
+		<Placemark>
+			<name>ThinkTank Mathematics Headquarters</name>
+			<Point>
+				<coordinates>-3.172259,55.923648,0</coordinates>
+			</Point>
+		</Placemark>	  
+	<Folder>
+		  <description>A branch, 3 elements deep to test the recursive method of OpenLAPI</description>
+  		  <name>Three deep</name>
+			<Placemark>
+				<name>Saint Louis University</name>
+				<Point>
+					<extrude>1</extrude>
+					<altitudeMode>relativeToGround</altitudeMode>
+					<coordinates>-90.233433,38.636386,0</coordinates>
+				</Point>
+			</Placemark>  		  
+	</Folder>
+	<Placemark>
+		<name>Hotel Le Plaza</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>4.35661,50.85432,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Hotel Kransnapolsky</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>4.894550,52.372681,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Dynamic Earth</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-3.180285,55.950882,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>The University of Edinburgh</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-3.1868,55.947494,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>O’Reilly Publishing</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-122.841617,38.411253,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Saint Louis</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-90.197781,38.627219,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Austin</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-97.742781,30.266939,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Amsterdam</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>4.888022,52.370633,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Edinburgh</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-3.204289,55.957611,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Brussels</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>4.367611,50.837050,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Reykjavík</name>
+		<Point>
+			<extrude>1</extrude>
+			<altitudeMode>relativeToGround</altitudeMode>
+			<coordinates>-21.895211,64.135339,0</coordinates>
+		</Point>
+	</Placemark>
+	</Folder>
+  </Folder>
+</kml>

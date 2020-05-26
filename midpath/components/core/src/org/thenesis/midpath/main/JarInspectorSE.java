@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLClassLoader;
-import com.sun.midp.midletsuite.MIDletInfo;
 
 public class JarInspectorSE extends AbstractJarInspector {
 
@@ -55,22 +54,6 @@ public class JarInspectorSE extends AbstractJarInspector {
 		return uc.getInputStream();
 	}
 
-        public InputStream getIcon() throws IOException {
-                MIDletInfo[] m_info = getMIDletInfo();
-                if (m_info[0].icon == null)
-                        return null;
-                else {
-                        String sep;
-                        if (m_info[0].icon.charAt(0) == '/')
-                            sep = "!";
-                        else
-                            sep = "!/";
-                        URL u = new URL("jar", "", url + sep + m_info[0].icon);
-                        JarURLConnection uc = (JarURLConnection) u.openConnection();
-                        return uc.getInputStream();
-                }
-        }
-        
 	public File getFile() {
 		return file;
 	}

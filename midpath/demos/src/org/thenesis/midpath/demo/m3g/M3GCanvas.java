@@ -173,7 +173,7 @@ public class M3GCanvas extends Canvas {
 		 /**/
 	}
 
-	private void initScene() throws IOException {
+	private void initScene() {
 		
 		//System.out.println("initScene() start");
 
@@ -259,7 +259,15 @@ public class M3GCanvas extends Canvas {
 		indexBuffer = new TriangleStripArray(0, stripLen);
 
 		// create the Image2D (we need this so we can make a Texture2D)
-		Image midpImage = Image.createImage("/org/thenesis/midpath/demo/m3g/data/texture.png");
+		Image midpImage = null;
+		try {
+			//System.out.println("initScene() : loading image 1");
+			midpImage = Image.createImage("data/texture.png");
+			//System.out.println("initScene() : image 1 loaded");
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
 		Image2D image2D = new Image2D(Image2D.RGB, midpImage);
 		
 		//System.out.println("initScene() : after image2D creation");
@@ -278,7 +286,14 @@ public class M3GCanvas extends Canvas {
 		texture.setBlending(Texture2D.FUNC_MODULATE);
 
 		// create the Image2D (we need this so we can make a Texture2D)
-		midpImage = Image.createImage("/org/thenesis/midpath/demo/m3g/data/dirt.png");
+		try {
+			//System.out.println("initScene() : loading image 2");
+			midpImage = Image.createImage("data/dirt.png");
+			//System.out.println("initScene() : image 2 loaded");
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
 		Image2D image = new Image2D(Image2D.RGB, midpImage);
 
 		// create the Texture2D and enable mipmapping

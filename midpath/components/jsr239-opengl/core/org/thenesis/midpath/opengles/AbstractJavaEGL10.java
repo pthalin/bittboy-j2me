@@ -31,7 +31,7 @@ import javax.microedition.lcdui.Graphics;
 //import jgl.GLBackend;
 //import jgl.context.GLContext;
 
-import org.thenesis.microbackend.ui.graphics.VirtualGraphics;
+import org.thenesis.midpath.ui.toolkit.virtual.VirtualGraphics;
 
 import com.sun.jsr239.Errors;
 import com.sun.jsr239.GLConfiguration;

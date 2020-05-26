@@ -63,6 +63,8 @@ public abstract class PerseusToolkit {
 
 	public abstract InputStream getDefaultFontResource();
 
+	public abstract String getConfigurationProperty(String s);
+
 	public abstract ScalableGraphics createScalableGraphics();
 
 }

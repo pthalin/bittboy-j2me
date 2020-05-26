@@ -17,49 +17,43 @@
  */
 package org.thenesis.microbackend.ui.graphics;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.thenesis.microbackend.ui.BackendEventListener;
 import org.thenesis.microbackend.ui.Configuration;
 import org.thenesis.microbackend.ui.Logging;
 import org.thenesis.microbackend.ui.UIBackend;
 import org.thenesis.microbackend.ui.UIBackendFactory;
-import org.thenesis.microbackend.ui.graphics.toolkit.pure.PureToolkit;
 
-public abstract class VirtualToolkit {
+public class VirtualToolkit {
 
-    protected Configuration backendConfig;
-    protected BackendEventListener listener;
-    protected UIBackend backend;
-    protected VirtualFont defaultFont;
-    
-    private BaseImageDecoder imageDecoder;
+    private VirtualSurface rootSurface;
+    private VirtualGraphics rootPeer;
+    private UIBackend backend;
+    private VirtualFont defaultFont;
 
-    protected VirtualToolkit() {
+    private static VirtualToolkit toolkit = new VirtualToolkit();
+
+    private VirtualToolkit() {
     }
 
-    public static VirtualToolkit createToolkit(Configuration backendConfig, BackendEventListener listener) {
-        VirtualToolkit toolkit = new PureToolkit();
-        toolkit.configure(backendConfig, listener);
+    public static VirtualToolkit getToolkit() {
         return toolkit;
     }
 
-    protected void configure(Configuration backendConfig, BackendEventListener listener) {
-        this.backendConfig = backendConfig;
-        this.listener = listener;
-    }
-
-    public void initialize(Object m) {
-
-        imageDecoder = new BaseImageDecoder(this);
+    public void initialize(Object m, Configuration backendConfig, BackendEventListener listener) {
 
         backend = UIBackendFactory.createBackend(m, backendConfig, listener);
-
+        
         int w = backend.getWidth();
         int h = backend.getHeight();
 
+        // Wrap it
+        rootSurface = new VirtualSurfaceImpl(w, h);
+        rootPeer = new VirtualGraphics(rootSurface);
+        rootPeer.setDimensions(w, h);
+        rootPeer.reset();
+       
         try {
             backend.open();
         } catch (IOException e) {
@@ -67,28 +61,31 @@ public abstract class VirtualToolkit {
             e.printStackTrace();
         }
 
-        initializeRoot(w, h);
     }
 
-    /**
-     * Initializes the root Surface and Graphics
-     * 
-     * @param rootWidth
-     * @param rootHeight
-     */
-    public abstract void initializeRoot(int rootWidth, int rootHeight);
+    public VirtualGraphics getRootGraphics() {
+        return rootPeer;
+    }
 
-    public abstract VirtualGraphics getRootGraphics();
+    public void flushGraphics(int x, int y, long width, long height) {
+        backend.updateARGBPixels(rootSurface.data, x, y, (int) width, (int) height);
+    }
 
-    public abstract void flushGraphics(int x, int y, long width, long height);
-
-    public abstract VirtualFont createFont(int face, int style, int size);
+    public VirtualFont createFont(int face, int style, int size) {
+        return new VirtualFontImpl(face, style, size);
+    }
 
     public VirtualFont getDefaultFont() {
         if (defaultFont == null) {
-            defaultFont = createFont(VirtualFont.FACE_MONOSPACE, VirtualFont.STYLE_PLAIN, VirtualFont.SIZE_SMALL);
+            defaultFont = createFont(VirtualFont.FACE_MONOSPACE, VirtualFont.STYLE_PLAIN, VirtualFont.SIZE_LARGE);
         }
         return defaultFont;
+    }
+
+    public void setDefaultFont(VirtualFont f) {
+        if (f != null) {
+            defaultFont = f;
+        }
     }
 
     public int getWidth() {
@@ -99,33 +96,78 @@ public abstract class VirtualToolkit {
         return backend.getHeight();
     }
 
-    public UIBackend getBackend() {
+    UIBackend getBackend() {
         return backend;
+    }
+
+    VirtualSurface getRootSurface() {
+        return rootSurface;
+    }
+
+    public VirtualSurface createSurface(int w, int h) {
+        return new VirtualSurfaceImpl(w, h);
     }
 
     public void close() {
         backend.close();
     }
 
-    public abstract VirtualImage createImage(int w, int h);
-
-    public abstract VirtualImage createRGBImage(int[] rgb, int width, int height, boolean processAlpha);
-
-    public abstract VirtualImage createImage(VirtualImage image);
-
-    public abstract VirtualImage createImage(VirtualImage image, int x, int y, int width, int height, int transform);
-
-    public VirtualImage createImage(InputStream stream) throws IOException {
-        VirtualImage surface = imageDecoder.decode(stream);
-        return createImage(surface);
-    }
-
-    public VirtualImage createImage(byte[] imageData, int imageOffset, int imageLength) {
-        try {
-            return createImage(new ByteArrayInputStream(imageData, imageOffset, imageLength));
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Can't create image: " + e.getMessage());
+    private class VirtualSurfaceImpl extends VirtualSurface {
+        public VirtualSurfaceImpl(int w, int h) {
+            data = new int[w * h];
+            this.width = w;
+            this.height = h;
         }
     }
+
+    //	public Image createImage(int w, int h) {
+    //		return new VirtualImage(w, h);
+    //	}
+    //
+    //	public Image createImage(Image source) {
+    //		if (!source.isMutable()) {
+    //			return source;
+    //		}
+    //		return new VirtualImage((VirtualImage) source);
+    //	}
+    //
+    //	public Image createImage(byte[] imageData, int imageOffset, int imageLength) throws IOException {
+    //		return new VirtualImage(imageData, imageOffset, imageLength);
+    //	}
+    //
+    //	public Image createImage(InputStream stream) throws IOException {
+    //		return new VirtualImage(stream);
+    //	}
+    //
+    //	public Image createRGBImage(int[] rgb, int width, int height, boolean processAlpha) throws IOException {
+    //		return new VirtualImage(rgb, width, height, processAlpha);
+    //	}
+    //
+    //	public Image createImage(Image image, int x, int y, int width, int height, int transform) throws IOException {
+    //		return new VirtualImage(image, x, y, width, height, transform);
+    //	}
+
+    //	/**
+    //	 * Construct a new FontPeer object
+    //	 *
+    //	 * @param face The face to use to construct the Font
+    //	 * @param style The style to use to construct the Font
+    //	 * @param size The point size to use to construct the Font
+    //	 */
+    //	public FontPeer createFontPeer(int face, int style, int size) {
+    //
+    //		if (Logging.TRACE_ENABLED)
+    //			System.out.println("[DEBUG]VirtualToolkit.createFontPeer(): size=" + size);
+    //
+    //			return new RawFontPeer(face, style, size);
+    //		
+    //		
+    //		//return new RawFontPeer(face, style, size);
+    //		//return new BDFFontPeer(face, style, size);
+    //	}
+    //
+    //	public Image createImage(int[] rgb, int width, int height, boolean processAlpha) {
+    //		return new VirtualImage(rgb, width, height, processAlpha);
+    //	}
 
 }

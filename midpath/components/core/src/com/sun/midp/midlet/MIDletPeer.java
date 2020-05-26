@@ -464,8 +464,7 @@ public class MIDletPeer implements MIDletEventConsumer {
              * Note: if the application was launched already this will
              * not have any effect.
              */
-            //dispatchPlatformRequest("");
-            System.out.println("dispatchPlatformRequest() not implemented");
+            dispatchPlatformRequest("");
             return false;
         }
 
@@ -480,9 +479,7 @@ public class MIDletPeer implements MIDletEventConsumer {
             }
         }
 
-        System.out.println("dispatchPlatformRequest() not implemented");
-        //return dispatchPlatformRequest(URL);
-        return false;
+        return dispatchPlatformRequest(URL);
     }
 
     /**

@@ -31,8 +31,6 @@ import java.io.InputStream;
 
 import javax.microedition.midlet.MIDlet;
 
-import org.thenesis.midpath.ui.UIToolkit;
-
 import com.sun.midp.chameleon.CGraphicsQ;
 import com.sun.midp.chameleon.ChamDisplayTunnel;
 import com.sun.midp.chameleon.MIDPWindow;
@@ -1285,16 +1283,6 @@ public class Display {
 		}
 	}
 
-	/**
-	* Reset width and height. This is used when midlet config has
-	* a different width/height from midlet manager
-	*/
-	public static void resetDimensions() {
-		Display.WIDTH = Constants.CHAM_WIDTH;
-		Display.HEIGHT = Constants.CHAM_HEIGHT;
-		//UIToolkit.getToolkit().getVirtualToolkit().getRootGraphics().setDimensions(Display.WIDTH, Display.HEIGHT);
-	}	
-
 	/*
 	 * ************* package private methods
 	 */
@@ -1934,9 +1922,7 @@ public class Display {
 	 *
 	 * @param displayId The display ID associated with this Display
 	 */
-	//private native void gainedForeground0(int displayId);
-	private void gainedForeground0(int displayId) {
-	}
+	private native void gainedForeground0(int displayId);
 
 	/*
 	 * ************* private methods

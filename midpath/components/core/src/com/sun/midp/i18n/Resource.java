@@ -51,54 +51,47 @@ import com.sun.midp.main.Configuration;
  * The location of such locale-specific classes is expected to be
  * "com.sun.midp.l10n".  
  */
-/* DINGOO - we have modified LocalizedStringsBase to read localization
- * file base on configuration property microedition.locale. There is
- * no need to create separate classes for different localization. Of
- * course we are losing the ability to format data/time string according
- * to locale. Not that the average dingoo user cares :)
- */
 abstract public class Resource {
     /** Local handle to the current Resource structure. */
     private static ResourceBundle res = null;
 
     static {
-	res = (ResourceBundle) new LocalizedStrings();
-//	res = null;
-//	String loc = Configuration.getProperty("microedition.locale");
-//	
-//	if ((loc == null) || loc.equals("en-US") || loc.equals("en_US")) {
-//	    // the default case
-//	    res = (ResourceBundle) new LocalizedStrings();
-//	} else {
-//	    String cls = "com.sun.midp.l10n.LocalizedStrings";
-//          /* 
-//           * This only checks for the first '-' in the locale, and
-//           * convert to '_' for Class.forName() to work.
-//           */
-//            int hyphen;
-//	    if ((hyphen = loc.indexOf('-')) != -1) {
-//                StringBuffer tmploc = new StringBuffer(loc);
-//                tmploc.setCharAt(hyphen, '_');
-//                loc = tmploc.toString();
-//	    }
-//	    
-//            while (true) {
-//                try {
-//                    Class c = Class.forName(cls + "_" + loc);
-//                    res = (ResourceBundle) c.newInstance();
-//                } catch (Throwable t) {}
-//                if (res == null) {
-//                    int pos = loc.lastIndexOf('_');
-//                    if (pos != -1) {
-//                        loc = loc.substring(0, pos);
-//                    } else {
-//                        break;
-//                    }
-//                } else {
-//                    break;
-//                }
-//            }
-//        }
+	res = null;
+	String loc = Configuration.getProperty("microedition.locale");
+	
+	if ((loc == null) || loc.equals("en-US") || loc.equals("en_US")) {
+	    // the default case
+	    res = (ResourceBundle) new LocalizedStrings();
+	} else {
+	    String cls = "com.sun.midp.l10n.LocalizedStrings";
+            /* 
+             * This only checks for the first '-' in the locale, and
+             * convert to '_' for Class.forName() to work.
+             */
+            int hyphen;
+	    if ((hyphen = loc.indexOf('-')) != -1) {
+                StringBuffer tmploc = new StringBuffer(loc);
+                tmploc.setCharAt(hyphen, '_');
+                loc = tmploc.toString();
+	    }
+	    
+            while (true) {
+                try {
+                    Class c = Class.forName(cls + "_" + loc);
+                    res = (ResourceBundle) c.newInstance();
+                } catch (Throwable t) {}
+                if (res == null) {
+                    int pos = loc.lastIndexOf('_');
+                    if (pos != -1) {
+                        loc = loc.substring(0, pos);
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
 
 	if (res == null) {
 	    if (Logging.REPORT_LEVEL <= Logging.ERROR) {

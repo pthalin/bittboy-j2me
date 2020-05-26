@@ -22,70 +22,59 @@ import java.util.Vector;
 
 import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.AlertType;
+import javax.microedition.lcdui.Choice;
+import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
-import javax.microedition.lcdui.List;
-import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.Spacer;
 import javax.microedition.lcdui.Form;
-import javax.microedition.lcdui.Gauge;
+import javax.microedition.lcdui.Item;
+import javax.microedition.lcdui.ItemCommandListener;
+import javax.microedition.lcdui.List;
+import javax.microedition.lcdui.Spacer;
 import javax.microedition.midlet.MIDlet;
 
 import com.sun.midp.midletsuite.MIDletInfo;
-import com.sun.midp.midlet.InternalMIDletSuiteImpl;
-import com.sun.midp.i18n.Resource;
-import com.sun.midp.i18n.ResourceConstants;
 
-public class SuiteManagerMIDlet extends MIDlet implements CommandListener {
+public class SuiteManagerMIDlet extends MIDlet implements CommandListener, ItemCommandListener {
 
-	private static final Command CMD_EXIT = new Command(Resource.getString(ResourceConstants.EXIT), Command.EXIT, 1);
-	private static final Command CMD_RUN  = new Command(Resource.getString(ResourceConstants.LAUNCH), Command.ITEM, 1);
-	private static final Command CMD_BACK = new Command(Resource.getString(ResourceConstants.BACK), Command.ITEM, 1);
-	private static final Command CMD_CANCEL = new Command(Resource.getString(ResourceConstants.CANCEL), Command.ITEM, 1);
-	private static final Command CMD_INSTALL = new Command(Resource.getString(ResourceConstants.INSTALL), Command.ITEM, 3);
-	private static final Command CMD_SETTINGS = new Command(Resource.getString(ResourceConstants.APPLICATION_SETTINGS), Command.ITEM, 2);
-	private static final Command CMD_SAVE = new Command(Resource.getString(ResourceConstants.SAVE), Command.ITEM, 1);
+	private static final Command CMD_EXIT = new Command("Exit", Command.EXIT, 1);
+	private static final Command CMD_START_SUITE = new Command("Start", Command.ITEM, 1);
+	private static final Command CMD_START_MIDLET = new Command("Start", Command.ITEM, 1);
+	private static final Command CMD_UNINSTALL = new Command("Uninstall", Command.ITEM, 2);
+	private static final Command CMD_REMOVE_JAR = new Command("Remove", Command.ITEM, 2);
+	private static final Command CMD_INSTALL = new Command("Install", Command.ITEM, 1);
 
 	static JarInspectorSE jarInspector;
 	static MIDletInfo launchMidletInfo;
 
 	private Display display;
+	private Form mainForm;
 	private MIDletRepository repository;
-	private List installedGroup;
-	private List notInstalledGroup;
+	private ChoiceGroup installedGroup;
+	private ChoiceGroup notInstalledGroup;
 	private List midletList;
-	private Form loadingForm;
-	private Gauge loadingGauge;
-	private MIDletSettingsForm settingsForm;
-
-	private static boolean uiBuilt = false;
 
 	/**
 	 * Signals the MIDlet to start and enter the Active state.
 	 */
 	protected void startApp() {
-		if (uiBuilt) return;
-
 		display = Display.getDisplay(this);
-
-		installedGroup = new List(Resource.getString(ResourceConstants.MIDLET_MANAGER), List.IMPLICIT);
-		installedGroup.addCommand(CMD_EXIT);
-		installedGroup.addCommand(CMD_SETTINGS);
-		installedGroup.addCommand(CMD_INSTALL);
-		installedGroup.setSelectCommand(CMD_RUN);
-		installedGroup.setCommandListener(this);
-
-		notInstalledGroup = new List(Resource.getString(ResourceConstants.MIDLET_MANAGER) + " - " + Resource.getString(ResourceConstants.INSTALL), List.IMPLICIT);
-		notInstalledGroup.addCommand(CMD_BACK);
-		notInstalledGroup.setCommandListener(this);
+		mainForm = new Form("MIDlet Manager");
+		installedGroup = new ChoiceGroup("Installed", Choice.EXCLUSIVE);
+		installedGroup.addCommand(CMD_UNINSTALL);
+		installedGroup.setDefaultCommand(CMD_START_SUITE);
+		installedGroup.setItemCommandListener(this);
+		notInstalledGroup = new ChoiceGroup("Not Installed", Choice.EXCLUSIVE);
+		notInstalledGroup.addCommand(CMD_REMOVE_JAR);
+		notInstalledGroup.setDefaultCommand(CMD_INSTALL);
+		notInstalledGroup.setItemCommandListener(this);
 
 		midletList = new List("MIDlets", List.IMPLICIT);
+		//midletList.addCommand(CMD_START_MIDLET);
 		midletList.setCommandListener(this);  
-		midletList.setSelectCommand(CMD_RUN);
-
-		loadingForm = new Form(Resource.getString(ResourceConstants.LOADING));
+		midletList.setSelectCommand(CMD_START_MIDLET);
 
 		repository = SuiteManager.repository;
 		try {
@@ -93,130 +82,136 @@ public class SuiteManagerMIDlet extends MIDlet implements CommandListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		display.setCurrent(mainForm);
 
 	}
 
 	public void buildUI() throws IOException {
 
+		repository.scanRepository();
+		mainForm.deleteAll();
 		installedGroup.deleteAll();
 		notInstalledGroup.deleteAll();
-		loadingForm.deleteAll();
 
-		repository.scanRepository();
 		Vector installedList = repository.getInstalledJars();
-
-		if (installedList.size() > 0) {
-			loadingGauge = new Gauge("", false, installedList.size(), 0);
-			loadingGauge.setLayout(Gauge.LAYOUT_CENTER);
-			loadingForm.append(new Spacer(0, 80));
-			loadingForm.append(loadingGauge);
-                	display.setCurrent(loadingForm);
-		}
-
-		installedGroup.deleteAll();
-
-		Image duke = Image.createImage(getClass().getResourceAsStream("Duke.png"));
 		for (int i = 0; i < installedList.size(); i++) {
 			JarInspectorSE jar = (JarInspectorSE) installedList.elementAt(i);
-                        Image icon = null;
 			try {
-				icon = Image.createImage(jar.getIcon());
+				installedGroup.append(jar.getSuiteName(), null);
 			} catch (IOException e) {
-				//e.printStackTrace();
-				//System.out.println("Unable to load icon from MIDlet " + jar.getSuiteName() + ". Using default.");
-				icon = duke;
+				e.printStackTrace();
 			}
-			installedGroup.append(jar.getSuiteName(), icon);
-			loadingGauge.setValue(i+1);
 		}
 
-		uiBuilt = true;
+		if (installedGroup.size() > 0) {
 
-                display.setCurrent(installedGroup);
+			mainForm.append(installedGroup);
+		}
 
-         }
+		//put some space between the items to segregate
+		Spacer spacer = new Spacer(5, 5);
+		mainForm.append(spacer);
+
+		Vector notInstalledList = repository.getNotInstalledJars();
+		for (int i = 0; i < notInstalledList.size(); i++) {
+			JarInspectorSE jar = (JarInspectorSE) notInstalledList.elementAt(i);
+			notInstalledGroup.append(jar.getFile().getName(), null);
+		}
+
+		if (notInstalledGroup.size() > 0) {
+			mainForm.append(notInstalledGroup);
+		}
+
+		mainForm.addCommand(CMD_EXIT);
+		mainForm.setCommandListener(this);
+
+	}
+
+	public void commandAction(Command c, Item item) {
+
+		System.out.println("commandAction " + c.getLabel());
+
+		try {
+			if (c == CMD_INSTALL) {
+				String text = "Installing MIDlet Suite...";
+				Alert a = new Alert("Action", text, null, AlertType.INFO);
+				display.setCurrent(a);
+				ChoiceGroup cg = (ChoiceGroup) item;
+				int index = cg.getSelectedIndex();
+				if (index >= 0) {
+					repository.installJar(cg.getString(index));
+				}
+			} else if (c == CMD_REMOVE_JAR) {
+				String text = "Removing Jar file...";
+				Alert a = new Alert("Action", text, null, AlertType.INFO);
+				display.setCurrent(a);
+				ChoiceGroup cg = (ChoiceGroup) item;
+				int index = cg.getSelectedIndex();
+				if (index >= 0) {
+					repository.removeJar(cg.getString(index));
+				}
+			} else if (c == CMD_START_SUITE) {
+				midletList.deleteAll();
+				ChoiceGroup cg = (ChoiceGroup) item;
+				int index = cg.getSelectedIndex();
+				if (index >= 0) {
+					jarInspector = repository.getJarFromSuiteName(cg.getString(index));
+					MIDletInfo[] infos = jarInspector.getMIDletInfo();
+					// If there are many MIDlets, let the user choose from a list
+					if (infos.length > 1) {
+						for (int i = 0; i < infos.length; i++) {
+							midletList.append(infos[i].name, null);
+						}
+						display.setCurrent(midletList);
+					} else {
+						launchMidletInfo = infos[0];
+						destroyApp(false);
+						notifyDestroyed();
+					}
+				}
+			} else if (c == CMD_UNINSTALL) {
+				String text = "Uninstalling MIDlet Suite...";
+				Alert a = new Alert("Action", text, null, AlertType.INFO);
+				display.setCurrent(a);
+				ChoiceGroup cg = (ChoiceGroup) item;
+				int index = cg.getSelectedIndex();
+				if (index >= 0) {
+					repository.uninstallSuite(cg.getString(index));
+				}
+			}
+
+			buildUI();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	public void commandAction(Command c, Displayable d) {
-	    try {	
+		
 		if (c == CMD_EXIT) {
 			destroyApp(false);
 			notifyDestroyed();
-		} else if (c == CMD_BACK || c == CMD_CANCEL) {
-			display.setCurrent(installedGroup);
-		} else if (c == CMD_INSTALL) {
-			if (d == installedGroup) { // build install screen
-				Vector notInstalledList = repository.getNotInstalledJars();
-				notInstalledGroup.deleteAll();
-				for (int i = 0; i < notInstalledList.size(); i++) {
-					JarInspectorSE jar = (JarInspectorSE) notInstalledList.elementAt(i);
-					notInstalledGroup.append(jar.getFile().getName(), null);
-				}
-				// Remove install command first and test
-				// whether there is MIDlet to install
-				notInstalledGroup.removeCommand(CMD_INSTALL);
-				if (notInstalledGroup.size() > 0) {
-					notInstalledGroup.setSelectCommand(CMD_INSTALL);
-				}
-				display.setCurrent(notInstalledGroup);
-			} else { // Install the selected midlet
-				String text = Resource.getString(ResourceConstants.INSTALLING);
-				Alert a = new Alert("Action", text, null, AlertType.INFO);
-				display.setCurrent(a);
-				int index = notInstalledGroup.getSelectedIndex();
-				repository.installJar(notInstalledGroup.getString(index));
-				// Refresh the installed MIDlets
-				buildUI();
-			}
-		} else if (c == CMD_SETTINGS) {
-			int index = installedGroup.getSelectedIndex();
-			String id = InternalMIDletSuiteImpl.buildSuiteID(installedGroup.getString(index));
-			settingsForm = new MIDletSettingsForm(id);
-			settingsForm.addCommand(CMD_CANCEL);
-			settingsForm.addCommand(CMD_SAVE);
-			settingsForm.setCommandListener(this);
-			display.setCurrent(settingsForm);
-		} else if (c == CMD_SAVE) {
-			settingsForm.saveConfig();
-			display.setCurrent(installedGroup);
-                } else if (d == installedGroup) { // CMD_RUN from here down
-			midletList.deleteAll();
-			int index = installedGroup.getSelectedIndex();
-			jarInspector = repository.getJarFromSuiteName(installedGroup.getString(index));
-			MIDletInfo[] infos = jarInspector.getMIDletInfo();
-			// If there are many MIDlets, let the user choose from a list
-			if (infos.length > 1) {
-				for (int i = 0; i < infos.length; i++) {
-					midletList.append(infos[i].name, null);
-				}
-				display.setCurrent(midletList);
-			} else {
-				launchMidletInfo = infos[0];
-				destroyApp(false);
-				notifyDestroyed();
-			}
 		} else if (d == midletList) {
-			int index = midletList.getSelectedIndex();
-			MIDletInfo[] infos = jarInspector.getMIDletInfo();
-			launchMidletInfo = infos[index];
-			destroyApp(false);
-			notifyDestroyed();
+			try {
+				int index = midletList.getSelectedIndex();
+				if (index >= 0) {
+					MIDletInfo[] infos = jarInspector.getMIDletInfo();
+					launchMidletInfo = infos[index];
+					destroyApp(false);
+					notifyDestroyed();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-	    } catch (IOException e) {
-                e.printStackTrace();
-            }
 	}
 
 	/**
 	 * Signals the MIDlet to terminate and enter the Destroyed state.
 	 */
 	protected void destroyApp(boolean unconditional) {
-		installedGroup.deleteAll();
-		installedGroup = null;
-		notInstalledGroup.deleteAll();
-		notInstalledGroup = null;
-		midletList.deleteAll();
-		midletList = null;
-		settingsForm = null;
 	}
 
 	/**
@@ -224,5 +219,4 @@ public class SuiteManagerMIDlet extends MIDlet implements CommandListener {
 	 */
 	protected void pauseApp() {
 	}
-
 }

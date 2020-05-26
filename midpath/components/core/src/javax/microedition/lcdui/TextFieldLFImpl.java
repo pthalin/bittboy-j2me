@@ -29,8 +29,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
-import org.thenesis.midpath.ui.UIToolkit;
-
 import com.sun.midp.chameleon.CGraphicsUtil;
 import com.sun.midp.chameleon.SubMenuCommand;
 import com.sun.midp.chameleon.input.BasicTextInputSession;
@@ -42,7 +40,6 @@ import com.sun.midp.chameleon.layers.PTILayer;
 import com.sun.midp.chameleon.skins.ScreenSkin;
 import com.sun.midp.chameleon.skins.TextFieldSkin;
 import com.sun.midp.chameleon.skins.resources.TextFieldResources;
-import com.sun.midp.configurator.Constants;
 import com.sun.midp.lcdui.DynamicCharacterArray;
 import com.sun.midp.lcdui.EventConstants;
 import com.sun.midp.lcdui.PhoneDial;
@@ -81,7 +78,7 @@ class TextFieldLFImpl extends ItemLFImpl implements TextFieldLF, TextInputCompon
 	protected SubMenuCommand inputMenu;
 
 	/** The TextInputMediator which handles translating key presses */
-	protected static BasicTextInputSession inputSession;
+	protected static TextInputSession inputSession;
 
 	/** The PopupLayer that represents open state of this ChoiceGroup POPUP. */
 	protected static PTILayer pt_popup;
@@ -890,7 +887,7 @@ class TextFieldLFImpl extends ItemLFImpl implements TextFieldLF, TextInputCompon
 	 * and should result in any listeners being notified.
 	 * @param input text to commit 
 	 */
-	public void commit(String input, boolean replace) {
+	public void commit(String input) {
 		if (input == null) {
 			System.err.println("TextFieldLFImpl Warning: commited text is null!");
 			return;
@@ -904,33 +901,23 @@ class TextFieldLFImpl extends ItemLFImpl implements TextFieldLF, TextInputCompon
 				DynamicCharacterArray in = tf.buffer;
 
 				TextCursor newCursor = new TextCursor(cursor);
-				if (replace) {
-				    tf.setString(input.toString());
-                    cursor = newCursor;
-				} else {
-                    for (int i = 0; i < input.length(); i++) {
-                        TextCursor currentCursor = new TextCursor(newCursor);
-                        String str = getDisplayString(in, input.charAt(i), tf.constraints, currentCursor, true);
-                        in = new DynamicCharacterArray(str);
-                        newCursor = currentCursor;
-                    }
+				for (int i = 0; i < input.length(); i++) {
+					TextCursor currentCursor = new TextCursor(newCursor);
+					String str = getDisplayString(in, input.charAt(i), tf.constraints, currentCursor, true);
+					in = new DynamicCharacterArray(str);
+					newCursor = currentCursor;
+				}
 
-                    if (bufferedTheSameAsDisplayed(tf.constraints)) {
-                        tf.setString(in.toString());
-                        cursor = newCursor;
-                    } else if (tf.buffer.length() < tf.getMaxSize()) {
-                        tf.insert(input, cursor.index);
-                    }
+				if (bufferedTheSameAsDisplayed(tf.constraints)) {
+					tf.setString(in.toString());
+					cursor = newCursor;
+				} else if (tf.buffer.length() < tf.getMaxSize()) {
+					tf.insert(input, cursor.index);
 				}
 			} catch (Exception ignore) {
 			}
-			
 			tf.notifyStateChanged();
 		}
-	}
-	
-	public String getInitialText() {
-	    return tf.getString();
 	}
 
 	/**
@@ -1023,8 +1010,8 @@ class TextFieldLFImpl extends ItemLFImpl implements TextFieldLF, TextInputCompon
 			if (systemKeyCode == EventConstants.SYSTEM_KEY_SEND) {
 				if ((getConstraints() & TextField.CONSTRAINT_MASK) == TextField.PHONENUMBER) {
 					PhoneDial.call(tf.getString());
-					return;
 				}
+				return;
 			}
 
 			if (!editable) {
@@ -1102,13 +1089,6 @@ class TextFieldLFImpl extends ItemLFImpl implements TextFieldLF, TextInputCompon
 
 		cancelTimerKey(keyCode);
 	}
-	
-	void uCallPointerPressed(int x, int y) {
-        // IMPL_NOTE: handle select action
-	    if (inputSession.isVirtualKeyboardAutoEnabled()) {
-	        inputSession.processKey(Constants.KEYCODE_SELECT, false);
-	    }
-    }
 
 	/**
 	 * Handle a key repeated event 

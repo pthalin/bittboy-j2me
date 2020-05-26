@@ -1,0 +1,8 @@
+
+This directory contains a port of SDLJava to CLDC.
+
+To compile native code in a standard development environment, just type:
+# cd native
+# make
+
+Modify the includes in the native/Makefile for more complex environements.

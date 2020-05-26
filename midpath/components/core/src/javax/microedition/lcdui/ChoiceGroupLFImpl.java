@@ -494,70 +494,6 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
             form.uCallItemStateChanged(cg);
         }
     }
-    
-    /**
-     * Called by the system to signal a pointer press
-     *
-     * @param x the x coordinate of the pointer down
-     * @param y the y coordinate of the pointer down
-     *
-     * @see #getInteractionModes
-     */
-    void uCallPointerPressed(int x, int y) {
-        itemWasPressed = true;
-        int i = getIndexByPointer(x, y);
-        if (i >= 0) {
-            hilightedIndex = pendingIndex = i;
-            hasFocusWhenPressed = cg.cgElements[hilightedIndex].selected; 
-            if (cg.choiceType == Choice.IMPLICIT) {               
-                setSelectedIndex(hilightedIndex, true);
-            }
-            uRequestPaint();
-            //            getCurrentDisplay().serviceRepaints(cg.owner.getLF()); //make the change shown immediately for better user experience
-        }
-
-    }
-    
-//    void uCallPointerPressed(int x, int y) { ;
-//        int index = getIndexByPointer(x, y);
-//        if (index != -1) {
-//            if (index == lGetSelectedIndex()) {
-//                setSelectedIndex(index, false);
-//            } else {
-//                setSelectedIndex(index, true);
-//            }
-//            uRequestPaint();
-//        }
-//        
-//    }
-    
-    /**
-     * Get the index of choice item contains the pointer 
-     * @param x the x coordinate of the pointer
-     * @param y the y coordinate of the pointer
-     * @return the index of choice item
-     */      
-    int getIndexByPointer(int x, int y) {
-
-        int id = -1;
-        if (cg.numOfEls > 0) {
-            //if pointer was dragged outside the item.
-            if (contentBounds[X] <= x &&
-                x <= contentBounds[X] + contentBounds[WIDTH] &&
-                contentBounds[Y] <= y &&
-                y <= contentBounds[Y] + contentBounds[HEIGHT]) { 
-                int visY = contentBounds[Y];
-                for (int i = 0; i < cg.numOfEls; i++) {
-                    visY += elHeights[i];
-                    if (visY >= y) {
-                        id = i;
-                        break;
-                    }
-                }
-            }
-        }
-        return id;
-    }
 
     /**
      * Get the total element height of this CGroup
@@ -671,7 +607,6 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
         // IMPL_NOTE: Right now we have no vertical padding per element,
         // nor per line in the element
         // ChoiceImage and content images are drawn at y = 0
-	// IMPL_NOTE_2: we are drawing image centered now
 
         // IMPL_NOTE: Content image area is always of PREFERRED_IMG_W and
         // PREFERRED_IMG_H (even if the image is smaller or there is space)
@@ -707,26 +642,26 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
                 switch (cType) {
                     case Choice.MULTIPLE:
                         offSetX = ChoiceGroupSkin.PAD_H +
-                            elHeights[i];
+                            ChoiceGroupSkin.WIDTH_IMAGE;
                         g.drawRect(1, 1, 
-                                   elHeights[i] - 3,
-                                   elHeights[i] - 3);
+                                   ChoiceGroupSkin.WIDTH_IMAGE - 3,
+                                   ChoiceGroupSkin.HEIGHT_IMAGE - 3);
                         if (cg.cgElements[i].selected) {
                             g.fillRect(3, 3, 
-                                elHeights[i] - 6,
-                                elHeights[i] - 6);
+                                ChoiceGroupSkin.WIDTH_IMAGE - 6,
+                                ChoiceGroupSkin.HEIGHT_IMAGE - 6);
                         }
                         break;
                     case Choice.EXCLUSIVE:
                         offSetX = ChoiceGroupSkin.PAD_H +
-                            elHeights[i];
+                            ChoiceGroupSkin.WIDTH_IMAGE;
                         g.drawArc(1, 1, 
-                            elHeights[i] - 2,
-                            elHeights[i] - 2, 0, 360);
+                            ChoiceGroupSkin.WIDTH_IMAGE - 2,
+                            ChoiceGroupSkin.HEIGHT_IMAGE - 2, 0, 360);
                         if (i == selectedIndex) {
                             g.fillArc(3, 3, 
-                                elHeights[i] - 5,
-                                elHeights[i] - 5, 0, 360);
+                                ChoiceGroupSkin.WIDTH_IMAGE - 5,
+                                ChoiceGroupSkin.HEIGHT_IMAGE - 5, 0, 360);
                         }
                         break;
                 }
@@ -755,10 +690,8 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
                            ChoiceGroupSkin.WIDTH_IMAGE, 
                            ChoiceGroupSkin.HEIGHT_IMAGE);
                 g.drawImage(cg.cgElements[i].imageEl, 
-                            //0, 0, 
-                            ChoiceGroupSkin.WIDTH_IMAGE/2,
-                            ChoiceGroupSkin.HEIGHT_IMAGE/2, 
-                            Graphics.HCENTER | Graphics.VCENTER);
+                            0, 0, 
+                            Graphics.LEFT | Graphics.TOP);
                 g.setClip(iX, iY, iW, iH);
                 textOffset = ChoiceGroupSkin.WIDTH_IMAGE +
                     ChoiceGroupSkin.PAD_H;
@@ -903,8 +836,6 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
 
         // IMPL_NOTE there is an assumption here that text height is always
         // taller then the choice image and taller then the content image
-	// IMPL_NOTE_2 we are setting the height properly base on content
-	// image now
 
         elHeights[i] = 0;
 
@@ -920,12 +851,6 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
             elHeights[i] += Text.getHeightForWidth(cgEl.stringEl, fnt,
                                                     availableWidth, textOffset);
         }
-
-	if (cg.choiceType != Choice.MULTIPLE &&
-            cg.choiceType != Choice.EXCLUSIVE &&
-            cgEl.imageEl != null &&
-            elHeights[i] < ChoiceGroupSkin.HEIGHT_IMAGE)
-		elHeights[i] = ChoiceGroupSkin.HEIGHT_IMAGE;
  
         return elHeights[i];
     }
@@ -942,9 +867,7 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
      * The currently highlighted index of this ChoiceGroup (-1 by default)
      */
     int hilightedIndex = -1;
-    
-    int pendingIndex = -1;
-    
+
     /**
      * Stores the x-location of where the choice element content 
      * would begin.
@@ -963,6 +886,4 @@ class ChoiceGroupLFImpl extends ItemLFImpl implements ChoiceGroupLF {
      * in lCallTraverseOut().
      */
     boolean traversedIn;
-    
-    boolean hasFocusWhenPressed; // = false
 }

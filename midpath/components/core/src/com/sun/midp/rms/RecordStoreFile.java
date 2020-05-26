@@ -33,13 +33,13 @@ public class RecordStoreFile implements AbstractRecordStoreFile {
 		//stream =  toolkit.getBaseFileHandler().getRandomAccessStream();
 		fileHandler = toolkit.createBaseFileHandler();
 		fileHandler.connect(RMS_ROOT_PATH, buildRecordStoreName(suiteID, name, idx_extension));
-		
-		if (!fileHandler.exists()) {
-		    fileHandler.create();
-		}
-		fileHandler.openForWrite();
 		fileHandler.openForRead();
+		fileHandler.openForWrite();
 		stream = fileHandler.getRandomAccessStream();
+		//		} catch (IOException e) {
+		//			Logging.trace(e,"");
+		//			//e.printStackTrace();
+		//		}
 	}
 
 	public void close() throws IOException {
@@ -98,7 +98,7 @@ public class RecordStoreFile implements AbstractRecordStoreFile {
 			Vector v = fileHandler.list(suiteID + "*", true);
 			stores = new String[v.size()];
 			for (int i = 0; i < stores.length; i++) {
-				stores[i] = getRecordStoreName((String)v.elementAt(i), suiteID);
+				stores[i] = getRecordStoreName((String)v.elementAt(i));
 			}
 		} catch (IOException e) {
 			if (Logging.TRACE_ENABLED)
@@ -129,10 +129,8 @@ public class RecordStoreFile implements AbstractRecordStoreFile {
 		return suiteID + "-" + name + "." + idx_extension;
 	}
 	
-	public static String getRecordStoreName(String fileName, String suiteID) {
-		// This does not work if suiteID contains '-'
-		//int indentIndex = fileName.indexOf('-');
-		int indentIndex = suiteID.length();
+	public static String getRecordStoreName(String fileName) {
+		int indentIndex = fileName.indexOf('-');
 		int pointIndex = fileName.lastIndexOf('.');
 		return fileName.substring(indentIndex + 1, pointIndex);
 	}

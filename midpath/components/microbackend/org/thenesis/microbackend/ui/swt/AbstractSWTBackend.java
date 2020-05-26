@@ -133,17 +133,17 @@ public abstract class AbstractSWTBackend implements UIBackend, KeyListener, Mous
 
     public void mouseDown(MouseEvent e) {
         //System.out.println("[DEBUG] SWTBackend.mouseDown()");
-        listener.pointerPressed(e.x, e.y, 0);
+        listener.mousePressed(e.x, e.y, 0);
     }
 
     public void mouseUp(MouseEvent e) {
         //System.out.println("[DEBUG] SWTBackend.mouseUp()");
-        listener.pointerReleased(e.x, e.y, 0);
+        listener.mouseReleased(e.x, e.y, 0);
     }
 
     public void mouseMove(MouseEvent e) {
         //System.out.println("[DEBUG] SWTBackend.mouseDragged(): " + dragEnabled);
-        listener.pointerMoved(e.x, e.y, 0);
+        listener.mouseMoved(e.x, e.y, 0);
     }
 
     public void widgetDisposed(DisposeEvent e) {

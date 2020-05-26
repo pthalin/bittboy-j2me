@@ -1,7 +1,11 @@
-JNI_INCLUDE = -I/usr/include/classpath
+JNI_INCLUDE=-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux
 
-CC = /opt/mipsel-linux-uclibc/usr/bin/mipsel-linux-gcc
-CFLAGS = $(JNI_INCLUDE) -Os -mips32 -mtune=mips32 -mno-mips16 -mbranch-likely -pipe -G0 -fno-common -fpeel-loops
+CROSS_COMPILE=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-
+CC = $(CROSS_COMPILE)gcc
+
+CFLAGS = $(JNI_INCLUDE) 
+CFLAGS += -Os
+
 LDFLAGS = -s
 
 SOURCES = jcl.c javaio.c org_thenesis_midpath_io_backend_cldc_File.c \
@@ -16,7 +20,7 @@ all: libmidpathfile.so
 	$(CC) $(CFLAGS) -fPIC -g -c -Wall -o $(patsubst %.c, %.o, $<) $<
 
 %.so: $(OBJECTS)
-	$(CC) $(LDFLAGS) -shared -Wl,-soname,$@ -lc -o $@ $^
+	$(CC) $(LDFLAGS) -shared -fPIC -Wl,-soname,$@ -lc -o $@ $^
 
 clean:
 	rm -f *.so *.o

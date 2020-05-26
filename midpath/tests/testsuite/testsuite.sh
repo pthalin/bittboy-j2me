@@ -41,8 +41,8 @@ help,\
 build,\
 test,\
 \
-disable-cldc-testsuite,\
-disable-jni-testsuite,\
+disable-cldc-testuite,\
+disable-jni-testuite,\
 \
 with-cldc-jar:,\
 with-jni-include:,\
@@ -62,10 +62,10 @@ while true; do
       echo "  --help                    : Show this help"
       echo
       echo "Core features:"
-      echo "  --build                   : Build test suites"
-      echo "  --test                    : Start test suites"
+      echo "  --build                   : Build test suites
+      echo "  --test                    : Start test suites
       echo "  --disable-cldc-testsuite  : Do not build/test CLDC test suite (default: yes)"
-      echo "  --disable-jni-testsuite   : Do not build/test JNI test suite (default: yes)"
+      echo "  --disable-jni-testuite    : Do not build/test JNI test suite (default: yes)"
       echo
       echo "Providable libraries:"
       echo "  --with-cldc-jar           : Location of the CLDC class library"
@@ -89,7 +89,7 @@ while true; do
     --disable-cldc-testsuite ) CLDC_TESTSUITE_ENABLED=no
       echo "Compiling CLDC testsuite disabled"
       shift ;;
-    --disable-jni-testsuite ) JNI_TESTSUITE_ENABLED=no
+    --disable-jni-testuite ) JNI_TESTSUITE_ENABLED=no
       echo "Compiling JNI testsuite disabled"
       shift ;;
     --with-cldc-jar )
@@ -168,7 +168,10 @@ build_java_res()
       ( cd $resdir && find -type f | grep -v "/.svn" | $JAR_CMD uvf $jarname -E -M -@ )
     else
       # Sun's jar has trouble with the first entry when using @ and -C
-      ( cd $resdir && find -type f | grep -v "/.svn" | xargs $JAR_CMD uvf $jarname )
+      echo "ignore_the_error" > resources.list
+      # all other jar commands handle the resources via a file
+      find $resdir -type f | grep -v "/.svn" >> resources.list
+      $JAR_CMD uvf $jarname -C $resdir @resources.list
     fi
   fi
 }

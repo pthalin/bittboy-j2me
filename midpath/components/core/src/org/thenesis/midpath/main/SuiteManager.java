@@ -21,12 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.FileWriter;
 import java.util.Vector;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.lang.ClassLoader;
-import java.lang.reflect.Method;
 
 import com.sun.midp.installer.ManifestProperties;
 import com.sun.midp.log.Logging;
@@ -58,7 +53,7 @@ public class SuiteManager {
 		BaseMIDletSuiteLauncher.initialize();
 
 		// Initialize the manager MIDlet 
-		BaseMIDletSuiteLauncher.launch(InternalMIDletSuiteImpl.create("Suite Manager", "Suite_Manager"), "org.thenesis.midpath.main.SuiteManagerMIDlet");
+		BaseMIDletSuiteLauncher.launch("org.thenesis.midpath.main.SuiteManagerMIDlet", "Suite Manager");
 
 		// Get the launch infos from the MIDlet
 		final MIDletInfo info = SuiteManagerMIDlet.launchMidletInfo;
@@ -72,10 +67,6 @@ public class SuiteManager {
 			String suiteId = InternalMIDletSuiteImpl.buildSuiteID(suiteName);
 			MIDletSuite midletSuite = InternalMIDletSuiteImpl.create(midletSuiteJar.getManifestProperties(), suiteName,
 					suiteId);
-			// Update midlet config
-			MIDletSettingsForm midletSettings = new MIDletSettingsForm(suiteId);
-			midletSettings.setProperties();
-			midletSettings = null;
 			BaseMIDletSuiteLauncher.launch(midletSuite, info.classname);
 		}
 
@@ -377,13 +368,6 @@ class J2SEMIDletClassLoader implements MIDletClassLoader {
 
 	public J2SEMIDletClassLoader(JarInspectorSE midletSuiteJar) {
 		this.midletSuiteJar = midletSuiteJar;
-                try {
-                Method addURL = URLClassLoader.class.getDeclaredMethod("addURL",new Class[] {URL.class});
-                addURL.setAccessible(true);
-                addURL.invoke(ClassLoader.getSystemClassLoader(), new Object[] {midletSuiteJar.getUrl()});
-                } catch (Exception e) {
-                System.out.println("J2SEMIDletClassLoader addURL error: " + e);
-                }
 	}
 
 	public synchronized Class getMIDletClass(String className) throws ClassNotFoundException, InstantiationException {
@@ -514,24 +498,21 @@ class MIDletRepository {
 	private void installJar(JarInspectorSE jar) throws IOException {
 		// Create a jad with the same name of the jar file
 		File jad = new File(repositoryDir, getJadFileName(jar.getFile().getName()));
-		FileWriter writer = new FileWriter(jad);
+		PrintWriter writer = new PrintWriter(jad);
 
 		ManifestProperties properties = jar.getManifestProperties();
 		for (int i = 0; i < properties.size(); i++) {
 			String key = properties.getKeyAt(i);
 			String value = properties.getValueAt(i);
-			writer.write(key + ":" + value);
-			writer.write('\n');
+			writer.println(key + ":" + value);
 		}
 
 		// Add attributes required by JAD specs
 		// References:
 		// - http://developers.sun.com/techtopics/mobility/midp/ttips/getAppProperty/index.html)
 		// - http://www.onjava.com/pub/a/onjava/excerpt/j2menut_3/index2.html?page=3
-		writer.write(ManifestProperties.JAR_URL_PROP + ":" + jar.getFile().getName());
-		writer.write('\n');
-		writer.write(ManifestProperties.JAR_SIZE_PROP + ":" + jar.getFile().length());
-		writer.write('\n');
+		writer.println(ManifestProperties.JAR_URL_PROP + ":" + jar.getFile().getName());
+		writer.println(ManifestProperties.JAR_SIZE_PROP + ":" + jar.getFile().length());
 		writer.flush();
 		writer.close();
 

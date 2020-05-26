@@ -28,8 +28,6 @@ package javax.microedition.lcdui;
 /* import  javax.microedition.lcdui.KeyConverter; */
 import java.util.Vector;
 
-import org.thenesis.midpath.ui.UIToolkit;
-
 /**
 * This is the look amps; feel implementation for Canvas.
 */

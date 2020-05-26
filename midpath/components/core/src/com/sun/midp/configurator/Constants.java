@@ -570,13 +570,10 @@ public class Constants {
 
 	// Must be at the end of the Constants class in order to be started last
 	static {
-		overrideConstants();
-	}
 
-	public static void overrideConstants() {
 		// Default values: w=176, h=210
-		int width = Configuration.getPositiveIntProperty("org.thenesis.microbackend.ui.screenWidth", 176);
-		int height = Configuration.getPositiveIntProperty("org.thenesis.microbackend.ui.screenHeight", 210);
+		int width = Configuration.getPositiveIntProperty("javax.microedition.lcdui.screenWidth", 176);
+		int height = Configuration.getPositiveIntProperty("javax.microedition.lcdui.screenHeight", 210);
 		
 		GAMECANVAS_FULLWIDTH = width;
 		GAMECANVAS_FULLHEIGHT = height;

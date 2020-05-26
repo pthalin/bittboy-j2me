@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink" 
+     xmlns:demo="http://www.sun.com/svg/demo"
+     id="root"
+     width="100%" height="100%" viewBox="0 0 240 320" 
+     xml:space="preserve"
+     preserveAspectRatio="none">
+
+<defs>
+<font horiz-adv-x="422" ><font-face
+    font-family="SunSansSemiBold"
+    units-per-em="1000"
+    panose-1="0 0 4 0 0 0 0 0 0 0"
+    ascent="876"
+    descent="-200"
+    alphabetic="0" />
+<missing-glyph horiz-adv-x="500" d="M63 0V807H438V0H63ZM125 63H375V745H125V63Z" />
+<glyph unicode=" " glyph-name="space" horiz-adv-x="240" />
+<glyph unicode="!" glyph-name="exclam" horiz-adv-x="374" d="M280 675L261 162H172L154 675H280ZM282 52Q282 18 269 6T216 -7Q178 -7 165 5T151 50Q151 84 164 96T217 109Q255 109 268 97T282 52Z" />
+<glyph unicode="&quot;" glyph-name="quotedbl" horiz-adv-x="451" d="M370 675L359 417H281L269 675H370ZM178 675L167 417H89L77 675H178Z" />
+<glyph unicode="#" glyph-name="numbersign" horiz-adv-x="508" d="M479 205H374L350 0H273L296 205H177L153 0H76L98 205H29V271H107L126 433H29V498H133L154 675H231L210 498H330L351 675H428L407 498H479V433H400L381 271H479V205ZM322 433H203L184 271H304L322 433Z" />
+<glyph unicode="$" glyph-name="dollar" horiz-adv-x="500" d="M455 182Q455 113 409 65T282 4L274 -106H213L205 2Q119 7 47 57L77 113Q144 77 218 77Q278 77 310 103T343 174Q343 228 268 267Q199 303 129 339Q54 391 54 476Q54 539 94 583T205 640L213 746H274L282
+643Q352 638 417 596L388 542Q328 571 263 571Q214 571 188 547T161 485Q161 429 237 389Q308 354 379 318Q455 267 455 182Z" />
+<glyph unicode="%" glyph-name="percent" horiz-adv-x="699" d="M340 526Q340 367 193 367Q115 367 85 403T54 525Q54 685 201 685Q277 685 310 646Q340 609 340 526ZM621 659L133 -17L78 16L566 692L621 659ZM645 149Q645 -10 498 -10Q420 -10 390 26T359 148Q359
+308 507 308Q582 308 615 269Q645 232 645 149ZM259 523Q259 626 197 626Q134 626 134 527Q134 426 197 426Q259 426 259 523ZM565 146Q565 249 502 249Q440 249 440 150Q440 49 502 49Q565 49 565 146Z" />
+<glyph unicode="&amp;" glyph-name="ampersand" horiz-adv-x="690" d="M650 3Q624 -9 584 -9Q550 -9 454 65Q364 -9 250 -9Q148 -9 96 41Q48 87 48 168Q48 278 170 362Q96 470 96 530Q96 598 144 641T282 684Q359 684 402 650T446 557Q446 495 405 447Q373 411
+294 360Q361 277 453 190Q507 276 507 379H605Q605 242 520 129Q594 67 618 67H650V3ZM350 548Q350 618 273 618Q194 618 194 541Q194 499 250 417Q307 458 328 486T350 548ZM393 116Q289 210 217 302Q148 244 148 180Q148 64 268 64Q333 64 393 116Z" />
+<glyph unicode="&apos;" glyph-name="quotesingle" horiz-adv-x="320" d="M213 675L201 417H127L115 675H213Z" />
+<glyph unicode="(" glyph-name="parenleft" horiz-adv-x="310" d="M268 -152L199 -176Q67 25 67 268Q67 517 199 723L268 698Q163 502 163 276Q163 50 268 -152Z" />
+<glyph unicode=")" glyph-name="parenright" horiz-adv-x="310" d="M243 279Q243 29 111 -175L42 -152Q147 47 147 271Q147 499 42 698L111 723Q243 525 243 279Z" />
+<glyph unicode="*" glyph-name="asterisk" horiz-adv-x="500" d="M447 465L403 386L288 469L298 330H201L213 468L99 386L55 466L181 524L55 583L99 662L213 579L201 718H299L289 580L403 662L447 583L321 525L447 465Z" />
+<glyph unicode="+" glyph-name="plus" horiz-adv-x="500" d="M459 260H294V76H206V260H39V332H206V512H294V332H459V260Z" />
+<glyph unicode="," glyph-name="comma" horiz-adv-x="306" d="M218 51Q218 -23 191 -66T90 -155L49 -113Q120 -63 120 -20Q120 -8 106 8T92 50Q92 89 104 103T158 117Q196 117 207 103T218 51Z" />
+<glyph unicode="-" glyph-name="hyphen" horiz-adv-x="235" d="M234 257H29V335H234V257Z" />
+<glyph unicode="." glyph-name="period" horiz-adv-x="290" d="M217 54Q217 17 205 4T154 -9Q116 -9 103 4T90 53Q90 92 103 104T155 117Q192 117 204 105T217 54Z" />
+<glyph unicode="/" glyph-name="slash" horiz-adv-x="500" d="M489 709L90 -104H0L399 709H489Z" />
+<glyph unicode="0" glyph-name="zero" horiz-adv-x="500" d="M464 286Q464 131 410 61T246 -10Q131 -10 83 52T35 279Q35 441 93 513Q146 579 255 579Q364 579 412 519Q464 452 464 286ZM358 280Q358 408 331 457Q307 501 249 501Q191 501 167 458Q140 410 140
+286Q140 162 164 116T253 70Q311 70 334 117T358 280Z" />
+<glyph unicode="1" glyph-name="one" horiz-adv-x="500" d="M452 0H67V84H212V469L83 426L59 488L238 569H323V84H452V0Z" />
+<glyph unicode="2" glyph-name="two" horiz-adv-x="500" d="M451 0H50V74Q220 215 271 276Q319 335 319 398Q319 493 211 493Q156 493 72 467L57 537Q167 578 249 578Q336 578 386 536Q437 491 437 409Q437 332 382 263Q333 201 189 88H451V0Z" />
+<glyph unicode="3" glyph-name="three" horiz-adv-x="500" d="M444 101Q444 -112 216 -112Q134 -112 27 -70L36 -8Q134 -29 193 -29Q266 -29 297 2Q325 29 325 92Q325 212 198 212H126V292H194Q307 292 307 403Q307 495 202 495Q134 495 64 470L49 540Q143 578
+238 578Q331 578 378 532Q422 489 422 413Q422 291 321 260Q379 254 413 206Q444 162 444 101Z" />
+<glyph unicode="4" glyph-name="four" horiz-adv-x="500" d="M473 47H399V-104H295V47H24V129Q131 363 252 569H399V138H473V47ZM295 138V481Q175 270 114 138H295Z" />
+<glyph unicode="5" glyph-name="five" horiz-adv-x="500" d="M447 106Q447 -112 218 -112Q138 -112 29 -71L37 -12Q151 -31 202 -31Q273 -31 303 -3T334 95Q334 230 201 230Q139 230 59 214L81 569H400V480H165L153 306Q180 313 237 313Q340 313 395 258Q447 204
+447 106Z" />
+<glyph unicode="6" glyph-name="six" horiz-adv-x="500" d="M460 218Q460 114 405 53T258 -9Q150 -9 104 55Q51 130 51 320Q51 684 285 684Q357 684 441 648L431 587Q352 605 297 605Q159 605 153 358Q232 403 295 403Q460 403 460 218ZM357 204Q357 322 262 322Q216
+322 155 287V283Q155 169 181 119T263 69Q357 69 357 204Z" />
+<glyph unicode="7" glyph-name="seven" horiz-adv-x="500" d="M464 489L329 203Q251 38 159 -112L88 -85L341 480H39V569H464V489Z" />
+<glyph unicode="8" glyph-name="eight" horiz-adv-x="500" d="M462 172Q462 91 410 43Q352 -10 241 -10Q37 -10 37 161Q37 266 162 339Q51 405 51 513Q51 590 104 637T256 685Q448 685 448 524Q448 425 327 355Q398 319 428 280Q462 236 462 172ZM347 510Q347
+611 245 611Q202 611 178 587T153 521Q153 446 249 394Q347 449 347 510ZM361 161Q361 206 329 240Q301 268 235 300Q139 241 139 172Q139 65 254 65Q302 65 331 92T361 161Z" />
+<glyph unicode="9" glyph-name="nine" horiz-adv-x="500" d="M450 250Q450 -114 212 -114Q134 -114 45 -76L53 -16Q145 -35 200 -35Q343 -35 347 212Q268 167 205 167Q40 167 40 352Q40 456 95 517T243 579Q350 579 396 515Q450 440 450 250ZM345 283V287Q345
+401 319 451T238 501Q143 501 143 366Q143 248 239 248Q287 248 345 283Z" />
+<glyph unicode=":" glyph-name="colon" horiz-adv-x="306" d="M227 442Q227 409 214 397T166 384Q132 384 118 396T104 441Q104 474 118 487T166 500Q200 500 213 488T227 442ZM227 56Q227 22 214 10T166 -3Q132 -3 118 9T104 54Q104 87 118 100T166 113Q200 113
+213 101T227 56Z" />
+<glyph unicode=";" glyph-name="semicolon" horiz-adv-x="306" d="M226 442Q226 409 212 397T164 384Q131 384 117 396T103 441Q103 474 117 487T165 500Q198 500 212 488T226 442ZM226 50Q226 -68 98 -155L58 -118Q134 -65 134 -17Q134 -5 119 9T103 49Q103 83
+116 96T165 109Q198 109 212 96T226 50Z" />
+<glyph unicode="&lt;" glyph-name="less" horiz-adv-x="500" d="M460 441L141 282L459 124L415 50L33 248V315L416 513L460 441Z" />
+<glyph unicode="=" glyph-name="equal" horiz-adv-x="500" d="M454 341H47V411H454V341ZM454 153H47V223H454V153Z" />
+<glyph unicode="&gt;" glyph-name="greater" horiz-adv-x="500" d="M468 249L85 50L41 122L359 281L42 439L86 514L468 315V249Z" />
+<glyph unicode="?" glyph-name="question" horiz-adv-x="500" d="M438 523Q438 461 397 411Q360 371 322 331Q281 284 280 229L279 162H190L187 232Q184 293 219 346Q252 385 286 425Q322 469 322 507Q322 601 218 601Q158 601 98 578L71 642Q160 684 247 684Q342
+684 392 640Q438 598 438 523ZM299 50Q299 16 286 5T234 -7Q195 -7 182 5T169 50Q169 84 182 96T235 109Q273 109 286 97T299 50Z" />
+<glyph unicode="@" glyph-name="at" horiz-adv-x="1015" d="M911 406Q911 256 834 170Q752 79 599 79H551L550 162Q472 74 399 74Q280 74 280 228Q280 361 344 432T521 503Q601 503 670 487L633 156Q720 156 767 223Q810 284 810 385Q810 639 549 639Q370 639
+263 508Q168 392 168 230Q168 76 245 -6Q326 -92 483 -92Q606 -92 730 -41L748 -103Q609 -168 461 -168Q270 -168 170 -70T69 211Q69 425 200 566Q338 713 565 713Q739 713 828 629Q911 550 911 406ZM567 423Q532 430 510 430Q445 430 410 381T375 245Q375 153
+427 153Q481 153 546 242L567 423Z" />
+<glyph unicode="A" glyph-name="A" horiz-adv-x="553" d="M540 0H424Q413 48 390 141H149Q132 74 118 0H13Q93 339 205 675H344Q457 344 540 0ZM372 222Q316 424 266 576Q208 384 167 222H372Z" />
+<glyph unicode="B" glyph-name="B" horiz-adv-x="569" d="M518 210Q518 115 454 59Q383 -2 249 -2Q220 -2 165 -1T83 0V675H287Q385 675 436 631Q483 590 483 519Q483 411 387 369Q443 360 479 319Q518 274 518 210ZM373 503Q373 598 265 598H189V392H250Q313
+392 346 427Q373 456 373 503ZM404 201Q404 317 261 317H189V81Q223 77 269 77Q404 77 404 201Z" />
+<glyph unicode="C" glyph-name="C" horiz-adv-x="520" d="M493 95Q420 -10 292 -10Q45 -10 45 325Q45 498 113 591T304 685Q423 685 480 574L428 528Q384 598 314 598Q240 598 199 529T158 344Q158 78 312 78Q385 78 445 148L493 95Z" />
+<glyph unicode="D" glyph-name="D" horiz-adv-x="584" d="M539 355Q539 -3 225 -3Q201 -3 153 -2T83 0V675Q113 675 169 676Q225 676 254 676Q403 676 476 582Q539 499 539 355ZM426 342Q426 595 243 595Q209 595 191 594V83Q229 81 248 81Q426 81 426 342Z" />
+<glyph unicode="E" glyph-name="E" horiz-adv-x="471" d="M422 0H83V675H418V591H191V386H378V305H191V85H422V0Z" />
+<glyph unicode="F" glyph-name="F" horiz-adv-x="449" d="M412 592H191V380H384V298H191V0H83V675H412V592Z" />
+<glyph unicode="G" glyph-name="G" horiz-adv-x="571" d="M499 68Q410 -10 284 -10Q45 -10 45 327Q45 498 121 595Q193 685 310 685Q421 685 493 593L446 547Q378 599 316 599Q242 599 201 536Q158 469 158 346Q158 77 303 77Q358 77 393 106V297H304V377H499V68Z" />
+<glyph unicode="H" glyph-name="H" horiz-adv-x="658" d="M575 0H467V311H191V0H83V675H191V403H467V675H575V0Z" />
+<glyph unicode="I" glyph-name="I" horiz-adv-x="274" d="M191 0H83V675H191V0Z" />
+<glyph unicode="J" glyph-name="J" horiz-adv-x="280" d="M197 70Q197 -93 87 -175L34 -130Q69 -89 81 -32Q89 7 89 76V675H197V70Z" />
+<glyph unicode="K" glyph-name="K" horiz-adv-x="532" d="M512 0H386L191 321V0H83V675H191V382L376 675H497L286 370L512 0Z" />
+<glyph unicode="L" glyph-name="L" horiz-adv-x="421" d="M404 0H83V675H191V83H404V0Z" />
+<glyph unicode="M" glyph-name="M" horiz-adv-x="845" d="M774 0H661Q655 286 628 538H627L455 0H369L198 538H197Q178 296 173 0H70Q80 360 120 675H260L423 179H424L588 675H722Q766 306 774 0Z" />
+<glyph unicode="N" glyph-name="N" horiz-adv-x="651" d="M568 0H458L174 522V0H83V675H218L477 212V675H568V0Z" />
+<glyph unicode="O" glyph-name="O" horiz-adv-x="633" d="M588 350Q588 168 509 75Q437 -10 308 -10Q179 -10 115 65Q45 148 45 326Q45 507 124 600Q196 685 325 685Q588 685 588 350ZM474 331Q474 475 433 541Q395 602 314 602Q159 602 159 347Q159 201 200 135Q238
+74 319 74Q474 74 474 331Z" />
+<glyph unicode="P" glyph-name="P" horiz-adv-x="528" d="M503 470Q503 365 440 306Q368 238 222 238H191V0H83V675Q108 675 164 676Q220 676 256 676Q503 676 503 470ZM390 459Q390 596 238 596H191V319H240Q390 319 390 459Z" />
+<glyph unicode="Q" glyph-name="Q" horiz-adv-x="633" d="M696 -116L661 -160Q613 -132 545 -132Q533 -132 511 -133T478 -134Q423 -134 388 -113Q342 -85 306 -9Q45 -11 45 326Q45 507 124 600Q196 685 325 685Q588 685 588 350Q588 194 530 103Q475 18 376 -2Q422
+-58 499 -58Q508 -58 527 -57T556 -56Q640 -56 696 -116ZM474 331Q474 475 433 541Q395 602 314 602Q159 602 159 347Q159 201 200 135Q238 74 319 74Q474 74 474 331Z" />
+<glyph unicode="R" glyph-name="R" horiz-adv-x="543" d="M534 0H408L236 295H191V0H83V675Q197 677 270 677Q383 677 443 629Q498 583 498 502Q498 350 341 317L534 0ZM385 490Q385 599 250 599H191V374H257Q385 374 385 490Z" />
+<glyph unicode="S" glyph-name="S" horiz-adv-x="496" d="M464 187Q464 101 401 46T232 -9Q133 -9 40 54L69 112Q149 72 214 72Q275 72 309 99T344 174Q344 234 267 277Q196 316 125 355Q48 411 48 501Q48 583 105 633T254 684Q348 684 425 634L399 576Q333 604
+269 604Q217 604 189 579T161 515Q161 455 240 411Q312 372 385 332Q464 276 464 187Z" />
+<glyph unicode="T" glyph-name="T" horiz-adv-x="466" d="M451 590H287V0H179V590H15V675H451V590Z" />
+<glyph unicode="U" glyph-name="U" horiz-adv-x="652" d="M570 246Q570 -10 315 -10Q197 -10 140 47T82 232V675H190V245Q190 150 222 111T327 71Q395 71 427 107Q464 147 464 238V675H570V246Z" />
+<glyph unicode="V" glyph-name="V" horiz-adv-x="534" d="M519 675Q453 321 335 0H207Q85 343 11 675H129Q165 502 280 111Q362 377 412 675H519Z" />
+<glyph unicode="W" glyph-name="W" horiz-adv-x="859" d="M839 675Q762 307 668 0H550L448 402L427 503H426L407 401L312 0H193Q96 314 21 675H137Q160 556 262 136H263L278 215L386 675H489L619 136H621Q700 476 736 675H839Z" />
+<glyph unicode="X" glyph-name="X" horiz-adv-x="546" d="M525 0H405Q331 158 263 270Q193 154 127 0H19Q89 168 204 353Q108 515 36 675H154Q220 527 277 433Q340 533 400 675H506Q440 518 337 359Q447 178 525 0Z" />
+<glyph unicode="Y" glyph-name="Y" horiz-adv-x="486" d="M489 675Q392 433 297 288V0H189V288Q86 453 -3 675H117Q183 509 252 386Q313 489 379 675H489Z" />
+<glyph unicode="Z" glyph-name="Z" horiz-adv-x="485" d="M453 0H34V73L309 589H46V675H438V599L165 87H453V0Z" />
+<glyph unicode="[" glyph-name="bracketleft" horiz-adv-x="356" d="M293 -173H106V739H293V678H200V-113H293V-173Z" />
+<glyph unicode="\" glyph-name="backslash" horiz-adv-x="500" d="M500 -104H411L11 709H100L500 -104Z" />
+<glyph unicode="]" glyph-name="bracketright" horiz-adv-x="356" d="M250 -173H63V-113H156V678H63V739H250V-173Z" />
+<glyph unicode="^" glyph-name="asciicircum" horiz-adv-x="500" d="M468 394L387 364L250 624L112 364L33 394L208 709H293L468 394Z" />
+<glyph unicode="_" glyph-name="underscore" horiz-adv-x="500" d="M500 -173H0V-96H500V-173Z" />
+<glyph unicode="`" glyph-name="grave" horiz-adv-x="314" d="M245 590L198 558L44 678L114 722L245 590Z" />
+<glyph unicode="a" glyph-name="a" horiz-adv-x="502" d="M427 0H347L339 54Q265 -10 185 -10Q35 -10 35 128Q35 207 96 251Q162 298 289 298H325V343Q325 432 222 432Q155 432 76 403L61 466Q154 507 250 507Q427 507 427 356V0ZM325 115V233H282Q137 233 137
+143Q137 65 214 65Q267 65 325 115Z" />
+<glyph unicode="b" glyph-name="b" horiz-adv-x="526" d="M482 268Q482 126 411 55Q345 -10 228 -10Q163 -10 75 8V709H178V453Q247 508 309 508Q390 508 436 441T482 268ZM376 251Q376 334 351 381T281 428Q234 428 178 378V76Q207 65 247 65Q305 65 339 110Q376
+160 376 251Z" />
+<glyph unicode="c" glyph-name="c" horiz-adv-x="425" d="M400 64Q332 -9 235 -9Q42 -9 42 242Q42 363 99 435T250 508Q334 508 388 446L351 393Q309 430 260 430Q207 430 178 385T149 255Q149 70 255 70Q316 70 366 117L400 64Z" />
+<glyph unicode="d" glyph-name="d" horiz-adv-x="526" d="M451 0H367L358 53Q283 -10 215 -10Q135 -10 89 59Q44 124 44 230Q44 372 115 444Q178 508 285 508Q318 508 348 504V709H451V0ZM348 120V422Q313 433 277 433Q219 433 186 388Q150 339 150 246Q150 163
+175 117T245 70Q290 70 348 120Z" />
+<glyph unicode="e" glyph-name="e" horiz-adv-x="498" d="M445 232H148V223Q148 70 273 70Q348 70 426 99L443 39Q347 -10 251 -10Q42 -10 42 235Q42 366 98 437T257 508Q446 508 446 271Q446 252 445 232ZM345 298V301Q345 437 251 437Q205 437 178 398T148 298H345Z" />
+<glyph unicode="f" glyph-name="f" horiz-adv-x="299" d="M332 688L314 629Q276 643 250 643Q189 643 189 571V498H289V425H189V0H86V425H14V498H86V567Q86 719 219 719Q278 719 332 688Z" />
+<glyph unicode="g" glyph-name="g" horiz-adv-x="528" d="M451 17Q451 -94 393 -141Q345 -180 249 -180Q171 -180 83 -145L92 -87Q187 -103 236 -103Q297 -103 322 -80T348 -3V63Q279 10 214 10Q136 10 90 76T44 241Q44 374 117 444Q183 508 293 508Q358 508 451
+489V17ZM348 137V421Q317 433 276 433Q220 433 185 387T150 259Q150 178 175 133T246 87Q291 87 348 137Z" />
+<glyph unicode="h" glyph-name="h" horiz-adv-x="543" d="M472 285Q472 260 470 160T468 0H366Q366 54 367 146T368 263Q368 354 347 391Q328 425 285 425Q239 425 178 375V0H75V709H178V450Q247 508 321 508Q472 508 472 285Z" />
+<glyph unicode="i" glyph-name="i" horiz-adv-x="253" d="M189 635Q189 603 177 591T127 579Q89 579 77 590T64 635Q64 668 76 680T127 692Q165 692 177 681T189 635ZM178 0H75V498H178V0Z" />
+<glyph unicode="j" glyph-name="j" horiz-adv-x="253" d="M189 635Q189 603 177 591T127 579Q89 579 77 590T64 635Q64 668 76 680T127 692Q165 692 177 681T189 635ZM178 42Q178 -31 154 -82T75 -180L10 -148Q75 -73 75 19V498H178V42Z" />
+<glyph unicode="k" glyph-name="k" horiz-adv-x="470" d="M460 0H338L178 255V0H75V709H178V302L312 498H435L271 290L460 0Z" />
+<glyph unicode="l" glyph-name="l" horiz-adv-x="272" d="M248 4Q212 -7 166 -7Q117 -7 98 12Q75 34 75 92V709H178V132Q178 74 196 67Q202 65 214 65Q219 65 229 66Q240 66 244 66L248 4Z" />
+<glyph unicode="m" glyph-name="m" horiz-adv-x="817" d="M746 285Q746 257 745 157T743 0H640Q640 51 641 143T643 264Q643 353 623 391Q605 425 566 425Q522 425 455 369Q461 333 461 287V0H359V264Q359 425 283 425Q240 425 178 375V0H75V498H160L168 442Q239
+508 318 508Q404 508 437 432Q523 508 601 508Q746 508 746 285Z" />
+<glyph unicode="n" glyph-name="n" horiz-adv-x="543" d="M472 285Q472 257 470 157T468 0H366Q366 51 367 143T368 264Q368 354 347 391Q328 425 286 425Q240 425 178 375V0H75V498H160L168 442Q241 508 322 508Q472 508 472 285Z" />
+<glyph unicode="o" glyph-name="o" horiz-adv-x="525" d="M483 261Q483 127 422 59T252 -10Q42 -10 42 239Q42 373 105 442Q164 508 273 508Q483 508 483 261ZM377 238Q377 344 348 389Q321 431 261 431Q148 431 148 261Q148 154 176 111T264 67Q377 67 377 238Z" />
+<glyph unicode="p" glyph-name="p" horiz-adv-x="526" d="M482 269Q482 128 412 56Q348 -10 237 -10Q203 -10 178 -6V-173H75V498H158L168 445Q241 508 309 508Q391 508 438 439Q482 374 482 269ZM376 252Q376 334 351 381T281 428Q236 428 178 378V77Q208 65
+247 65Q305 65 340 112T376 252Z" />
+<glyph unicode="q" glyph-name="q" horiz-adv-x="526" d="M451 -173H348V45Q281 -10 217 -10Q136 -10 89 59Q44 125 44 230Q44 371 115 442Q181 508 299 508Q370 508 451 489V-173ZM348 120V422Q320 433 279 433Q220 433 186 387Q150 338 150 246Q150 164 175
+117T245 70Q291 70 348 120Z" />
+<glyph unicode="r" glyph-name="r" horiz-adv-x="357" d="M337 496L325 404Q298 411 283 411Q245 411 178 328V0H75V498H160L169 414Q241 507 293 507Q315 507 337 496Z" />
+<glyph unicode="s" glyph-name="s" horiz-adv-x="408" d="M374 143Q374 76 323 34T182 -9Q105 -9 35 29L45 84Q124 65 164 65Q265 65 265 131Q265 161 246 179T169 219Q96 246 67 278T37 362Q37 427 84 467T209 507Q276 507 337 475L325 420Q273 435 229 435Q144
+435 144 373Q144 346 164 329T243 291Q313 266 343 232T374 143Z" />
+<glyph unicode="t" glyph-name="t" horiz-adv-x="351" d="M325 22Q263 -9 206 -9Q141 -9 114 21T86 123V425H14V498H89Q104 566 114 642H189V498H311V425H189V148Q189 103 200 86T241 69Q271 69 314 83L325 22Z" />
+<glyph unicode="u" glyph-name="u" horiz-adv-x="543" d="M468 0H384L376 56Q302 -10 222 -10Q72 -10 72 214Q72 241 73 341T75 498H178Q178 447 177 355T175 234Q175 144 195 109T257 73Q301 73 365 123V498H468V0Z" />
+<glyph unicode="v" glyph-name="v" horiz-adv-x="470" d="M450 498Q401 222 296 0H169L16 498H127L222 192L243 100Q317 304 342 498H450Z" />
+<glyph unicode="w" glyph-name="w" horiz-adv-x="742" d="M715 498Q680 264 580 0H463L373 325L363 378H362L356 328L276 0H155L16 498H127L224 116H225L240 191L313 498H427L530 117H531Q595 343 614 498H715Z" />
+<glyph unicode="x" glyph-name="x" horiz-adv-x="478" d="M456 0H337L231 203Q163 71 132 0H20L170 262L43 498H159L244 325Q291 407 325 498H432L304 274L456 0Z" />
+<glyph unicode="y" glyph-name="y" horiz-adv-x="470" d="M448 498Q379 123 266 -47Q178 -178 73 -178Q45 -178 4 -161V-100Q24 -103 51 -103Q100 -103 130 -76Q166 -43 166 -2Q166 26 138 113L14 498H125L214 210Q244 112 239 73Q312 268 341 498H448Z" />
+<glyph unicode="z" glyph-name="z" horiz-adv-x="400" d="M364 79L359 0H36V63L229 421H44L48 498H349V436L155 79H364Z" />
+<glyph unicode="{" glyph-name="braceleft" horiz-adv-x="388" d="M311 -173H266Q195 -173 165 -139Q138 -108 138 -42V166Q138 250 73 250H48V326H73Q138 326 138 407V609Q138 739 269 739H311V677H283Q227 677 227 609V431Q227 307 141 289Q227 269 227 144V-43Q227
+-80 239 -95T283 -111H311V-173Z" />
+<glyph unicode="|" glyph-name="bar" horiz-adv-x="252" d="M171 -173H80V753H171V-173Z" />
+<glyph unicode="}" glyph-name="braceright" horiz-adv-x="388" d="M339 250H314Q249 250 249 169V-43Q249 -173 118 -173H76V-111H104Q160 -111 160 -43V145Q160 269 246 287Q160 307 160 432V609Q160 677 104 677H76V739H121Q192 739 222 705Q249 674 249 608V410Q249
+326 314 326H339V250Z" />
+<glyph unicode="~" glyph-name="asciitilde" horiz-adv-x="500" d="M468 587Q468 520 431 478T329 436Q280 436 246 463Q236 472 201 515Q178 542 156 542Q104 542 104 454H26V471Q26 539 63 580T164 622Q212 622 246 595Q255 587 292 543Q315 516 337 516Q389
+516 389 605H468V587Z" />
+</font>
+</defs>
+
+    <g id="Background">
+    <rect fill="white" width="240" height="320"/>
+    <line x1="10" y1="35" x2="230" y2="35" stroke="#B2BC00" stroke-width="10" stroke-linecap="round" />
+</g>
+<g id="contactList" fill="#ED9B4F" font-family="SunSansSemiBold" font-size="21">
+
+    <g id="contactListGroup" font-size="18" font-weight="normal" transform="translate(0, 40)">
+        <circle id="selectedItemMarker" fill="#C06600" cx="22" cy="135" r="6"/>
+        <g>
+            <text id="contactList_item_0" x="20" y="-60">item 0</text>
+            <text id="contactList_item_1" x="20" y="40">item 1</text>
+            <text id="contactList_item_2" x="20" y="70">item 2</text>
+            <text id="contactList_item_3" x="20" y="100">item 3</text>
+        </g>
+
+        <g id="contactList_item_4_selectedItem">
+            <text id="contactList_item_4_selectedItem.text" x="40" y="140" font-size="22" fill="#E76F00">item 4</text>
+            <text id="contactList_item_4_selectedItem.details" x="40" y="150" font-size="14" fill="#B2BC00" display="none">408 276 57 83</text>
+        </g>
+
+        <g>
+            <text id="contactList_item_5" x="20" y="180">item 5</text>
+            <text id="contactList_item_6" x="20" y="210">item 6</text>
+            <text id="contactList_item_7" x="20" y="240">item 7</text>
+            <text id="contactList_item_8" x="20" y="270">item 8</text>
+            <text id="contactList_item_9" x="20" y="340">item 8</text>
+        </g>
+
+    <g id="contactDetailsText" transform="translate(480,40)">
+        <g id="contactDetailsTextTitles" fill="#ED9B4F" font-family="SunSansSemiBold" font-size="18">
+            <text x="20" y="0">email</text>
+            <text x="20" y="40">cell phone</text>
+            <text x="20" y="80">work phone</text>
+            <text x="20" y="120">home phone</text>
+            <text x="20" y="160">address</text>
+        </g>
+        <g id="contactDetailsTextValues" transform="translate(0, 20)" fill="#E76F00" font-family="SunSansSemiBold" font-size="17">
+            <text id="contactDetails.email" x="20" y="0">#{contact.email}</text>
+            <text id="contactDetails.cell" x="20" y="40">#{contact.cellPhone}</text>
+            <text id="contactDetails.work" x="20" y="80">#{contact.workPhone}</text>
+            <text id="contactDetails.home" x="20" y="120">#{contact.homePhone}</text>
+            <text id="contactDetails.address1" x="20" y="160">#{contact.address1}</text>
+            <text id="contactDetails.address2" x="20" y="180">#{contact.address2}</text>
+        </g>
+    </g>
+
+
+    </g>
+
+    <defs id="contactList.scrollDown">
+        <animate id="contactList_scrollDown_anim" xlink:href="#contactList_item_0" attributeName="y" from="40" to="-60" begin="indefinite" dur="0.5s" />
+        <animate xlink:href="#contactList_item_1" attributeName="y" from="70" to="40" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_2" attributeName="y" from="100" to="70" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+
+        <animate xlink:href="#contactList_item_3" attributeName="y" from="130" to="100" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_3" attributeName="x" from="40" to="20" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_3" attributeName="font-size" from="22" to="18" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <set xlink:href="#contactList_item_3" attributeName="fill" to="#E76F00" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+
+        <animate xlink:href="#contactList_item_4_selectedItem.text" attributeName="y" from="180" to="130" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_4_selectedItem.text" attributeName="x" from="20" to="40" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_4_selectedItem.text" attributeName="font-size" from="18" to="22" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <set xlink:href="#contactList_item_4_selectedItem.text" attributeName="fill" to="#E76F00" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <set xlink:href="#contactList_item_4_selectedItem.details" attributeName="display" to="none" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+
+        <animate xlink:href="#contactList_item_5" attributeName="y" from="210" to="180" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_6" attributeName="y" from="240" to="210" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_7" attributeName="y" from="270" to="240" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+        <animate xlink:href="#contactList_item_8" attributeName="y" from="340" to="270" begin="contactList_scrollDown_anim.begin" dur="0.5s" />
+    </defs>
+
+    <defs id="contactList.scrollUp">
+        <animate id="contactList_scrollUp_anim" xlink:href="#contactList_item_1" attributeName="y" from="-60" to="40" begin="indefinite" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_2" attributeName="y" from="40" to="70" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_3" attributeName="y" from="70" to="100" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+
+        <animate xlink:href="#contactList_item_4_selectedItem.text" attributeName="x" from="20" to="40" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_4_selectedItem.text" attributeName="font-size" from="18" to="22" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_4_selectedItem.text" attributeName="y" from="100" to="130" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+
+        <set xlink:href="#contactList_item_4_selectedItem.text" attributeName="fill" to="#ED9B4F" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <set xlink:href="#contactList_item_4_selectedItem.details" attributeName="display" to="none" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+
+        <animate xlink:href="#contactList_item_5" attributeName="x" from="40" to="20" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_5" attributeName="font-size" from="22" to="18" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_5" attributeName="y" from="130" to="180" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <set xlink:href="#contactList_item_5" attributeName="fill" to="#E76F00" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+
+        <animate xlink:href="#contactList_item_6" attributeName="y" from="180" to="210" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_7" attributeName="y" from="210" to="240" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_8" attributeName="y" from="240" to="270" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+        <animate xlink:href="#contactList_item_9" attributeName="y" from="270" to="340" begin="contactList_scrollUp_anim.begin" dur="0.5s"  />
+
+    </defs>
+
+        <g id="contactList_scrollBar" transform="translate(240,0) rotate(90)">
+            <line id="contactList_scrollBar.bkg" x1="60" y1="2" x2="310" y2="2" stroke-width="4" stroke="#E76F00"/>
+            <g id="contactList_scrollBar.thumb">
+                <rect x="60" y="0" width="2" height="9" fill="#FFC726" /> 
+            </g>
+        </g>
+
+    <g id="selectedItem" display="none" font-size="18" font-weight="normal">
+        <text id="selectedItem.text" x="40" y="180" font-weight="bold" font-size="22" fill="#7f7800">selected item</text>
+    </g>
+
+    <defs>
+        <set id="selectItem" xlink:href="#selectedItem" attributeName="display" begin="indefinite" dur="indefinite" to="inline" />
+
+        <animateTransform xlink:href="#selectedItem" attributeName="transform" type="translate"
+                values="0,0;-20,-145" begin="selectItem.begin+0.25s" dur="0.5s" fill="freeze" />
+
+        <animateTransform xlink:href="#contactListGroup" attributeName="transform" type="translate" values="0,40;-480,40" 
+                begin="selectItem.begin" dur="1s" fill="freeze"/>
+
+        <animateTransform xlink:href="#contactList.title" attributeName="transform" type="translate" values="0,40;-480,0" 
+                begin="selectItem.begin" dur="0.5s" fill="freeze"/>
+
+        <animateTransform xlink:href="#contactListIcon" attributeName="transform" type="translate" values="0,0;0,-80"
+                begin="selectItem.begin" dur="0.5s" fill="freeze" />
+
+        <animateTransform xlink:href="#contactIcon" attributeName="transform" type="translate" values="0,-80;0,0"
+                begin="selectItem.begin" dur="0.5s" fill="freeze" />
+
+        <animateTransform id="backToList" xlink:href="#selectedItem" attributeName="transform" type="translate"
+                values="-20,-145;0,0" begin="indefinite" dur="0.5s" fill="freeze" />
+        <set xlink:href="#selectedItem" attributeName="display" begin="backToList.end" dur="indefinite" to="none" />
+   
+
+        <animateTransform xlink:href="#contactListGroup" attributeName="transform" type="translate" values="-480,40;0,40" 
+                begin="backToList.begin" dur="1s" fill="freeze"/>
+
+        <animateTransform xlink:href="#contactList.title" attributeName="transform" type="translate" values="-480,0;0,0" 
+                begin="backToList.begin" dur="0.5s" fill="freeze"/>
+
+        <animateTransform xlink:href="#contactListIcon" attributeName="transform" type="translate" values="0,-80;0,0"
+                begin="backToList.begin" dur="0.5s" fill="freeze" />
+
+        <animateTransform xlink:href="#contactIcon" attributeName="transform" type="translate" values="0,0;0,-80"
+                begin="backToList.begin" dur="0.5s" fill="freeze" />
+
+    </defs>
+
+    <g id="contactListIcon" transform="translate(0,0)">
+        <g transform="translate(-45,0) scale(3,3)">
+            <g>
+                <path fill="#FFC726" stroke="#000000" stroke-width="0.6555" d="M79.784,7.145c-2.95,0-2.95,4.917-2.95,4.917
+                    s0.983,0.983,3.196,0.983c2.212,0,2.704-0.983,2.704-0.983S82.733,7.145,79.784,7.145z"/>
+                <path fill="#C69200" stroke="#000000" stroke-width="0.3278" d="M79.483,8.839c1.092,0.71,1.202,3.113,1.529,1.529
+                    s0.328-1.584,0.328-1.584"/>
+                <circle fill="#F8D583" stroke="#000000" stroke-width="0.6555" cx="79.784" cy="6.654" r="2.458"/>
+                <path fill="#666666" stroke="#000000" stroke-width="0.3278" d="M79.779,3.212c3.496,0.109,2.81,3.169,2.81,3.169l-1.17-0.984
+                    c0,0,0,0.984-0.727,0.984s-1.453-0.984-1.453-0.984L77.06,6.381C77.06,6.381,76.829,3.212,79.779,3.212z"/>
+            </g>
+            <g>
+                <path fill="#ED9B4F" stroke="#000000" stroke-width="0.6555" d="M86.084,5.541c-2.95,0-2.95,4.916-2.95,4.916
+                    s0.983,0.983,3.196,0.983c2.212,0,2.704-0.983,2.704-0.983S89.034,5.541,86.084,5.541z"/>
+                <path fill="#FFC726" stroke="#000000" stroke-width="0.3278" d="M85.784,7.234c1.092,0.71,1.202,3.113,1.529,1.529
+                    c0.328-1.584,0.328-1.584,0.328-1.584"/>
+                <circle fill="#F8D583" stroke="#000000" stroke-width="0.6555" cx="86.084" cy="5.049" r="2.458"/>
+                <path fill="#666666" stroke="#000000" stroke-width="0.3278" d="M86.079,1.608c3.496,0.109,2.81,3.168,2.81,3.168l-1.17-0.983
+                    c0,0,0,0.983-0.727,0.983S85.54,3.793,85.54,3.793L83.36,4.776C83.36,4.776,83.129,1.608,86.079,1.608z"/>
+            </g>
+            <g>
+                <path fill="#B2BC00" stroke="#000000" stroke-width="0.6555" d="M83.719,10.459c-2.95,0-2.95,4.917-2.95,4.917
+                    s0.983,0.983,3.195,0.983c2.212,0,2.704-0.983,2.704-0.983S86.668,10.459,83.719,10.459z"/>
+                <path fill="#7F7800" stroke="#000000" stroke-width="0.3278" d="M83.418,12.153c1.093,0.71,1.202,3.113,1.529,1.529
+                    c0.328-1.584,0.328-1.584,0.328-1.584"/>
+                <circle fill="#F8D583" stroke="#000000" stroke-width="0.6555" cx="83.719" cy="9.968" r="2.458"/>
+                <path fill="#666666" stroke="#000000" stroke-width="0.3278" d="M83.713,6.526c3.497,0.109,2.81,3.168,2.81,3.168l-1.17-0.983
+                    c0,0,0,0.983-0.727,0.983c-0.726,0-1.453-0.983-1.453-0.983l-2.179,0.983C80.996,9.695,80.764,6.526,83.713,6.526z"/>
+            </g>
+        </g>
+    </g>
+    
+        <text id="contactList.title" x="20" y="35" fill="#7f7800" font-family="SunSansSemiBold" font-size="32">contact list</text>
+</g>
+<g id="contactDetails">
+    <g id="contactIcon" transform="translate(0,-80)">
+        <g transform="translate(-25, 75) scale(2.7,2.7)">
+            <path fill="#A3B8CB" stroke="#000000" stroke-width="1.117" d="M85.12-18.435c-5.026,0-5.026,8.377-5.026,8.377
+            s1.676,1.675,5.445,1.675c3.77,0,4.607-1.675,4.607-1.675S90.146-18.435,85.12-18.435z"/>
+            <path fill="#5382A1" stroke="#000000" stroke-width="0.5585" d="M84.608-15.549c1.862,1.21,2.048,5.306,2.606,2.606
+            c0.559-2.699,0.559-2.699,0.559-2.699"/>
+            <circle fill="#F8D583" stroke="#000000" stroke-width="1.117" cx="85.12" cy="-19.272" r="4.189"/>
+            <path fill="#666666" stroke="#000000" stroke-width="0.5585" d="M85.111-25.137c5.958,0.186,4.788,5.399,4.788,5.399l-1.994-1.676
+            c0,0,0,1.676-1.238,1.676s-2.476-1.676-2.476-1.676l-3.713,1.676C80.479-19.738,80.085-25.137,85.111-25.137z"/>
+        </g>
+    </g>
+</g>
+
+    <g id="Overlays" transform="translate(0,25)">
+        <g id="newsTicker" >
+            <rect y="295" fill="#EFEFEF" width="240" height="25"/>
+            <text id="tickerText" transform="translate(50,311)" font-family="SunSansSemiBold" fill="#7A7277" font-size="12">France goes to the World Cup finals!</text>
+            <rect y="296" width="48" height="24"/>
+            <text x="24" y="311" text-anchor="middle" fill="#FFC726" font-family="SunSansSemiBold" font-size="14">news</text>
+        </g>
+    </g>
+
+    <defs>
+        <animateTransform id="showTicker" xlink:href="#newsTicker" begin="5s;hideTicker.end+10s" dur="1s" 
+                attributeName="transform" type="translate" values="0,0;0,-25"/>
+
+        <animateTransform id="pinTicker" xlink:href="#newsTicker" begin="showTicker.end" dur="6s" 
+                attributeName="transform" type="translate" values="0,-25;0,-25"/>
+
+        <animateTransform id="playTicker" xlink:href="#tickerText" begin="showTicker.end" dur="6s" 
+                attributeName="transform" type="translate" values="0,0;-300,0" additive="sum"/>
+
+        <animateTransform id="pinTickerText" xlink:href="#tickerText" begin="playTicker.end" dur="1s" 
+                attributeName="transform" type="translate" values="-300,0;-300,0" additive="sum"/>
+
+        <animateTransform id="hideTicker" xlink:href="#newsTicker" begin="playTicker.end" dur="1s" attributeName="transform" type="translate"
+                values="0,-25;0,0"/>
+    </defs>
+
+
+</svg>

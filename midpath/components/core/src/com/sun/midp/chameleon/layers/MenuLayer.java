@@ -81,16 +81,6 @@ public class MenuLayer extends PopupLayer {
      */
     protected boolean cascadeMenuUp;
     
-    /** pointer pressed outside of the menuLayer's bounds */
-    private final static int PRESS_OUT_OF_BOUNDS = -1; 
-    
-    /** pointer pressed on the menuLayer's title area */
-    private final static int PRESS_ON_TITLE = -2; 
-    
-    /** variable used in pointerInput handling */
-    private int itemIndexWhenPressed = PRESS_OUT_OF_BOUNDS; 
-
-    
     /**
      * Construct a new system menu layer.
      */
@@ -154,75 +144,6 @@ public class MenuLayer extends PopupLayer {
         } else {
             scrollInd.setVerticalScroll(false, 0, 100);
         }
-    }
-    
-    /**
-     * Helper function to determine the itemIndex at the x,y position
-     *
-     * @param x,y   pointer coordinates in menuLayer's space (0,0 means left-top
-     *      corner) both value can be negative as menuLayer handles the pointer
-     *      event outside its bounds
-     * @return menuItem's index since 0, or PRESS_OUT_OF_BOUNDS, PRESS_ON_TITLE
-     *
-     */
-    private int itemIndexAtPointerPosition(int x, int y) {
-        int ret;
-        if (!containsPoint(x + bounds[X], y + bounds[Y])) {
-            ret = PRESS_OUT_OF_BOUNDS; 
-        } else if (y < MenuSkin.ITEM_TOPOFFSET) {
-            ret = PRESS_ON_TITLE;
-        } else {
-            ret = (y - MenuSkin.ITEM_TOPOFFSET) / MenuSkin.ITEM_HEIGHT;
-        }
-        return ret;
-    }
-
-    /**
-     * Handle input from a pen tap. Parameters describe
-     * the type of pen event and the x,y location in the
-     * layer at which the event occurred. Important : the
-     * x,y location of the pen tap will already be translated
-     * into the coordinate space of the layer.
-     *
-     * @param type the type of pen event
-     * @param x the x coordinate of the event
-     * @param y the y coordinate of the event
-     */
-    public boolean pointerInput(int type, int x, int y) {
-        switch (type) {
-        case EventConstants.PRESSED:
-            itemIndexWhenPressed =  itemIndexAtPointerPosition(x, y);
-
-            // dismiss the menu layer if the user pressed outside the menu
-            if (itemIndexWhenPressed == PRESS_OUT_OF_BOUNDS) {
-                if (btnLayer != null) {
-                    btnLayer.dismissMenu();
-                }
-            } else if (itemIndexWhenPressed >= 0) { // press on valid menu item
-                selI = scrollIndex + itemIndexWhenPressed;
-                requestRepaint();
-                // if (btnLayer != null) btnLayer.serviceRepaints();
-            }
-            break;
-        case EventConstants.RELEASED:
-            int itemIndexWhenReleased = itemIndexAtPointerPosition(x, y);
-            
-            if (itemIndexWhenReleased == itemIndexWhenPressed) {
-                if (itemIndexWhenPressed >= 0) {
-                    if (btnLayer != null && !showSubMenu(selI)) {
-                        if (selI >= 0 && selI < menuCmds.length) {
-                            btnLayer.commandSelected(menuCmds[selI]);
-                        }
-                    }
-                }
-            }
-
-            // remember to reset the variables
-            itemIndexWhenPressed = PRESS_OUT_OF_BOUNDS;
-            break;
-        }
-        // return true always as menuLayer will capture all of the pointer inputs
-        return true;  
     }
     
     /**

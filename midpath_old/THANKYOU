@@ -1,0 +1,12 @@
+The following have made minor contributions to the MIDPath
+project, such as testing, bug submission, or minor patches. See also
+the AUTHORS file, which lists people who have submitted major
+patches. If your name does not appear on either list, but should, let
+us know.
+
+- Sebastian Mancke
+- Robert Schuster
+- Henning Heinold
+
+Special thanks to Christian Thalinger for having helped us to make MIDPath 
+working out-of-the-box with cacao-cldc.

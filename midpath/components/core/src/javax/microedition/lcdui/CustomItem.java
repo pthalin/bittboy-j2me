@@ -25,8 +25,6 @@
 
 package javax.microedition.lcdui;
 
-import org.thenesis.midpath.ui.UIToolkit;
-
 
 /* import  javax.microedition.lcdui.KeyConverter; */
 

@@ -20,7 +20,7 @@ CLDC_FLAGS="-source 1.3 -target 1.1"
 
 # Defaults
 CLDC_ENABLED=yes
-MIDPATH_ENABLED=yes
+MIDPATH_ENABLED=no
 
 # Default components/libraries
 SDLJAVA_CLDC_ENABLED=yes
@@ -36,7 +36,7 @@ LOCATION_API_ENABLED=yes
 MESSAGING_API_ENABLED=yes
 SVG_API_ENABLED=yes
 SVG_API_AWT_ENABLED=no
-OPENGL_API_ENABLED=yes
+OPENGL_API_ENABLED=no
 M3G_API_ENABLED=yes
 
 DEMOS_ENABLED=yes
@@ -67,6 +67,8 @@ M3G_JAR=$JAR_DIST_HOME/jsr184-m3g.jar
 
 MICROBACKEND_JAR=${JAR_DIST_HOME}/microbackend.jar
 
+NOKIA_JAR=${JAR_DIST_HOME}/nokia.jar
+
 # External library dependencies
 # (By default use the included ones.)
 KXML2_JAR=`pwd`/lib/kxml2-2.3.0.jar
@@ -75,8 +77,9 @@ SWT_JAR=`pwd`/lib/swt.jar
 MIDPATH_JAR=$JAR_DIST_HOME/midpath.jar
 
 # Default include headers location (CC syntax)
-JNI_INCLUDE=-I/usr/include/classpath
-SDL_INCLUDE=-I/usr/include/SDL
+JNI_INCLUDE='-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux'
+SDL_INCLUDE='-I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include/SDL -I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include'
+
 
 # JNI library defaults (those variables must exist and have a non-empty value)
 GTK_ENABLED=no
@@ -85,11 +88,11 @@ ESD_ENABLED=no
 PULSEAUDIO_ENABLED=no
 QT3_ENABLED=no
 QT4_ENABLED=no
-SDL_ENABLED=no
+SDL_ENABLED=yes
 FB_ENABLED=no
 BT_ENABLED=no
-NIO_NATIVE_ENABLED=no
-FILE_NATIVE_ENABLED=no
+NIO_NATIVE_ENABLED=yes
+FILE_NATIVE_ENABLED=yes
 
 #==========================================
 # You should not change anything below

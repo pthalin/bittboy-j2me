@@ -150,26 +150,6 @@ abstract class ItemLFImpl implements ItemLF {
         return labelBounds[HEIGHT] + getVerticalPad() + 
                contentBounds[HEIGHT];
     }
-    
-    /**
-     * Returns if the pointer location (x, y, w.r.t. the Form origin)
-     * is within the bounds of the 'clickable' area of this
-     * ItemLFImpl. We exclude non-interactive areas such as the
-     * label. <p>
-     * 
-     * Most items can use this method. The only case that needs
-     * overriding is the ChoiceGroupPopupLFImpl.  
-     */
-    boolean itemContainsPointer(int x, int y) {
-        int contentX = bounds[X] + contentBounds[X] + ScreenSkin.PAD_FORM_ITEMS - 2;
-        int contentY = bounds[Y] + contentBounds[Y] + ScreenSkin.PAD_FORM_ITEMS - 2;
-
-        int myX = x - contentX;
-        int myY = y - contentY;
-
-        return (myX >= 0 && myX <= contentBounds[WIDTH] + ScreenSkin.PAD_FORM_ITEMS - 2 &&
-                myY >= 0 && myY <= contentBounds[HEIGHT] + ScreenSkin.PAD_FORM_ITEMS - 2);
-    }
 
     /**
      * Notifies L&F of a label change in the corresponding Item.
@@ -819,9 +799,7 @@ abstract class ItemLFImpl implements ItemLF {
      *
      * @see #getInteractionModes
      */
-    void uCallPointerPressed(int x, int y) {
-        itemWasPressed = true;
-    }
+    void uCallPointerPressed(int x, int y) { }
     
     /**
      * Called by the system to signal a pointer release
@@ -831,17 +809,7 @@ abstract class ItemLFImpl implements ItemLF {
      *
      * @see #getInteractionModes
      */
-    void uCallPointerReleased(int x, int y) {
-        x -= contentBounds[X];
-        y -= contentBounds[Y];
-        if ( (x >= 0 && x <= contentBounds[WIDTH] && y >= 0 &&
-              y <= contentBounds[HEIGHT]) &&
-             (itemWasPressed && (hasFocus || item.owner.numCommands <= 1))) {
-            //should check the x,y is in item's content area
-            uCallKeyPressed(Constants.KEYCODE_SELECT);
-        }
-        itemWasPressed = false;
-    }
+    void uCallPointerReleased(int x, int y) {}
     
     /**
      * Called by the system to signal a pointer drag
@@ -1396,7 +1364,4 @@ abstract class ItemLFImpl implements ItemLF {
      * recalculated.
      */
     boolean layoutDone; // = false
-    
-    /** true is the item has been focused before pointer down */
-    boolean itemWasPressed; // = false
 }

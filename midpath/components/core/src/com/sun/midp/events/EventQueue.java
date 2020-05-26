@@ -441,24 +441,6 @@ public class EventQueue implements Runnable {
 		resetNativeEventQueue();
 	}
 
-	/** Wait till event queue is empty */
-	public void flush() {
-		while (nextEvent != null || lastEvent != null) {
-			synchronized (eventQueueThread) {
-			}
-		}
-	/*
-		synchronized (eventQueueThread) {
-			for (int i = 0; i < dispatchTable.length; i++) {
-				if (dispatchTable[i] != null)
-					dispatchTable[i].waitingEvent = null;
-			}
-			nextEvent = lastEvent = null;
-			numEvents = 0;
-		}
-	*/
-	}
-
 	/** Runs the event queue. See the class description for details. */
 	public void run() {
 		Event event = null;

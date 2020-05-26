@@ -37,7 +37,7 @@ public interface InputModeMediator {
      * character.
      * @param input String needs to be commited
      */
-    public void commit(String input, boolean replace);
+    public void commit(String input);
     
     /**
      * Clear the particular number of symbols 
@@ -77,6 +77,4 @@ public interface InputModeMediator {
      * @return available size in characters
      */
     public int getAvailableSize(); 
-    
-    public String getInitialText();
 }

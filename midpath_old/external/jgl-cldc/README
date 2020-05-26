@@ -1,0 +1,128 @@
+
+
+                      jGL 3D Graphics Library for Java 2.4
+
+                   Copyright (C) 1996-2006 Robin Bing-Yu Chen
+
+
+INTRODUCTION
+============
+
+jGL is a 3D Graphics Library for Java* programming language with an API which
+is similar to that of OpenGL**. jGL has not supported all the OpenGL functions,
+but the usually used ones. jGL has been re-written for Java2 platform and
+compiled by Sun Java2 SDK 1.5.0_09. The development platforms are Sun Soliaris
+7/8/9, Microsoft Windows 98/NT/2000/XP, and Linux.
+
+jGL is well known as JavaGL before version 2.2. Because all the Java based
+names are registered trademarks of Sun Microsystems, Inc., JavaGL has been
+renamed to jGL since version 2.3 from Dec. 2000.
+
+jGL is free software; you can redistribute it and/or modify it under the terms
+of the GNU Lesser General Public License as published by the Free Software
+Foundation. Please refer to the LICENSE file for licensing details.
+
+* Java(TM) is a registered trademark of Sun Microsystems, Inc.
+** OpenGL(TM) is a registered trademark of Silicon Graphics, Inc.
+
+
+AUTHOR
+======
+
+Robin Bing-Yu Chen, Ph.D.
+Department of Information Management,
+Graduate Institute of Networking and Multimedia,
+National Taiwan University
+No. 50, Ln. 144, Sec. 4, Keelung Rd., Taipei 106, Taiwan.
+
+
+MIRROR SITES
+============
+
+Japan:  University of Tokyo
+	http://nis-lab.is.s.u-tokyo.ac.jp/~robin/jGL/
+
+Taiwan: National Taiwan University
+	http://graphics.im.ntu.edu.tw/~robin/jGL/
+
+
+HOW TO COMPILE THE SOURCE CODES
+===============================
+
+Before compiling the source codes, please make sure that Sun Java2 SDK has been
+installed in the machine and acceptable. Since jGL has been developed on Java2
+platform, Sun Java2 SDK, Standard Edition is recommended, and the official web
+site is:
+
+	http://java.sun.com/j2se/
+
+Then, download and uncompress the compressed source code file
+(jgl-$VERSION.src.tar.gz or jgl-$VERSION.src.zip), the following files and
+directories will be in the jgl directory:
+
+README		- this file
+LICENSE		- GNU Lesser General Puclic License
+Make-config	- configuration file of Makefiles
+Makefile	- top Makefile
+context		- source codes for core library
+glu		- source codes for glu of jGL
+glut		- source codes for glut of jGL
+glaux		- source codes for glaux of jGL
+glj3d		- source codes for Java3D simulation of jGL
+gle		- source codes for jGL extension
+Example		- examples of jGL
+Example-glut	- GLUT examples of jGL
+Example-app	- GLUT examples of jGL in Java Application mode
+glut-test	- GLUT tests of jGL
+Example-gle	- extension examples of jGL
+*.java		- source codes
+
+To compile all the source codes, please edit Make-config as necessary to make
+sure that the path of Java2 SDK in the local file system are set right. Then,
+just make the codes at the top directory of jGL by
+
+	make.
+
+It will make all the source codes, and generate a jgl.jar in the Example
+directory. It will also make all the source codes of jGL examples in the
+Example directory. Additionally, all the *.html files of jGL examples will also
+be used to generate *-pi.html files for Java Plug-in.
+
+
+HOW TO COMPILE THE SOURCE CODES ON MICROSOFT WINDOWS SYSTEM
+===========================================================
+
+For Microsoft Windows System, we strongly recommend to use the same Makefile
+under Cygwin, an UNIX-like environment, the official web site is:
+
+	http://sources.redhat.com/cygwin/
+
+Please remember to select to install "make" when installing Cygwin, because
+"make" is not the default install item now. At the same time, please also make
+sure that Sun Java2 SDK has also been installed in the machine and acceptable.
+After installing Cygwin, it is necessary to link Sun Java2 SDK to the directory
+which Cygwin can access it easily. For example, if Sun Java2 SDK has been
+installed in C:\j2sdk1.5.0_09, then enter Cygwin environment, execute
+
+	ln -s /cygdrive/c/j2sdk1.5.0_09 /usr/local/j2sdk1.5.0_09
+
+So that to compile the source codes on Microsoft Windows System is the same
+as to compile them on UNIX system.
+
+NOTICE: Please strongly check the settings of Make-config, since the default
+        settings in that file are for real UNIX systems. Remember to un-mark
+        some necessary lines and mark the related ones.
+
+
+RUN THE EXAMPLES
+================
+
+To run the examples, please edit the booktest script (or booktest.bat) file in
+the Example (or Example-glut or Example-app) directory to make sure that the
+path of Java is correct. Then, type
+
+	./booktest hello (for example)
+
+
+------------------------------------------------------------------------
+Nov. 26, 2006 by Robin Bing-Yu Chen at NTU......

@@ -1,0 +1,26 @@
+14.390115963325075,50.100456512567284,310,Red Rock,First class steak restaurant, 32 Upper Str.,160 01, 737906565, Real City, restaurant
+14.39194002379491,50.1002169654583,310,Modern Art,Biggest modern art collection,102 Closed Rd.,160 01, 606231178, Real City, museum
+14.39247903050169,50.100264812253286,310,Sushi Bar,Sushi delicates for everyone,203 Circle Blvd.,160 01, 603456060, Real City, restaurant
+14.391543452621795,50.10287973464332,310,Scent of the City,Perfumery,201 Scent Str.,160 00, 603452020, Real City,shop
+14.392226275114474,50.10155924257093,310,MegaSport,All sport goods here,1201 Jump Str.,160 01, 606808070, Real City,shop
+14.395232429637863,50.099417156873855,310,Budweiser,Only best budweiser beer, 99 Drinking Rd.,160 01, 603992001, Real City, restaurant
+14.394612301937785,50.09974754564143,310,Casino Royal,Eat and play with us 24/7,1300 Gambling Ave.,160 01, 603335050, Real City, restaurant
+14.394979043968533,50.09827052098761,310,National Theatre, Only serious plays here, 702 Singers Str. ,160 01, 60406322, Real City, theatre
+14.395479843657485,50.10210494905333,310,Glasswork, Glass for modern home., 22 Roosevelt Ave., 160 01, 606787890, Real City, shop
+14.396955011496972,50.101513176058944,310,Speedy Bicycles, Bicycle shops and repair, 200 Uphil Rd.,160 01, 606551178, Real City, shop
+14.397285360873326,50.10078770334722,310,Tennis Boutique, Tennis courts and tennis shop, 101 Sport Str.,160 01, 605276678, Real City, shop
+14.397160325792367,50.10043936651279,310,New Century,Chinese restaurant,56 Asia Blvd, 160 01, 606441178, Real City,restaurant
+14.396657646994166,50.1001056993849,310,State Opera, Only serious operas here, 405 Art Str.,160 01, 606231333, Real City,theatre
+14.398142030691677,50.09935414379925,310,Museum of Toys,Toys from 19th century, 205 Longer Str.,160 01, 605236678, Real City,museum
+14.397196666127273,50.09922209117798,310,National Museum,History and Nature of Real City, 34 Samuels Sqr.,160 01, 607277178, Real City, museum
+14.399482695203757,50.09717661968537,310,India Shop, Real indian products, 207 Asia Str.,160 01, 605239978, Real City, shop
+14.398081185195489,50.09730922926557,310,Potten and Pannen, Cooking tools, 87 Community Rd.,160 01, 605239878, Real City, shop
+14.397035316847072,50.09822816300694,310,Happy Vegetarian,Vegetarian food., 56 Main Str, 160 01, 605266178, Real City,restaurant
+14.398797602351975,50.09862540412874,310,Museum of Torture,History of torture in centuries, 55 Elm Str.,160 01, 606234545, Real City,museum
+14.399421082511802,50.098744950255934,310,1st Army Shop,Old army equipment,708 Steel Rd.,160 01, 606223178, Real City,shop
+14.390937367602803,50.09895561860563,310,Flying Carpet,Real persian carpets, 234 Alladin Ave.,160 01, 609299178, Real City,shop
+14.390114381919645,50.09976581727892,310,Red Baron,Music hall and open air restaurant,109 Dirty Str.,160 01, 605289170, Real City,restaurant
+14.392846722081297,50.098434567099474,310,Royal Marine Museum,Marine museum, 658 Port Str.,160 01, 603299100, Real City,museum
+14.39139277689556,50.09857850589412,310,Golden Fish,Japanese restaurant, 555 Wide Blvd.,160 01, 605277108, Real City,restaurant
+14.39086903972606,50.09822687935793,310,Boulevard,Baguetteria fastfood, 112 Fatty Rd.,160 01, 603830078, Real City,restaurant
+14.39469068618548,50.10275758654957,310,Healthy Bob, Fitness shop, 44 Strong Str., 160 01, 603906565, Real City, shop

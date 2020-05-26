@@ -46,11 +46,10 @@ import com.sun.jsr239.Errors;
 import com.sun.jsr239.GLConfiguration;
 
 public class NativeGL10 implements GL10, GL10Ext {
-   
 
-    static final boolean debugQueue = true;
+    static final boolean debugQueue = false;
 
-    static final boolean DEBUG_MEM = true;
+    static final boolean DEBUG_MEM = false;
 
     static EGL10 egl = (EGL10)EGLContext.getEGL();
 
@@ -472,8 +471,6 @@ public class NativeGL10 implements GL10, GL10Ext {
         "GEN_BUFFERSB",
         "GEN_TEXTURESB"
     };
-    
-    static native boolean _isPlatformBigEndian();
 
     native void    _glGenerateError(int error);
     
@@ -677,9 +674,6 @@ public class NativeGL10 implements GL10, GL10Ext {
 
     int pointer(Buffer buffer) {
         int offset = buffer.position();
-        if (offset != 0) {
-            throw new UnsupportedOperationException(); // FIXME
-        }
         int nativeAddress = _getNativeAddress(buffer, offset);
 
         return nativeAddress;
@@ -1087,9 +1081,6 @@ public class NativeGL10 implements GL10, GL10Ext {
              type == GL_FIXED ||
              type == GL_FLOAT) &&
             (stride >= 0)) {
-            
-            pointer = NativeEGL10.platformHelper.convertToPlatformByteOrder(pointer);
-            
             BufferManager.releaseBuffer(pointerBuffer[COLOR_POINTER]);
             BufferManager.useBuffer(pointer);
             
@@ -1418,60 +1409,58 @@ public class NativeGL10 implements GL10, GL10Ext {
             isReadOnly = true;
         }
 
-//        // No need to bounds check if there will be a type error
-//        if (type == GL_UNSIGNED_BYTE ||
-//            type == GL_UNSIGNED_SHORT) {
-//            int nbytes = (type == GL_UNSIGNED_BYTE) ? 1 : 2;
-//
-//            if (count > indices.remaining()) {
-//                throw new ArrayIndexOutOfBoundsException(
-//                                                        Errors.VBO_OFFSET_OOB);
-//            }
-//            
-//            if (DEBUG_MEM) {
-//                System.out.print("glDrawElements: Allocating bufferData " +
-//                                 count*nbytes);
-//            }
-//            byte[] bufferData = new byte[count*nbytes];
-//            
-//            
-//            // FIXME
-//            //BufferManager.getBytes(indices, 0, bufferData, 0, count*nbytes);
-//            if (true) {
-//            	throw new UnsupportedOperationException();
-//            }
-//
-//            if (DEBUG_MEM) {
-//                System.out.println(": done");
-//                System.out.print("glDrawElements: Allocating indexArray " +
-//                                 count);
-//            }
-//            int[] indexArray = new int[count];
-//            boolean isBigEndian = GLConfiguration.IS_BIG_ENDIAN;
-//            if (DEBUG_MEM) {
-//                System.out.println(": done");
-//            }
-//
-//            if (type == GL_UNSIGNED_BYTE) {
-//                for (int i = 0; i < count; i++) {
-//                    indexArray[i] = bufferData[i] & 0xff;
-//                }
-//            } else if (type == GL_UNSIGNED_SHORT) {
-//                for (int i = 0; i < count; i++) {
-//                    int b0 = bufferData[2*i] & 0xff;
-//                    int b1 = bufferData[2*i + 1] & 0xff;
-//                    if (isBigEndian) {
-//                        indexArray[i] = (b0 << 8) | b1;
-//                    } else {
-//                        indexArray[i] = (b1 << 8) | b0;
-//                    }
-//                }
-//            }
-//
-//            checkIndices(indexArray);
-//        }
-        
-        indices = NativeEGL10.platformHelper.convertToPlatformByteOrder(indices);
+        // No need to bounds check if there will be a type error
+        if (type == GL_UNSIGNED_BYTE ||
+            type == GL_UNSIGNED_SHORT) {
+            int nbytes = (type == GL_UNSIGNED_BYTE) ? 1 : 2;
+
+            if (count > indices.remaining()) {
+                throw new ArrayIndexOutOfBoundsException(
+                                                        Errors.VBO_OFFSET_OOB);
+            }
+            
+            if (DEBUG_MEM) {
+                System.out.print("glDrawElements: Allocating bufferData " +
+                                 count*nbytes);
+            }
+            byte[] bufferData = new byte[count*nbytes];
+            
+            
+            // FIXME
+            //BufferManager.getBytes(indices, 0, bufferData, 0, count*nbytes);
+            if (true) {
+            	throw new UnsupportedOperationException();
+            }
+
+            if (DEBUG_MEM) {
+                System.out.println(": done");
+                System.out.print("glDrawElements: Allocating indexArray " +
+                                 count);
+            }
+            int[] indexArray = new int[count];
+            boolean isBigEndian = GLConfiguration.IS_BIG_ENDIAN;
+            if (DEBUG_MEM) {
+                System.out.println(": done");
+            }
+
+            if (type == GL_UNSIGNED_BYTE) {
+                for (int i = 0; i < count; i++) {
+                    indexArray[i] = bufferData[i] & 0xff;
+                }
+            } else if (type == GL_UNSIGNED_SHORT) {
+                for (int i = 0; i < count; i++) {
+                    int b0 = bufferData[2*i] & 0xff;
+                    int b1 = bufferData[2*i + 1] & 0xff;
+                    if (isBigEndian) {
+                        indexArray[i] = (b0 << 8) | b1;
+                    } else {
+                        indexArray[i] = (b1 << 8) | b0;
+                    }
+                }
+            }
+
+            checkIndices(indexArray);
+        }
 
         q(CMD_DRAW_ELEMENTSB, 4);
         q(mode);
@@ -2301,9 +2290,6 @@ public class NativeGL10 implements GL10, GL10Ext {
              type == GL_FIXED ||
              type == GL_FLOAT) &&
             (stride >= 0)) {
-            
-            pointer = NativeEGL10.platformHelper.convertToPlatformByteOrder(pointer);
-            
             BufferManager.releaseBuffer(pointerBuffer[NORMAL_POINTER]);
             BufferManager.useBuffer(pointer);
 
@@ -2645,9 +2631,6 @@ public class NativeGL10 implements GL10, GL10Ext {
              type == GL_FIXED ||
              type == GL_FLOAT) &&
             (stride >= 0)) {
-            
-            pointer = NativeEGL10.platformHelper.convertToPlatformByteOrder(pointer);
-            
             BufferManager.releaseBuffer(pointerBuffer[TEX_COORD_POINTER]);
             BufferManager.useBuffer(pointer);
 
@@ -3083,9 +3066,6 @@ public class NativeGL10 implements GL10, GL10Ext {
              type == GL_FIXED ||
              type == GL_FLOAT) &&
             (stride >= 0)) {
-            
-            pointer = NativeEGL10.platformHelper.convertToPlatformByteOrder(pointer);
-            
             BufferManager.releaseBuffer(pointerBuffer[VERTEX_POINTER]);
             BufferManager.useBuffer(pointer);
 
@@ -3283,9 +3263,4 @@ public class NativeGL10 implements GL10, GL10Ext {
     public NativeGL10(EGLContext context) {
         this.context = context;
     }
-    
-    public boolean isBufferOrderBigEndian(Buffer buffer) {
-        return NativeEGL10.platformHelper.isBufferOrderBigEndian(buffer);
-    }
-
 }

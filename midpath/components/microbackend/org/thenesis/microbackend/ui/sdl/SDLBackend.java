@@ -36,7 +36,6 @@ import sdljava.event.SDLMouseMotionEvent;
 import sdljava.event.SDLQuitEvent;
 import sdljava.video.SDLSurface;
 import sdljava.video.SDLVideo;
-import sdljava.video.SDLRect;
 import sdljava.x.swig.SDLPressedState;
 
 public class SDLBackend implements UIBackend {
@@ -48,19 +47,13 @@ public class SDLBackend implements UIBackend {
     public static final int BITS_PER_PIXEL_16 = 16;
 
     private SDLSurface screenSurface;
-
     private SDLSurface rootARGBSurface;
-
     private SDLEventThread eventThread;
 
     private int canvasWidth;
     private int canvasHeight;
-    private int screenWidth;
-    private int screenHeight;
     private int bitsPerPixel;
     private String videoMode;
-    private boolean rotateScreen;
-    private SDLRect dstRect;
 
     private BackendEventListener listener = new NullBackendEventListener();
 
@@ -81,26 +74,8 @@ public class SDLBackend implements UIBackend {
         canvasWidth = width;
         canvasHeight = height;
 
-        screenWidth = conf.getIntParameter("org.thenesis.microbackend.ui.sdl.screenWidth", 320);
-        screenHeight = conf.getIntParameter("org.thenesis.microbackend.ui.sdl.screenHeight", 240);
         bitsPerPixel = conf.getIntParameter("org.thenesis.microbackend.ui.sdl.bitsPerPixel", 32);
         videoMode = conf.getParameterDefault("org.thenesis.microbackend.ui.sdl.videoMode", "SW");
-        rotateScreen = conf.getParameterDefault("org.thenesis.microbackend.ui.sdl.rotateScreen", "no").equals("yes") ? true : false;
-
-        int x,y;
-        if (rotateScreen) {
-            x = (screenWidth - canvasHeight) / 2;   
-            y = (screenHeight - canvasWidth) / 2;
-        } else {
-            x = (screenWidth - canvasWidth) / 2;   
-            y = (screenHeight - canvasHeight) / 2;
-        }
-
-        if (x == 0 && y == 0) {
-            dstRect = null;
-        } else {
-            dstRect = new SDLRect(x, y);
-        }
 
     }
 
@@ -109,29 +84,16 @@ public class SDLBackend implements UIBackend {
     }
 
     public void updateARGBPixels(int[] argbPixels, int x, int y, int widht, int heigth) {
-        // Rotate screen if required
-        if (rotateScreen) {
-            int[] rotatePixels = new int[argbPixels.length];
-            int i = 0;
-            for (int x_src = 0; x_src < canvasWidth; x_src++) {
-                for (int y_src = canvasHeight - 1; y_src >= 0; y_src--) {
-                    rotatePixels[i] = argbPixels[x_src + y_src * canvasWidth];
-                    i++;
-                }
-            }
-            rootARGBSurface.setPixelData32(rotatePixels);
-        }
-        else {
-            // Draw rgb field on the surface
-            rootARGBSurface.setPixelData32(argbPixels);
-        }
+
+        // Draw rgb field on the surface
+        rootARGBSurface.setPixelData32(argbPixels);
 
         if (Logging.TRACE_ENABLED)
             System.out.println("[DEBUG] Toolkit.refresh(): x=" + x + " y=" + y + " widht=" + widht + " heigth=" + heigth);
 
         try {
-            rootARGBSurface.blitSurface(screenSurface, dstRect);
-            screenSurface.updateRect();
+            rootARGBSurface.blitSurface(screenSurface);
+            screenSurface.updateRect(x, y, widht, heigth);
         } catch (SDLException e) {
             e.printStackTrace();
         }
@@ -147,10 +109,8 @@ public class SDLBackend implements UIBackend {
     }
 
     public void close() {
-        if (eventThread != null) {
-            eventThread.stop();
-            SDLMain.quitSubSystem(SDLMain.SDL_INIT_VIDEO);
-        }
+        eventThread.stop();
+        SDLMain.quitSubSystem(SDLMain.SDL_INIT_VIDEO);
     }
 
     public void open() throws IOException {
@@ -159,9 +119,9 @@ public class SDLBackend implements UIBackend {
 
         try {
             SDLMain.init(SDLMain.SDL_INIT_VIDEO);
-            SDLVideo.showCursor(SDLVideo.SDL_DISABLE);
-            screenSurface = SDLVideo.setVideoMode(screenWidth, screenHeight, bitsPerPixel, flags);
-            resetRootARGBSurface();
+            screenSurface = SDLVideo.setVideoMode(canvasWidth, canvasHeight, bitsPerPixel, flags);
+            rootARGBSurface = SDLVideo.createRGBSurface(SDLVideo.SDL_SWSURFACE, canvasWidth, canvasHeight, 32, 0x00ff0000L, 0x0000ff00L,
+                0x000000ffL, 0xff000000L);
             if (Logging.TRACE_ENABLED)
                 System.out.println("[DEBUG] Toolkit.initialize(): VideoSurface: " + rootARGBSurface);
             eventThread = new SDLEventThread();
@@ -170,35 +130,9 @@ public class SDLBackend implements UIBackend {
         } catch (SDLException e) {
             e.printStackTrace();
         }
-
     }
 
     /* Internals */
-
-    public void resetRootARGBSurface() {
-        try {
-        if (rotateScreen) {
-            rootARGBSurface = createRGBSurface(canvasHeight, canvasWidth);
-        } else {
-            rootARGBSurface = createRGBSurface(canvasWidth, canvasHeight);
-        }
-	screenSurface.fillRect(0);
-	} catch (SDLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public SDLSurface getRootARGBSurface() {
-        return rootARGBSurface;
-    }
-    
-    public SDLSurface getScreenSurface() {
-        return screenSurface;
-    }
-
-    public static SDLSurface createRGBSurface(int width, int height) throws SDLException {
-        return SDLVideo.createRGBSurface(SDLVideo.SDL_SWSURFACE, width, height, 32, 0x00ff0000L, 0x0000ff00L, 0x000000ffL, 0xff000000L);
-    }
 
     public class SDLEventThread implements Runnable {
 
@@ -221,21 +155,14 @@ public class SDLBackend implements UIBackend {
 
             try {
                 SDLEvent.enableUNICODE(1);
-		SDLEvent.enableKeyRepeat(SDLEvent.SDL_DEFAULT_REPEAT_DELAY,
-			SDLEvent.SDL_DEFAULT_REPEAT_INTERVAL);
                 while (Thread.currentThread() == thread) {
                     processEvent(SDLEvent.waitEvent(true));
                 }
             } catch (Throwable t) {
-                if (thread == null) return; // we are exiting anyway
-                //if (Logging.TRACE_ENABLED) {
+                if (Logging.TRACE_ENABLED) {
                     System.err.println("Exception during event dispatch");
                     t.printStackTrace();
-                //}
-                // If thread != null, we need to stop the system. Since
-                // we have quit the event loop, there will be no response
-                // to user input.
-                listener.windowClosed();
+                }
             }
         }
 
@@ -263,17 +190,17 @@ public class SDLBackend implements UIBackend {
             if (event.getState() == SDLPressedState.PRESSED) {
                 if (Logging.TRACE_ENABLED)
                     System.out.println("[DEBUG] SDLEventThread.processEvent(): MOUSE_PRESSED");
-                listener.pointerPressed(event.getX(), event.getY(), 0);
+                listener.mousePressed(event.getX(), event.getY(), 0);
             } else {
                 if (Logging.TRACE_ENABLED)
                     System.out.println("[DEBUG] SDLEventThread.processEvent(): MOUSE_RELEASED");
-                listener.pointerReleased(event.getX(), event.getY(), 0);
+                listener.mouseReleased(event.getX(), event.getY(), 0);
             }
 
         }
 
         public void processEvent(SDLMouseMotionEvent event) {
-            listener.pointerMoved(event.getX(), event.getY(), 0);
+            listener.mouseMoved(event.getX(), event.getY(), 0);
         }
 
         public void processEvent(SDLKeyboardEvent event) {

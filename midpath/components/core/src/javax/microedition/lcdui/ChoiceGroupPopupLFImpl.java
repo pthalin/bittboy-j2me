@@ -27,8 +27,6 @@ package javax.microedition.lcdui;
 
 /* import  javax.microedition.lcdui.KeyConverter; */
 
-import org.thenesis.midpath.ui.UIToolkit;
-
 import com.sun.midp.chameleon.CGraphicsUtil;
 import com.sun.midp.chameleon.layers.PopupLayer;
 import com.sun.midp.chameleon.skins.ChoiceGroupSkin;
@@ -572,10 +570,8 @@ class ChoiceGroupPopupLFImpl extends ChoiceGroupLFImpl {
                 sbVisible = true;
 
             } else { // there is more space at the top 
-                int y = buttonY - elementsHeight - 1;
-                if (y < ChoiceGroupSkin.PAD_V + buttonH) y = ChoiceGroupSkin.PAD_V + buttonH;
                 setBounds(buttonX, 
-                          y, //buttonY - elementsHeight - 1, // show top border
+                          buttonY - elementsHeight - 1, // show top border
                           buttonW, 
                           top - ChoiceGroupSkin.PAD_V);
                 popupDrawnDown = false;

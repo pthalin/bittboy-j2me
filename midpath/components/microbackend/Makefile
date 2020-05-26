@@ -103,21 +103,19 @@ endif
 
 
 # Packages we should compile
-#	org.thenesis.microbackend.ui.gtk \
-#	org.thenesis.microbackend.ui.awt \
-#	org.thenesis.microbackend.ui.awtgrabber \
-#	org.thenesis.microbackend.ui.x11 \
-#	org.thenesis.microbackend.ui.fb \
-#	org.thenesis.microbackend.ui.qt \
-#	org.thenesis.microbackend.ui.swt \
-
 PACKAGES = \
+	org.thenesis.microbackend.ui.gtk \
+	org.thenesis.microbackend.ui.awt \
+	org.thenesis.microbackend.ui.awtgrabber \
+	org.thenesis.microbackend.ui.x11 \
+	org.thenesis.microbackend.ui.fb \
+	org.thenesis.microbackend.ui.qt \
 	org.thenesis.microbackend.ui \
+	org.thenesis.microbackend.ui.swt \
 	org.thenesis.microbackend.zip \
 	org.thenesis.microbackend.ui.image.png \
 	org.thenesis.microbackend.ui.sdl \
-	org.thenesis.microbackend.ui.graphics \
-	org.thenesis.microbackend.ui.graphics.toolkit.pure
+	org.thenesis.microbackend.ui.graphics
 
 
 # All packages that can be recursively compiled.
@@ -431,5 +429,4 @@ org.thenesis.microbackend.zip : $(call PACKAGE_OBJS,org.thenesis.microbackend.zi
 org.thenesis.microbackend.ui.image.png : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.image.png)
 org.thenesis.microbackend.ui.sdl : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.sdl)
 org.thenesis.microbackend.ui.graphics : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.graphics)
-org.thenesis.microbackend.ui.graphics.toolkit.pure : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.graphics.toolkit.pure)
 

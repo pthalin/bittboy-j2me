@@ -1,6 +1,5 @@
 package org.thenesis.microbackend.ui.graphics;
 
-
 public interface VirtualFont {
 
     /**
@@ -228,5 +227,6 @@ public interface VirtualFont {
      */
     public int substringWidth(String str, int offset, int len);
 
+    public void render(VirtualGraphics g, String str, int x, int y, int anchor);
 
 }

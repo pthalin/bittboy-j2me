@@ -105,6 +105,7 @@ endif
 # Packages we should compile
 PACKAGES = \
 	org.thenesis.midpath.demo.game.testris \
+	org.thenesis.midpath.demo.svg.contactlist \
 	org.thenesis.midpath.demo.ui.list \
 	org.thenesis.midpath.demo.messaging.sms \
 	org.thenesis.midpath.demo.ui.ticker \
@@ -113,41 +114,20 @@ PACKAGES = \
 	org.thenesis.midpath.demo.ui.customitem \
 	org.thenesis.midpath.demo.ui \
 	org.thenesis.midpath.demo.game.wormgame \
+	org.thenesis.midpath.demo.opengl \
+	org.thenesis.midpath.demo.svg \
 	org.thenesis.midpath.demo.ui.choicegroup \
 	org.thenesis.midpath.demo.ui.alert \
 	org.thenesis.midpath.demo.ui.textbox \
 	org.thenesis.midpath.demo.ui.textfield \
 	org.thenesis.midpath.demo.ui.gauge \
+	org.thenesis.midpath.demo.svg.optimizedmenu \
 	org.thenesis.midpath.demo.ui.datefield \
 	org.thenesis.midpath.demo.ui.stringitem \
 	org.thenesis.midpath.demo.game.pushpuzzle \
-	org.thenesis.midpath.demo.media 
-
-#PACKAGES = \
-#	org.thenesis.midpath.demo.game.testris \
-#	org.thenesis.midpath.demo.svg.contactlist \
-#	org.thenesis.midpath.demo.ui.list \
-#	org.thenesis.midpath.demo.messaging.sms \
-#	org.thenesis.midpath.demo.ui.ticker \
-#	org.thenesis.midpath.demo.location \
-#	org.thenesis.midpath.demo.game.tilepuzzle \
-#	org.thenesis.midpath.demo.ui.customitem \
-#	org.thenesis.midpath.demo.ui \
-#	org.thenesis.midpath.demo.game.wormgame \
-#	org.thenesis.midpath.demo.opengl \
-#	org.thenesis.midpath.demo.svg \
-#	org.thenesis.midpath.demo.ui.choicegroup \
-#	org.thenesis.midpath.demo.ui.alert \
-#	org.thenesis.midpath.demo.ui.textbox \
-#	org.thenesis.midpath.demo.ui.textfield \
-#	org.thenesis.midpath.demo.ui.gauge \
-#	org.thenesis.midpath.demo.svg.optimizedmenu \
-#	org.thenesis.midpath.demo.ui.datefield \
-#	org.thenesis.midpath.demo.ui.stringitem \
-#	org.thenesis.midpath.demo.game.pushpuzzle \
-#	org.thenesis.midpath.demo.m3g \
-#	org.thenesis.midpath.demo.media \
-#	org.thenesis.midpath.demo.svg.basic
+	org.thenesis.midpath.demo.m3g \
+	org.thenesis.midpath.demo.media \
+	org.thenesis.midpath.demo.svg.basic
 
 
 # All packages that can be recursively compiled.

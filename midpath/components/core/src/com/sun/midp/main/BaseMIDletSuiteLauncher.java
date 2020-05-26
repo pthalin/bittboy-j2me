@@ -28,9 +28,8 @@ package com.sun.midp.main;
 import java.io.InputStream;
 
 import javax.microedition.lcdui.DisplayEventHandlerImpl;
+import javax.microedition.lcdui.UIToolkit;
 import javax.microedition.midlet.MIDlet;
-
-import org.thenesis.midpath.ui.UIToolkit;
 
 import com.sun.midp.configurator.Constants;
 import com.sun.midp.events.EventQueue;
@@ -112,6 +111,7 @@ public class BaseMIDletSuiteLauncher {
 		DisplayEventProducer displayEventProducer = new DisplayEventProducer(internalSecurityToken, eventQueue);
 
 		RepaintEventProducer repaintEventProducer = new RepaintEventProducer(internalSecurityToken, eventQueue);
+		MIDletProxyList midletProxyList = new MIDletProxyList(eventQueue);
 
 		DisplayContainer displayContainer = new DisplayContainer(internalSecurityToken, currentIsolateId);
 
@@ -132,10 +132,6 @@ public class BaseMIDletSuiteLauncher {
 		LCDUIEventListener lcduiEventListener = new LCDUIEventListener(internalSecurityToken, eventQueue,
 				itemEventConsumer);
 
-		MIDletProxyList midletProxyList = MIDletProxyList.getMIDletProxyList(internalSecurityToken);
-		if (midletProxyList == null) {
-			midletProxyList = new MIDletProxyList(eventQueue);
-		}
 		// do all initialization for already created event-related objects ...
 		MIDletProxy.initClass(midletEventProducer);
 		MIDletProxyList.initClass(midletProxyList);
@@ -157,7 +153,6 @@ public class BaseMIDletSuiteLauncher {
 		//midletStateHandler.startMIDlet(midletClassname, displayName);
 		//midletSuite.close();
 		//midletStateHandler.destroySuite();
-		eventQueue.flush();
 
 		if (Logging.TRACE_ENABLED)
 			System.out.println("[DEBUG] MidletSuiteLoader.init()");
@@ -166,8 +161,8 @@ public class BaseMIDletSuiteLauncher {
 	
 	public static void close() {
 		// Clean and exit
-		EventQueue.getEventQueue().shutdown();
 		UIToolkit.getToolkit().close();
+		EventQueue.getEventQueue().shutdown();
 		System.exit(0);
 	}
 	

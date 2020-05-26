@@ -112,16 +112,16 @@ public class QTBackend implements UIBackend {
 
 	public void onMouseMoveEvent(int x, int y) {
 		// System.out.println("motion event: " + x + " " + y);
-		listener.pointerMoved(x, y, 0);
+		listener.mouseMoved(x, y, 0);
 	}
 
 	public void onMouseButtonEvent(int x, int y, int state) {
 		if (state == PRESSED) {
 			// System.out.println("button pressed: " + x + " " + y);
-			listener.pointerPressed(x, y, 0);
+			listener.mousePressed(x, y, 0);
 		} else {
 			// System.out.println("button released: " + x + " " + y);
-			listener.pointerReleased(x, y, 0);
+			listener.mouseReleased(x, y, 0);
 		}
 	}
 

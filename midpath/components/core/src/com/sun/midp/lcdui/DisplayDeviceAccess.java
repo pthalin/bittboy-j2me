@@ -183,8 +183,5 @@ public class DisplayDeviceAccess {
      *             or -1 to toggle the backlight.
      * @return true if backlight control is supported, false otherwise        
      */
-    //private native boolean showBacklight0(int displayId, int mode);
-    private boolean showBacklight0(int displayId, int mode) {
-        return false;
-    }
+    private native boolean showBacklight0(int displayId, int mode);
 }

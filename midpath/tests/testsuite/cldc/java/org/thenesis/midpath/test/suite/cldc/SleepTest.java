@@ -107,8 +107,8 @@ public class SleepTest implements Testlet, Runnable {
             // About half the time should have been spent sleeping.
             long present = System.currentTimeMillis();
             long diff = present - past;
-            harness.debug("diff: " + diff + " (tolerance: 50ms)");
-            harness.check((diff + 50) >= SLEEP_TIME / 2);
+            harness.debug("diff: " + diff);
+            harness.check(diff >= SLEEP_TIME / 2);
             harness.check(diff < SLEEP_TIME);
 
             // We are still holding the lock so the helper_thread
