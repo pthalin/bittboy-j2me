@@ -47,8 +47,8 @@ ENTRY ( CVMatomicSwapImpl )
 
 #endif
 
-SET_SIZE(atomicSwap)
-
+/* SET_SIZE(atomicSwap)
+*/
 
 #ifdef CVM_MP_SAFE
 ENTRY(CVMmemoryBarrier)

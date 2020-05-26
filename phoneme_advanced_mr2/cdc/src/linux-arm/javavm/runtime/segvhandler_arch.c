@@ -40,6 +40,7 @@
 #include <signal.h>
 #include <dlfcn.h>
 #include <stddef.h>
+#include <asm/types.h>
 /* avoid conflicting ucontext definitions */
 #define ucontext asm_ucontext
 #include <asm/ucontext.h>

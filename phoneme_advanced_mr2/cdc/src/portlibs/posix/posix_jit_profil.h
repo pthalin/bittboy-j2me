@@ -35,6 +35,7 @@
  */
 
 #include <unistd.h>
+#include <sys/types.h>
 
 #define CVMJIT_PROFILE_SCALING_FACTOR \
     (CVMJIT_PROFILE_REGION_SIZE / sizeof(u_short))

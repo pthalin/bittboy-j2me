@@ -44,6 +44,7 @@
 #include "generated/javavm/include/build_defs.h"
 #include "javavm/include/porting/endianness.h"
 
+#ifndef CODESET
 #ifdef ALT_CODESET_KEY
 #define CODESET ALT_CODESET_KEY
 #endif
@@ -54,6 +55,7 @@
 #if __GLIBC__ == 2 && __GLIBC_MINOR__ == 0
 #warning [jk] glibc 2.0 defines __USE_XOPEN but doesn"'"t have CODESET
 #define CODESET _NL_CTYPE_CODESET_NAME
+#endif
 #endif
 #endif
 
@@ -337,6 +339,10 @@ CVMgetJavaProperties(java_props_t *sprops)
             if (strcmp(p, "EUC-JP") == 0) {
                 std_encoding = "EUC-JP-LINUX";
             }
+/* for Dingux */
+#ifdef __UCLIBC__
+	    std_encoding = "UTF-8";
+#endif
             sprops->encoding = std_encoding;
         }
     }

@@ -36,7 +36,7 @@
 #include <unistd.h>
 #include <dlfcn.h>
 #include <errno.h>
-#include <dirent.h>
+#include <features.h>
 
 #include "jni.h"
 #include "jni_util.h"

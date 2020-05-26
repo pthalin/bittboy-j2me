@@ -184,7 +184,8 @@ CVMBool CVMinitStaticState(CVMpathInfo *pathInfo)
 
     linuxNetInit();
 
-    sigignore(SIGPIPE);
+    //sigignore(SIGPIPE);
+    signal(SIGPIPE, SIG_IGN);
     
 #ifdef __VFP_FP__    
     /* FIXME This is only needed for armboard5 the omap boards don't */     
