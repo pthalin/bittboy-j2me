@@ -28,6 +28,7 @@
 # GNUmakefile for linux-arm-generic target. Use this makefile as a template
 # for your Linux/ARM platform.
 #
+USE_VERBOSE_MAKE ?= true
 
 # ASM_ARCH_FLAGS: It can usually be left empty unless you are trying to take
 # advantage of features the assembler does not support by default. For
@@ -52,7 +53,7 @@ ASM_ARCH_FLAGS		=
 # might seem like the right thing to do for an xscale target. However, there
 # was at least one case where -mcpu=xscale was already the default, and
 # using -mcpu=xscale caused a change in the ABI and broke things.
-CC_ARCH_FLAGS		= 
+CC_ARCH_FLAGS		= -Os -D__GLIBC__ -D_LFS_LARGEFILE -D_GNU_SOURCE -I/opt/buildroot-bittboy/output/build/linux-headers-4.14.139/arch/arm/include/
 
 # CC_ARCH_FLAGS_FDLIB: Mostly used to fix fdlibm correctness problems.
 # Some platforms require -ffloat-store or other options in order to
@@ -86,12 +87,16 @@ USE_GCC2 ?= false
 # optimizations that are not normally enabled.
 CVM_DEFINES +=
 
+CVM_DEBUG ?=true
+
 # USE_AAPCS is used to tell the source to enable AAPCS calling
 # conventions rather than APCS. This is usually needed for MontaVista.
-USE_AAPCS ?= false
+USE_AAPCS ?= true
 
 # Enable the JIT by default. You can always override this on the command line.
-CVM_JIT ?= true
+#CVM_JIT ?= true
+CVM_JIT ?= false
+
 
 # Assume no hardware floating point support by default. If you have hardware
 # VFP support, then set CVM_JIT_USE_FP_HARDWARE=true.
@@ -105,7 +110,9 @@ CVM_JIT_USE_FP_HARDWARE ?= false
 # you would use:
 #
 #    CVM_TARGET_TOOLS_PREFIX=/opt/arm-linux/bin/arm-linux-
-CVM_TARGET_TOOLS_PREFIX=/opt/arm-linux/bin/arm-linux-
+#CVM_TARGET_TOOLS_PREFIX=/opt/arm-linux/bin/arm-linux-
+#CVM_TARGET_TOOLS_PREFIX=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-musleabi-
+CVM_TARGET_TOOLS_PREFIX=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-
 
 #
 # Here are a number of common settings you may need or want to use on ARM.
@@ -117,6 +124,8 @@ CVM_TARGET_TOOLS_PREFIX=/opt/arm-linux/bin/arm-linux-
 #   CC_ARCH_FLAGS  = -Wa,-mcpu=iwmmxt
 #   CVM_DEFINES += -DCVM_ARM_HAS_WMMX
 #
+
+CVM_JVMTI=false
 # AAPCS callng conventions support. Usually needed for MontaVista, and 
 # possibly other recent distros.
 #   USE_AAPCS ?= true 
@@ -128,4 +137,7 @@ CVM_TARGET_TOOLS_PREFIX=/opt/arm-linux/bin/arm-linux-
 
 # Including top.mk is always done last. It will include all the required
 # CDC makefiles.
+
+J2ME_CLASSLIB=foundation
+
 include ../share/top.mk
