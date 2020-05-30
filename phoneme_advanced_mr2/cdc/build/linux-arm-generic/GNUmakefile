@@ -87,15 +87,15 @@ USE_GCC2 ?= false
 # optimizations that are not normally enabled.
 CVM_DEFINES +=
 
-CVM_DEBUG ?=true
+CVM_DEBUG ?= false
 
 # USE_AAPCS is used to tell the source to enable AAPCS calling
 # conventions rather than APCS. This is usually needed for MontaVista.
 USE_AAPCS ?= true
 
 # Enable the JIT by default. You can always override this on the command line.
-#CVM_JIT ?= true
-CVM_JIT ?= false
+CVM_JIT ?= true
+#CVM_JIT ?= false
 
 
 # Assume no hardware floating point support by default. If you have hardware
@@ -126,6 +126,7 @@ CVM_TARGET_TOOLS_PREFIX=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-lin
 #
 
 CVM_JVMTI=false
+
 # AAPCS callng conventions support. Usually needed for MontaVista, and 
 # possibly other recent distros.
 #   USE_AAPCS ?= true 
