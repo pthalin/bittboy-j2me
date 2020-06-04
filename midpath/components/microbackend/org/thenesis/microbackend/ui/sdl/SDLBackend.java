@@ -93,7 +93,9 @@ public class SDLBackend implements UIBackend {
 
         try {
             rootARGBSurface.blitSurface(screenSurface);
-            screenSurface.updateRect(x, y, widht, heigth);
+            //screenSurface.updateRect(x, y, widht, heigth);
+	    //*** TODO:  Dont use constants
+	    screenSurface.updateRect(x, y, 176, 220);
         } catch (SDLException e) {
             e.printStackTrace();
         }
@@ -119,6 +121,7 @@ public class SDLBackend implements UIBackend {
 
         try {
             SDLMain.init(SDLMain.SDL_INIT_VIDEO);
+            SDLVideo.showCursor(SDLVideo.SDL_DISABLE);
             screenSurface = SDLVideo.setVideoMode(canvasWidth, canvasHeight, bitsPerPixel, flags);
             rootARGBSurface = SDLVideo.createRGBSurface(SDLVideo.SDL_SWSURFACE, canvasWidth, canvasHeight, 32, 0x00ff0000L, 0x0000ff00L,
                 0x000000ffL, 0xff000000L);
@@ -205,18 +208,22 @@ public class SDLBackend implements UIBackend {
 
         public void processEvent(SDLKeyboardEvent event) {
 
-            int unicode = event.getUnicode();
+            //int unicode = event.getUnicode();
             int keyCode = event.getSym();
+            int unicode = KeyConstants.CHAR_UNDEFINED;
+	    int keyType = convertKeyCodeBittboy(keyCode);
 
-            if (event.getState() == SDLPressedState.PRESSED) {
-                if (Logging.TRACE_ENABLED)
-                    System.out.println("[DEBUG] SDLEventThread.processEvent(): keyCode: " + keyCode + " char: " + (char) unicode);
-                listener.keyPressed(convertKeyCode(keyCode), (char) unicode, 0);
-            } else if (event.getState() == SDLPressedState.RELEASED) {
-                listener.keyReleased(convertKeyCode(keyCode), (char) unicode, 0);
-            }
-
-        }
+	    System.out.println("[DEBUG] SDLEventThread.processEvent(): keyCode: " + keyCode + " keyType: " + keyType);
+	    if (event.getState() == SDLPressedState.PRESSED) {
+		if (Logging.TRACE_ENABLED)
+		    System.out.println("[DEBUG] SDLEventThread.processEvent(): keyCode: " + keyCode + " char: " + (char) unicode);
+		//listener.keyPressed(convertKeyCode(keyCode), (char) unicode, 0);
+		listener.keyPressed(keyType, (char) convertKeyCodeBittboyUnicode(keyCode), 0);
+	    } else if (event.getState() == SDLPressedState.RELEASED) {
+		//listener.keyReleased(convertKeyCode(keyCode), (char) unicode, 0);
+		listener.keyReleased(keyType, (char) convertKeyCodeBittboyUnicode(keyCode), 0);
+	    }
+	}
 
         public void processEvent(SDLQuitEvent event) {
             listener.windowClosed();
@@ -224,6 +231,58 @@ public class SDLBackend implements UIBackend {
 
     }
 
+    public static int convertKeyCodeBittboy(int keyCode) {
+	    switch (keyCode) {
+	    case SDLKey.SDLK_UP:
+		return KeyConstants.VK_UP;
+       	    case SDLKey.SDLK_DOWN:
+		return KeyConstants.VK_DOWN;
+	    case SDLKey.SDLK_RIGHT:
+		return KeyConstants.VK_RIGHT;
+	    case SDLKey.SDLK_LEFT:
+		return KeyConstants.VK_LEFT;
+	    case SDLKey.SDLK_ESCAPE:
+		return -6;
+	    case SDLKey.SDLK_LSHIFT:
+		return KeyConstants.VK_1;
+	    case SDLKey.SDLK_LALT:
+		return KeyConstants.VK_7;
+	    case SDLKey.SDLK_SPACE:
+		return KeyConstants.VK_3;
+	    case SDLKey.SDLK_LCTRL:
+		return KeyConstants.VK_5;
+	    case SDLKey.SDLK_RETURN:
+		return -7;
+	    case SDLKey.SDLK_RCTRL:
+		return KeyConstants.VK_0;
+	    default:
+		return KeyConstants.VK_UNDEFINED;
+	    }
+    }
+    public static int convertKeyCodeBittboyUnicode(int keyCode) {
+	    switch (keyCode) {
+	    case SDLKey.SDLK_UP:
+       	    case SDLKey.SDLK_DOWN:
+	    case SDLKey.SDLK_RIGHT:
+	    case SDLKey.SDLK_LEFT:
+	    case SDLKey.SDLK_ESCAPE:
+	    case SDLKey.SDLK_RETURN:
+		return KeyConstants.CHAR_UNDEFINED;
+	    case SDLKey.SDLK_LSHIFT:
+		return '1';
+	    case SDLKey.SDLK_LALT:
+		return '7';
+	    case SDLKey.SDLK_SPACE:
+		return '3';
+	    case SDLKey.SDLK_LCTRL:
+		return '5';
+	    case SDLKey.SDLK_RCTRL:
+		return '0';
+	    default:
+		return KeyConstants.CHAR_UNDEFINED;
+	    }
+    }
+    
     public static int convertKeyCode(int keyCode) {
 
         switch (keyCode) {

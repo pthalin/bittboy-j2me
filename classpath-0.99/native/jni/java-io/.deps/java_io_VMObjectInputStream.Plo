@@ -1,0 +1,32 @@
+java_io_VMObjectInputStream.lo: java_io_VMObjectInputStream.c \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h \
+ ../../../include/config.h ../../../include/jni.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h \
+ ../../../include/jni_md.h ../../../native/jni/classpath/jcl.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stddef.h \
+ ../../../include/java_io_VMObjectInputStream.h
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h:
+
+../../../include/config.h:
+
+../../../include/jni.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h:
+
+../../../include/jni_md.h:
+
+../../../native/jni/classpath/jcl.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stddef.h:
+
+../../../include/java_io_VMObjectInputStream.h:

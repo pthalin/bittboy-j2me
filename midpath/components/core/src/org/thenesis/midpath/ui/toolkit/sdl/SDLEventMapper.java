@@ -105,13 +105,13 @@ public class SDLEventMapper implements EventMapper {
 			return Constants.KEYCODE_LEFT;
 		case SDLKey.SDLK_RIGHT:
 			return Constants.KEYCODE_RIGHT;
-		case SDLKey.SDLK_RETURN:
+		case SDLKey.SDLK_LCTRL:
 			return Constants.KEYCODE_SELECT;
 		case SDLKey.SDLK_UP:
 			return Constants.KEYCODE_UP;
-		case SDLKey.SDLK_F1:
+		case SDLKey.SDLK_ESCAPE:
 			return EventConstants.SOFT_BUTTON1;
-		case SDLKey.SDLK_F2:
+		case SDLKey.SDLK_RETURN:
 			return EventConstants.SOFT_BUTTON2;
 		case SDLKey.SDLK_1:
 			if (Character.isDigit(c)) {

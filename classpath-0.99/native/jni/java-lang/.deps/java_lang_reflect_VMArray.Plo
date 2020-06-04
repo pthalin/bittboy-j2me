@@ -1,0 +1,30 @@
+java_lang_reflect_VMArray.lo: java_lang_reflect_VMArray.c \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h \
+ ../../../include/config.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stddef.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h \
+ ../../../include/java_lang_reflect_VMArray.h ../../../include/jni.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h \
+ ../../../include/jni_md.h
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h:
+
+../../../include/config.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stddef.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h:
+
+../../../include/java_lang_reflect_VMArray.h:
+
+../../../include/jni.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h:
+
+../../../include/jni_md.h:

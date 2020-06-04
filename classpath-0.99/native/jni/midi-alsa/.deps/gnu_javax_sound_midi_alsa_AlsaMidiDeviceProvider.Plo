@@ -1,0 +1,140 @@
+gnu_javax_sound_midi_alsa_AlsaMidiDeviceProvider.lo: \
+ gnu_javax_sound_midi_alsa_AlsaMidiDeviceProvider.c \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h \
+ ../../../include/config.h \
+ ../../../include/gnu_javax_sound_midi_alsa_AlsaMidiDeviceProvider.h \
+ ../../../include/jni.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h \
+ ../../../include/jni_md.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/asoundlib.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/unistd.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/posix.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdlib.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alloca.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/types.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/endian.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdint.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/stdint.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/select.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/string.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/strings.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/fcntl.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/fcntl.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/assert.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/poll.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/poll.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/errno.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/errno.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/asoundef.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/version.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/global.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/time.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/input.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/output.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/error.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/conf.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/pcm.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/rawmidi.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/timer.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/hwdep.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/control.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/mixer.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seq_event.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seq.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seqmid.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seq_midi_event.h
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h:
+
+../../../include/config.h:
+
+../../../include/gnu_javax_sound_midi_alsa_AlsaMidiDeviceProvider.h:
+
+../../../include/jni.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h:
+
+../../../include/jni_md.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/asoundlib.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/unistd.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/posix.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdlib.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alloca.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/types.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/endian.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdint.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/stdint.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/select.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/string.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/strings.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/fcntl.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/fcntl.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/assert.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/poll.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/poll.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/errno.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/errno.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/asoundef.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/version.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/global.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/time.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/input.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/output.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/error.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/conf.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/pcm.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/rawmidi.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/timer.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/hwdep.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/control.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/mixer.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seq_event.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seq.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seqmid.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alsa/seq_midi_event.h:

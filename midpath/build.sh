@@ -6,9 +6,11 @@ JAVAC_CMD=ecj
 JAR_CMD=jar
 JAR_FLAGS=cvf
 FASTJAR_ENABLED=no
-J2SE_JAR=/usr/share/classpath/glibj.zip
+J2SE_JAR=../classpath-0.99/lib/glibj.zip
 
 DIST_HOME=`pwd`
+
+J2SE_JAR=$DIST_HOME/../classpath-0.99/lib/glibj.zip
 JAR_DIST_HOME=$DIST_HOME/dist
 
 # The file to use if you do not built it
@@ -20,7 +22,7 @@ CLDC_FLAGS="-source 1.3 -target 1.1"
 
 # Defaults
 CLDC_ENABLED=yes
-MIDPATH_ENABLED=no
+MIDPATH_ENABLED=yes
 
 # Default components/libraries
 SDLJAVA_CLDC_ENABLED=yes
@@ -35,8 +37,8 @@ WEB_SERVICES_API_ENABLED=yes
 LOCATION_API_ENABLED=yes
 MESSAGING_API_ENABLED=yes
 SVG_API_ENABLED=yes
-SVG_API_AWT_ENABLED=no
-OPENGL_API_ENABLED=no
+SVG_API_AWT_ENABLED=yes
+OPENGL_API_ENABLED=yes
 M3G_API_ENABLED=yes
 
 DEMOS_ENABLED=yes

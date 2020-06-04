@@ -1,0 +1,45 @@
+sf_fabs.lo: sf_fabs.c \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h \
+ fdlibm.h ../../include/config.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdlib.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alloca.h \
+ ieeefp.h namespace.h mprec.h ../../include/config-int.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdint.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/stdint.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/types.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/endian.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/select.h
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h:
+
+fdlibm.h:
+
+../../include/config.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdlib.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alloca.h:
+
+ieeefp.h:
+
+namespace.h:
+
+mprec.h:
+
+../../include/config-int.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdint.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/stdint.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/types.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/endian.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/select.h:

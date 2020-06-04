@@ -1,0 +1,65 @@
+java_lang_VMSystem.lo: java_lang_VMSystem.c \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h \
+ ../../../include/java_lang_VMSystem.h ../../../include/jni.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h \
+ ../../../include/jni_md.h ../../../native/jni/classpath/jcl.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stddef.h \
+ ../../../include/config.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/time.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/time.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/select.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdlib.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alloca.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/errno.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/errno.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/unistd.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/posix.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/string.h \
+ /opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/strings.h
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdc-predef.h:
+
+../../../include/java_lang_VMSystem.h:
+
+../../../include/jni.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdio.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/features.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/alltypes.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdarg.h:
+
+../../../include/jni_md.h:
+
+../../../native/jni/classpath/jcl.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stddef.h:
+
+../../../include/config.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/time.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/time.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/sys/select.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/stdlib.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/alloca.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/errno.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/errno.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/unistd.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/bits/posix.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/string.h:
+
+/opt/buildroot-bittboy/output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/strings.h:

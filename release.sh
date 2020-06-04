@@ -18,7 +18,7 @@ cp -r midpath/dist/  release/bittboy-j2me/
 SOFILES=release/bittboy-j2me/dist/*.so
 for f in $SOFILES
 do
-  mv $f ${f%%.*}_g.so
+  cp $f ${f%%.*}_g.so
 done
 
 cp -r midpath/bin/ release/bittboy-j2me/
