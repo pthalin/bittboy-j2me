@@ -363,16 +363,24 @@ public class SoftButtonLayer extends CLayer implements CommandListener {
     public boolean keyInput(int type, int keyCode) {
         // SoftButtonLayer absorbs all soft button events,
         // but only functions on a 'press' event
+	//System.out.println("[DEBUG] keyInput(): keyCode: " + keyCode + " SB1: " + EventConstants.SOFT_BUTTON1 + " SB2: " + EventConstants.SOFT_BUTTON2);
         if (keyCode == EventConstants.SOFT_BUTTON1) {
             if (type == EventConstants.PRESSED) {
                 soft1();
             }
-            return true;
+	    if (soft1 == null)
+                return false;
+            else
+                return true;
+	    
         } else if (keyCode == EventConstants.SOFT_BUTTON2) {
             if (type == EventConstants.PRESSED) {
                 soft2();
             }
-            return true;
+	    if (soft2 == null)
+                return false;
+            else
+                return true;
         }
         return false;
     }

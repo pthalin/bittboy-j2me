@@ -93,9 +93,7 @@ public class SDLBackend implements UIBackend {
 
         try {
             rootARGBSurface.blitSurface(screenSurface);
-            //screenSurface.updateRect(x, y, widht, heigth);
-	    //*** TODO:  Dont use constants
-	    screenSurface.updateRect(x, y, 176, 220);
+            screenSurface.updateRect(x, y, widht, heigth);
         } catch (SDLException e) {
             e.printStackTrace();
         }

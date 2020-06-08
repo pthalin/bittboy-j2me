@@ -1,0 +1,6 @@
+title=Bittboy-J2ME
+description=Bittboy-J2ME
+exec=/mnt/emus/bittboy-j2me/bin/runjar.sh
+clock=702
+selectordir=/mnt/emus/bittboy-j2me/dist
+selectorelement=1
