@@ -1,0 +1,36 @@
+WARNING:  This is an exprimental release. Crashes and hang is expected :)
+          This may lead to coruption of your SDCARD.
+
+IMORTANT: Make a backup of your SDCARD before running this software.
+
+
+Description:
+ This is a emulator (runtime environment in fact) for Java 2 ME software (J2ME).
+ It is compatibel with Bittboy (and PocketGo)
+
+
+Notes:
+- Resolution is fixed to 176x220.
+- Sound is not working.
+- You may have to try several versions of a game to find a compatible version.
+
+Installation:
+1. Copy the folder bittboy-j2me/ to emus/
+
+2. Copy the file menu/bittboy-j2me to gmenu2x/sections/emulators/
+
+3. Create folder main/roms/j2me
+   (put jar files here)
+
+
+Keys:
+A =  (5) FIRE
+B =  (3)
+TA = (7)
+TB = (1) 
+R  = (0)
+SELECT = SOFTKEY LEFT 
+START  = SOFTKEY RIGHT 
+
+
+

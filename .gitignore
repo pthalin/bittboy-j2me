@@ -1,0 +1,8 @@
+*.class
+*.o
+*.so
+midpath/resources.list
+phoneme_advanced_mr2/tools/output
+phoneme_advanced_mr2/cdc/build/**
+!phoneme_advanced_mr2/cdc/build/linux-arm-generic/GNUmakefile
+release/
