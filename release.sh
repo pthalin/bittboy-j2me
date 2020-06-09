@@ -26,3 +26,5 @@ cp -r midpath/bin/ release/bittboy-j2me/
 cp -r midpath/configuration/ release/bittboy-j2me/
 cp ./bittboy-j2me release/menu
 cp ./INSTALL.txt release
+cd release
+zip bitboy-j2me.zip -r *
