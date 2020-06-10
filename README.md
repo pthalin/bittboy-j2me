@@ -28,8 +28,8 @@ cp <my-dev-folder>/bittboy-j2me/buildroot_cfg/config buildroot-bittboy/.config
 cd buildroot-bittboy
 make sdk
 ``` 
-Note: You may have to insatall missing packages if it fail.
-(The last step will take quite some time... go take cup of tea)
+Note: You may have to install missing packages if it fails.
+(The last step will take quite some time... go take a cup of tea)
 
 ### Ubuntu manual J2SDK installation
 ```
