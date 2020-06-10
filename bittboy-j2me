@@ -1,6 +1,7 @@
 title=Bittboy-J2ME
 description=Bittboy-J2ME
+icon=/mnt/emus/bittboy-j2me/icon.png
 exec=/mnt/emus/bittboy-j2me/bin/runjar.sh
 clock=702
 selectordir=/mnt/roms/j2me
-selectorelement=1
+selectorelement=2
