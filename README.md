@@ -5,7 +5,7 @@
 
 Required tools
 
-* Bittboy buildroot uclibc
+* Bittboy buildroot uClibc
 * JAVA 2 SOFTWARE DEVELOPMENT KIT (J2SDK), STANDARD EDITION, VERSION 1.4.2
 
 ### Source code
@@ -18,7 +18,7 @@ clone https://github.com/pthalin/bittboy-j2me.git
 ```
 
 
-### Setup Bittboy buildroot ulibc
+### Setup Bittboy buildroot uClibc
 ```
 cd /opt
 sudo mkdir buildroot-bittboy
@@ -64,7 +64,7 @@ java -version
 
 ### Compiling
 ```
-cd <my-dev-folder>/bittboy-j2me/phoneme_advanced_mr2/cdc/build/
+cd <my-dev-folder>/bittboy-j2me/phoneme_advanced_mr2/cdc/build/linux-arm-generic
 make
 cd <my-dev-folder>/bittboy-j2me/midpath
 ./build.sh
