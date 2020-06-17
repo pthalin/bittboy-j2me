@@ -30,7 +30,7 @@ make sdk
 Note: You may have to install missing packages if it fails.
 (The last step will take quite some time... go take a cup of tea)
 
-### Ubuntu manual J2SDK installation
+### Ubuntu JDK installation
 ```
 Download jdk-6u45-linux-i586.bin file from oracle.com
 
