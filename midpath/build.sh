@@ -2,23 +2,23 @@
 # Usage: type ./build.sh --help
 
 # Default commands and library locations
-JAVAC_CMD=ecj
+JAVAC_CMD=javac
 JAR_CMD=jar
 JAR_FLAGS=cvf
 FASTJAR_ENABLED=no
-J2SE_JAR=../classpath-0.99/lib/glibj.zip
 
 DIST_HOME=`pwd`
 
 J2SE_JAR=$DIST_HOME/../classpath-0.99/lib/glibj.zip
-JAR_DIST_HOME=$DIST_HOME/dist
+
+JAR_DIST_HOME=$DIST_HOME/dist/
 
 # The file to use if you do not built it
 # yourself or the target name if it is
 # build
 CLDC_JAR=${JAR_DIST_HOME}/cldc1.1.jar
 
-CLDC_FLAGS="-source 1.3 -target 1.1"
+CLDC_FLAGS="-source 1.3 -target 1.1 -nowarn"
 
 # Defaults
 CLDC_ENABLED=yes
@@ -79,7 +79,7 @@ SWT_JAR=`pwd`/lib/swt.jar
 MIDPATH_JAR=$JAR_DIST_HOME/midpath.jar
 
 # Default include headers location (CC syntax)
-JNI_INCLUDE='-I/usr/lib/jvm/j2sdk1.4.2_19/include -I/usr/lib/jvm/j2sdk1.4.2_19/include/linux'
+JNI_INCLUDE='-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux'
 SDL_INCLUDE='-I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include/SDL -I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include'
 
 
