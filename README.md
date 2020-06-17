@@ -6,8 +6,8 @@
 Required tools
 
 * Bittboy buildroot uClibc
-* JAVA 2 SOFTWARE DEVELOPMENT KIT (J2SDK), STANDARD EDITION, VERSION 1.4.2
-* ecj - Eclipse Compiler for Java(TM) 3.16.0 (IBM)
+* J2SDK 1.4.2 - JAVA 2 SOFTWARE DEVELOPMENT KIT
+* ecj - Eclipse JDT Compiler
 
 
 ### Source code
@@ -18,8 +18,11 @@ Cloning the repo
 cd <my-dev-folder>
 clone https://github.com/pthalin/bittboy-j2me.git
 ```
-### ECJ
+### Installl ecj
+
+```
 sudo apt-get install ecj 
+```
 
 ### Setup Bittboy buildroot uClibc
 ```
