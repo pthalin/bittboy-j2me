@@ -18,7 +18,7 @@ Cloning the repo
 cd <my-dev-folder>
 clone https://github.com/pthalin/bittboy-j2me.git
 ```
-### Installl ecj
+### Install ecj
 
 ```
 sudo apt-get install ecj 
