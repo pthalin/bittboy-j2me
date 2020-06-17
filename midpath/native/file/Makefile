@@ -1,4 +1,4 @@
-JNI_INCLUDE=-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux
+JNI_INCLUDE=''
 
 CROSS_COMPILE=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-
 CC = $(CROSS_COMPILE)gcc

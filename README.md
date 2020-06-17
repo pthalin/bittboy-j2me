@@ -7,6 +7,8 @@ Required tools
 
 * Bittboy buildroot uClibc
 * JAVA 2 SOFTWARE DEVELOPMENT KIT (J2SDK), STANDARD EDITION, VERSION 1.4.2
+* ecj - Eclipse Compiler for Java(TM) 3.16.0 (IBM)
+
 
 ### Source code
 
@@ -16,7 +18,8 @@ Cloning the repo
 cd <my-dev-folder>
 clone https://github.com/pthalin/bittboy-j2me.git
 ```
-
+### ECJ
+sudo apt-get install ecj 
 
 ### Setup Bittboy buildroot uClibc
 ```
@@ -51,12 +54,14 @@ To install the Java source run the following commands:
 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/j2sdk1.4.2_19/bin/java 1
 sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/j2sdk1.4.2_19/bin/javac 1
 sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/j2sdk1.4.2_19/bin/javaws 1
+sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/j2sdk1.4.2_19/bin/jar 1
 
 To make this default java:
  
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
 sudo update-alternatives --config javaws
+sudo update-alternatives --config jar
 
 To verify Java has installed correctly run this command.
 java -version
@@ -74,4 +79,8 @@ cd <my-dev-folder>/bittboy-j2me/
 This is the output:
 <my-dev-folder>/bittboy-j2me/release/bitboy-j2me.zip
 ```
+
+## Authors
+
+Icon by: https://www.deviantart.com/mediadesign
 

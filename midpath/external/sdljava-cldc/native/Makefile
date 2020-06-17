@@ -1,5 +1,5 @@
-JNI_INCLUDE=-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux
-SDL_INCLUDE=-I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include/SDL -I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include
+JNI_INCLUDE=''
+SDL_INCLUDE=''
 
 
 CROSS_COMPILE=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-

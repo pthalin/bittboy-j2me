@@ -36,10 +36,10 @@ JGL_CLDC_ENABLED=yes
 WEB_SERVICES_API_ENABLED=yes
 LOCATION_API_ENABLED=yes
 MESSAGING_API_ENABLED=yes
-SVG_API_ENABLED=yes
-SVG_API_AWT_ENABLED=yes
-OPENGL_API_ENABLED=yes
-M3G_API_ENABLED=yes
+SVG_API_ENABLED=no
+SVG_API_AWT_ENABLED=no
+OPENGL_API_ENABLED=no
+M3G_API_ENABLED=no
 
 DEMOS_ENABLED=yes
 
@@ -79,7 +79,7 @@ SWT_JAR=`pwd`/lib/swt.jar
 MIDPATH_JAR=$JAR_DIST_HOME/midpath.jar
 
 # Default include headers location (CC syntax)
-JNI_INCLUDE='-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux'
+JNI_INCLUDE='-I/usr/lib/jvm/j2sdk1.4.2_19/include -I/usr/lib/jvm/j2sdk1.4.2_19/include/linux'
 SDL_INCLUDE='-I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include/SDL -I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include'
 
 
