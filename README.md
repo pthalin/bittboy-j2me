@@ -78,6 +78,7 @@ This is the output:
 ```
 
 ## Authors
+```
 Porting to Bittboy: pthalin (github.com/pthalin)
 Icon by: MediaDesign (https://www.deviantart.com/mediadesign)
-
+```
