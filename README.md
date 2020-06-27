@@ -44,7 +44,7 @@ Create a folder called "jvm" inside /usr/lib if it does not already exist:
 sudo mkdir /usr/lib/jvm
 
 Rename and move the extracted folder to the jvm folder:
-sudo mv jdk1.6.0_45 sudo mv jdk1.6.0_45_x86
+sudo mv jdk1.6.0_45 jdk1.6.0_45_x86
 sudo mv jdk1.6.0_45_x86 /usr/lib/jvm/
 
 To install the Java source run the following commands:
@@ -78,6 +78,6 @@ This is the output:
 ```
 
 ## Authors
-
-Icon by: https://www.deviantart.com/mediadesign
+Porting to Bittboy: pthalin (github.com/pthalin)
+Icon by: MediaDesign (https://www.deviantart.com/mediadesign)
 
