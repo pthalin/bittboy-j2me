@@ -211,7 +211,7 @@ public class SDLBackend implements UIBackend {
             int unicode = KeyConstants.CHAR_UNDEFINED;
 	    int keyType = convertKeyCodeBittboy(keyCode);
 
-	    System.out.println("[DEBUG] SDLEventThread.processEvent(): keyCode: " + keyCode + " keyType: " + keyType);
+	    //System.out.println("[DEBUG] SDLEventThread.processEvent(): keyCode: " + keyCode + " keyType: " + keyType);
 	    if (event.getState() == SDLPressedState.PRESSED) {
 		if (Logging.TRACE_ENABLED)
 		    System.out.println("[DEBUG] SDLEventThread.processEvent(): keyCode: " + keyCode + " char: " + (char) unicode);
