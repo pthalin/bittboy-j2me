@@ -14,7 +14,7 @@ Cloning the repo
 
 ```
 cd <my-dev-folder>
-clone https://github.com/pthalin/bittboy-j2me.git
+git clone https://github.com/pthalin/bittboy-j2me.git
 ```
 
 ### Setup Bittboy buildroot uClibc
