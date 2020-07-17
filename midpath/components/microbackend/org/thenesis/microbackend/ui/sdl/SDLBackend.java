@@ -211,6 +211,11 @@ public class SDLBackend implements UIBackend {
             int unicode = KeyConstants.CHAR_UNDEFINED;
 	    int keyType = convertKeyCodeBittboy(keyCode);
 
+            if (keyCode == SDLKey.SDLK_RCTRL) {
+ 	        System.out.println("[EXIT] User forced exit");
+                System.exit(1); 
+            }
+
 	    //System.out.println("[DEBUG] SDLEventThread.processEvent(): keyCode: " + keyCode + " keyType: " + keyType);
 	    if (event.getState() == SDLPressedState.PRESSED) {
 		if (Logging.TRACE_ENABLED)
@@ -251,8 +256,8 @@ public class SDLBackend implements UIBackend {
 		return KeyConstants.VK_5;
 	    case SDLKey.SDLK_RETURN:
 		return -7;
-	    case SDLKey.SDLK_RCTRL:
-		return KeyConstants.VK_0;
+	    //case SDLKey.SDLK_RCTRL:
+              //return KeyConstants.VK_0;
 	    default:
 		return KeyConstants.VK_UNDEFINED;
 	    }
@@ -274,8 +279,8 @@ public class SDLBackend implements UIBackend {
 		return '3';
 	    case SDLKey.SDLK_LCTRL:
 		return '5';
-	    case SDLKey.SDLK_RCTRL:
-		return '0';
+	    //case SDLKey.SDLK_RCTRL:
+		//return '0';
 	    default:
 		return KeyConstants.CHAR_UNDEFINED;
 	    }
