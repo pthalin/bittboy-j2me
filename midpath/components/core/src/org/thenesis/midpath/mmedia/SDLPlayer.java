@@ -21,7 +21,6 @@ import javax.microedition.media.PlayerListener;
 
 import sdljava.SDLException;
 import sdljava.SDLMain;
-import sdljava.audio.SDLAudio;
 import sdljava.mixer.SDLMixer;
 
 public abstract class SDLPlayer extends BasicPlayer{
@@ -29,7 +28,8 @@ public abstract class SDLPlayer extends BasicPlayer{
 	static {
 		try {
 			SDLMain.init(SDLMain.SDL_INIT_AUDIO);
-			SDLMixer.openAudio(22050, SDLAudio.AUDIO_S16SYS, 1, 8192);
+			//SDLMixer.openAudio(22050, SDLAudio.AUDIO_S16SYS, 1, 8192);
+			//SDLMixer.openAudio(16384, SDLAudio.AUDIO_S16SYS, 1, 8192);
 		} catch (SDLException e) {
 			e.printStackTrace();
 		}

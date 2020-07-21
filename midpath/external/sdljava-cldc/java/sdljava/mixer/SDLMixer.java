@@ -777,8 +777,10 @@ public class SDLMixer {
 	 * @exception SDLException if an error occurs
 	 */
 	public static MixMusic loadMUS(String path) throws SDLException {
-		SWIGTYPE_p__Mix_Music mixMusic = SWIG_SDLMixer.Mix_LoadMUS(path);
+	    SWIGTYPE_p__Mix_Music mixMusic = SWIG_SDLMixer.Mix_LoadMUS(path);
+		
 		if (mixMusic == null) {
+		        //System.out.println("*** loadMUS" + path);
 			throw new SDLException(SDLMain.getError());
 		}
 		return new MixMusic(mixMusic);
@@ -802,6 +804,11 @@ public class SDLMixer {
 	    	SWIGTYPE_p__Mix_Music mixMusic = SWIG_SDLMixer.Mix_LoadMUS(data, data.length);
 	    	
 	    	if (mixMusic == null) {
+		    		        //System.out.println("*** loadMUS byte stream: length: " + data.length);
+					//System.out.println("data =");
+					//for (int i = 0; i < 32; i++) {
+					//    System.out.println(data[i]);
+					//}
 				throw new SDLException(SDLMain.getError());
 			}
 			return new MixMusic(mixMusic);
@@ -962,6 +969,8 @@ public class SDLMixer {
 	 */
 	public static void freeMusic(MixMusic music) throws SDLException {
 		SWIG_SDLMixer.Mix_FreeMusic(music.getSwigMixMusic());
+		// to avoid finalizer doing a double free 
+		music.setSwigMixMusic(null);
 	}
 
 	/**

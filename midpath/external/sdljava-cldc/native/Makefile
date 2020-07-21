@@ -4,6 +4,7 @@ SDL_INCLUDE=''
 
 CROSS_COMPILE=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-
 CC = $(CROSS_COMPILE)gcc
+SYSROOT     := $(shell $(CC) --print-sysroot)
 
 CFLAGS=-Os -fPIC 
 
@@ -16,19 +17,19 @@ SDLJAVA_OBJ=SDLAudio_wrap.o\
             SDLJoystick_wrap.o\
             SDLCdrom_wrap.o
 
-SDLJAVA_LIB=-lSDL
+SDLJAVA_LIB=$(shell $(SYSROOT)/usr/bin/sdl-config --static-libs)
 
 SDLJAVA_MIXER_OBJ=SDLMixer_wrap.o
-SDLJAVA_MIXER_LIB=-lSDL -lSDL_mixer
+SDLJAVA_MIXER_LIB=-lSDL_mixer $(shell $(SYSROOT)/usr/bin/sdl-config --static-libs)
 
 SDLJAVA_TTF_OBJ=SDLTTF_wrap.o
-SDLJAVA_TTF_LIB=-lSDL -lSDL_ttf
+SDLJAVA_TTF_LIB=-lSDL_ttf $(shell $(SYSROOT)/usr/bin/sdl-config --static-libs)
 
 SDLJAVA_IMAGE_OBJ=SDLImage_wrap.o
-SDLJAVA_IMAGE_LIB=-lSDL -lSDL_image
+SDLJAVA_IMAGE_LIB=-lSDL_image $(shell $(SYSROOT)/usr/bin/sdl-config --static-libs)
 
 SDLJAVA_GFX_OBJ=SDLGFX_wrap.o SDLVideo_wrap.o
-SDLJAVA_GFX_LIB=-lSDL -lSDL_gfx
+SDLJAVA_GFX_LIB=-lSDL_gfx $(shell $(SYSROOT)/usr/bin/sdl-config --static-libs)
 
 all:	libsdljava.so libsdljava_mixer.so libsdljava_ttf.so libsdljava_image.so libsdljava_gfx.so
 

@@ -63,7 +63,10 @@ public class CommonDS extends BasicDS implements SourceStream {
         inputStream = is;
         
         // Enable to call to is.reset()
-        is.mark(Integer.MAX_VALUE);
+        // This is not right. The implementation actually allocates
+	// this amount of memory. MAX_VALUE is more than the java
+	// heap!
+        //is.mark(Integer.MAX_VALUE);
 //        try {
 //          //enable to call to is.reset()
 //          is.mark(is.available());

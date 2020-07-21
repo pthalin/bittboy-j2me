@@ -171,6 +171,8 @@ DEPEND_OBJS	:= $(JAVA_SRC:.java=.u)
 
 # The intermediate java files and main classes we should build:
 JAVA_OBJS	:= $(XJAVA_OBJS) $(JAVA_SRC:.java=.class)
+#Remove package-info.class since these are not generated
+JAVA_OBJS	:= $(filter-out %package-info.class, $(JAVA_OBJS))
 
 #  Search for resource files in both JAVA_DIRS and RESOURCE_DIRS
 RESOURCE_OBJS	:= $(foreach dir, $(JAVA_DIRS) $(RESOURCE_DIRS), \

@@ -1,5 +1,5 @@
 #
-# Makefile created at Tue Sep  2 00:57:51 2008, by mmake
+# Makefile created at Fri Nov  2 10:20:25 2007, by mmake
 #
 
 # Programs (with common options):
@@ -25,7 +25,7 @@ MODE_FILES      = 444
 MODE_DIRS       = 2755
 
 # Build programs
-JAVAC           = jikes
+JAVAC           = javac
 JAVADOC         = javadoc
 JAR             = jar
 
@@ -103,29 +103,13 @@ endif
 
 
 # Packages we should compile
-#	org.thenesis.microbackend.ui.gtk \
-#	org.thenesis.microbackend.ui.awt \
-#	org.thenesis.microbackend.ui.awtgrabber \
-#	org.thenesis.microbackend.ui.x11 \
-#	org.thenesis.microbackend.ui.fb \
-#	org.thenesis.microbackend.ui.qt \
-#	org.thenesis.microbackend.ui.swt \
-
 PACKAGES = \
-	org.thenesis.microbackend.ui \
-	org.thenesis.microbackend.zip \
-	org.thenesis.microbackend.ui.image.png \
-	org.thenesis.microbackend.ui.sdl \
-	org.thenesis.microbackend.ui.graphics \
-	org.thenesis.microbackend.ui.graphics.toolkit.pure
+	com.nokia.mid.ui \
+	com.nokia.mid.sound	
 
 
 # All packages that can be recursively compiled.
 ALL_PACKAGES = \
-	org.thenesis.microbackend.ui.image \
-	org \
-	org.thenesis.microbackend \
-	org.thenesis \
 	$(PACKAGES)
 
 
@@ -415,21 +399,6 @@ ifneq ($(DEPEND),)
 endif
 
 #package targets
-org.thenesis.microbackend.ui.image : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.image)
-org : $(call PACKAGE_OBJS,org)
-org.thenesis.microbackend : $(call PACKAGE_OBJS,org.thenesis.microbackend)
-org.thenesis : $(call PACKAGE_OBJS,org.thenesis)
-org.thenesis.microbackend.ui.gtk : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.gtk)
-org.thenesis.microbackend.ui.awt : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.awt)
-org.thenesis.microbackend.ui.awtgrabber : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.awtgrabber)
-org.thenesis.microbackend.ui.x11 : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.x11)
-org.thenesis.microbackend.ui.fb : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.fb)
-org.thenesis.microbackend.ui.qt : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.qt)
-org.thenesis.microbackend.ui : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui)
-org.thenesis.microbackend.ui.swt : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.swt)
-org.thenesis.microbackend.zip : $(call PACKAGE_OBJS,org.thenesis.microbackend.zip)
-org.thenesis.microbackend.ui.image.png : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.image.png)
-org.thenesis.microbackend.ui.sdl : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.sdl)
-org.thenesis.microbackend.ui.graphics : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.graphics)
-org.thenesis.microbackend.ui.graphics.toolkit.pure : $(call PACKAGE_OBJS,org.thenesis.microbackend.ui.graphics.toolkit.pure)
+com.nokia.mid.ui : $(call PACKAGE_OBJS,com.nokia.mid.ui)
+com.nokia.mid.sound : $(call PACKAGE_OBJS,com.nokia.mid.sound)
 

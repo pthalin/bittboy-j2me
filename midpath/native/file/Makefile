@@ -1,7 +1,5 @@
 JNI_INCLUDE=''
-
-CROSS_COMPILE=/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-
-CC = $(CROSS_COMPILE)gcc
+CC = ''
 
 CFLAGS = $(JNI_INCLUDE) 
 CFLAGS += -Os

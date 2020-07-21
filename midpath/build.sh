@@ -45,6 +45,8 @@ DEMOS_ENABLED=yes
 
 KXML2_DIST_ENABLED=yes
 
+NOKIA_ENABLED=yes
+
 # Overridable file names and default locations
 SDLJAVA_CLDC_JAR=${JAR_DIST_HOME}/sdljava-cldc.jar
 ESCHER_CLDC_JAR=${JAR_DIST_HOME}/escher-cldc.jar
@@ -71,6 +73,10 @@ MICROBACKEND_JAR=${JAR_DIST_HOME}/microbackend.jar
 
 NOKIA_JAR=${JAR_DIST_HOME}/nokia.jar
 
+# CC
+CC='/opt/buildroot-bittboy/output/host/bin/arm-buildroot-linux-uclibcgnueabi-gcc'
+
+
 # External library dependencies
 # (By default use the included ones.)
 KXML2_JAR=`pwd`/lib/kxml2-2.3.0.jar
@@ -79,7 +85,7 @@ SWT_JAR=`pwd`/lib/swt.jar
 MIDPATH_JAR=$JAR_DIST_HOME/midpath.jar
 
 # Default include headers location (CC syntax)
-JNI_INCLUDE='-I/usr/lib/jvm/jdk1.6.0_45_x86/include -I/usr/lib/jvm/jdk1.6.0_45_x86/include/linux'
+JNI_INCLUDE=-I${DIST_HOME}/../classpath-0.99/include
 SDL_INCLUDE='-I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include/SDL -I/opt/buildroot-bittboy/output/host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr/include'
 
 
@@ -576,9 +582,12 @@ build_java $AVETANABT_CLDC_ENABLED external/avetanabt-cldc/src $AVETANABT_CLDC_J
 build_java $JGL_CLDC_ENABLED external/jgl-cldc/src $JGL_CLDC_JAR
 
 # Build MicroBackend library (requires sdljava-cldc, escher-cldc and swt library)
-build_java \
-  $MIDPATH_ENABLED components/microbackend $MICROBACKEND_JAR \
+build_java_res \
+  $MIDPATH_ENABLED components/microbackend components/microbackend/resources $MICROBACKEND_JAR \
   :$J2SE_JAR:$SDLJAVA_CLDC_JAR:$ESCHER_CLDC_JAR:$SWT_JAR
+
+# Build Nokia library
+build_java $NOKIA_ENABLED external/nokia/src $NOKIA_JAR :$MIDPATH_JAR
 
 #------------------------
 # Build MIDPath 
@@ -703,6 +712,7 @@ build_native()
     make -C $dir \
       JNI_INCLUDE="$JNI_INCLUDE" \
       SDL_INCLUDE="$SDL_INCLUDE" \
+      CC="$CC" \
       $opts \
     || exit 1
 

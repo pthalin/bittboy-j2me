@@ -276,7 +276,7 @@ public class DefaultConfiguration extends Configuration {
         // Other multimedia content ...
         //handlers.put(MIME_IMAGE_GIF, "com.sun.mmedia.GIFPlayer");
         
-        String soundEngineName = com.sun.midp.main.Configuration.getPropertyDefault("org.thenesis.midpath.sound.engine", "null");
+        String soundEngineName = com.sun.midp.main.Configuration.getPropertyDefault("org.thenesis.midpath.sound.engine", "SDL");
         
         if (soundEngineName.equalsIgnoreCase("SDL")) {
         	handlers.put(MIME_AUDIO_WAV, "org.thenesis.midpath.mmedia.SDLWavPlayer");
@@ -284,6 +284,7 @@ public class DefaultConfiguration extends Configuration {
         	handlers.put(MIME_AUDIO_OGG, "org.thenesis.midpath.mmedia.SDLMusicPlayer");
         	handlers.put(MIME_AUDIO_XM, "org.thenesis.midpath.mmedia.SDLMusicPlayer");
         	handlers.put(MIME_AUDIO_MOD, "org.thenesis.midpath.mmedia.SDLMusicPlayer");
+        	handlers.put(MIME_AUDIO_MIDI, "org.thenesis.midpath.mmedia.SDLMusicPlayer");
         } else if (soundEngineName.equalsIgnoreCase("virtual")) {
         	handlers.put(MIME_AUDIO_WAV, "org.thenesis.midpath.mmedia.VirtualSoundPlayer");
         	handlers.put(MIME_AUDIO_MP3, "org.thenesis.midpath.mmedia.VirtualSoundPlayer");
@@ -296,6 +297,7 @@ public class DefaultConfiguration extends Configuration {
         supportedProtocols.put(MIME_AUDIO_WAV, hfcProtocols);
         supportedProtocols.put(MIME_AUDIO_MP3, hfProtocols);
         supportedProtocols.put(MIME_AUDIO_OGG, hfProtocols);
+        supportedProtocols.put(MIME_AUDIO_MIDI, hfProtocols);
         //supportedProtocols.put(MIME_VIDEO_MPEG, hfProtocols);
 
 //        if (needAMMS) {

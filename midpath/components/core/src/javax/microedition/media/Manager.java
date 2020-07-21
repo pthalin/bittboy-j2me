@@ -25,6 +25,8 @@ package javax.microedition.media;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.*;
+
 
 import javax.microedition.media.protocol.DataSource;
 
@@ -488,6 +490,8 @@ public final class Manager {
 
 	private final static boolean DEBUG = false;
 
+	static List players = new ArrayList();
+
 	/**
 	 * This private constructor keeps anyone from actually
 	 * getting a <CODE>Manager</CODE>.
@@ -620,10 +624,27 @@ public final class Manager {
 			try {
 				// Try and instance the player ....
 				Class protoClass = Class.forName(className);
-				p = (BasicPlayer) protoClass.newInstance();
+
+				Iterator it = players.iterator();
+				p = null;
+				while (it.hasNext()) {
+					Object o = it.next();
+					if (o.getClass() == protoClass) {
+						p = (BasicPlayer) o;
+						if (p.getState() == BasicPlayer.CLOSED) {
+							p = null;
+							it.remove();
+						}
+					}
+				}
+				if (p == null) {
+					p = (BasicPlayer) protoClass.newInstance();
+					players.add(p);
+				}
 				p.setLocator(locator.toLowerCase());
 				return p;
 			} catch (Exception e) {
+				System.out.println("Failed to create Player: " + e.getMessage());
 				throw new MediaException("Failed to create Player: " + e.getMessage());
 			}
 		} else {
@@ -740,10 +761,27 @@ public final class Manager {
 		try {
 			// ... try and instantiate the handler ...
 			Class handlerClass = Class.forName(className);
-			p = (BasicPlayer) handlerClass.newInstance();
+
+			Iterator it = players.iterator();
+			p = null;
+			while (it.hasNext()) {
+				Object o = it.next();
+				if (o.getClass() == handlerClass) {
+					p = (BasicPlayer) o;
+					if (p.getState() == BasicPlayer.CLOSED) {
+						p = null;
+						it.remove();
+					}
+				}
+			}
+			if (p == null) {
+				p = (BasicPlayer) handlerClass.newInstance();
+				players.add(p);
+			}
 		} catch (Exception e) {
-			if (DEBUG)
+			//if (DEBUG)
 				System.out.println("Class not found " + className);
+			e.printStackTrace();
 			throw new MediaException(PL_ERR + e.getMessage());
 		}
 		return p;

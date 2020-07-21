@@ -28,6 +28,7 @@ import javax.microedition.media.control.VolumeControl;
 import sdljava.SDLException;
 import sdljava.mixer.MixChunk;
 import sdljava.mixer.SDLMixer;
+import sdljava.audio.SDLAudio;
 
 public class SDLWavPlayer extends SDLPlayer {
 
@@ -36,14 +37,14 @@ public class SDLWavPlayer extends SDLPlayer {
 	private int channel;
 	private EndOfMediaChecker eomChecker;
 	
-	static {
-		try {
-			/*int allocatedChannels =*/ SDLMixer.allocateChannels(4);
-		} catch (SDLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	//static {
+	//	try {
+	//		/*int allocatedChannels =*/ SDLMixer.allocateChannels(4);
+	//	} catch (SDLException e) {
+	//		// TODO Auto-generated catch block
+	//		e.printStackTrace();
+	//	}
+	//}
 
 	public SDLWavPlayer() {
 	}
@@ -51,7 +52,7 @@ public class SDLWavPlayer extends SDLPlayer {
 	protected void doClose() {
 		try {
 			SDLMixer.freeChunk(mixChunk);
-			
+			SDLMixer.close();
 		} catch (SDLException e) {
 			//e.printStackTrace();
 		} finally {
@@ -85,7 +86,8 @@ public class SDLWavPlayer extends SDLPlayer {
 
 	protected void doRealize() throws MediaException {
 		try {
-
+			SDLMixer.openAudio(22050, SDLAudio.AUDIO_S16SYS, 2, 8192);
+			SDLMixer.allocateChannels(4);
 			// FIXME Remove copy of audio data
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			byte[] buffer = new byte[1000];

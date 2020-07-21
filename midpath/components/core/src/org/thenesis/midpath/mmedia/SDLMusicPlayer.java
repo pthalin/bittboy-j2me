@@ -26,8 +26,10 @@ import javax.microedition.media.control.ToneControl;
 import javax.microedition.media.control.VolumeControl;
 
 import sdljava.SDLException;
+import sdljava.SDLMain;
 import sdljava.mixer.MixMusic;
 import sdljava.mixer.SDLMixer;
+import sdljava.audio.SDLAudio;
 
 public class SDLMusicPlayer extends SDLPlayer {
 
@@ -39,14 +41,18 @@ public class SDLMusicPlayer extends SDLPlayer {
 
 
 	protected void doClose() {
+//System.out.println("doClose()");
 		try {
+			SDLMixer.resumeMusic();
+			SDLMixer.haltMusic();
 			SDLMixer.freeMusic(music);
 			SDLMixer.close();
-		} catch (SDLException e) {
-			//e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			eomChecker.stop();
+			if (eomChecker != null) eomChecker.stop();
 		}
+//System.out.println("coming out of doClose");
 
 	}
 
@@ -74,16 +80,19 @@ public class SDLMusicPlayer extends SDLPlayer {
 	}
 
 	protected void doRealize() throws MediaException {
+//System.out.println("doRealize()");
 		try {
-
+			SDLMixer.openAudio(22050, SDLAudio.AUDIO_S16SYS, 1, 8192);
 			// FIXME Remove copy of audio data
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			byte[] buffer = new byte[1000];
 			int len = 0;
-			while ((len = stream.read(buffer, 0, buffer.length)) != -1) {
+			while (((len = stream.read(buffer, 0, buffer.length)) != -1)) {
 				baos.write(buffer, 0, len);
 			}
-
+			//System.out.println("doRealize len=" + len);
+			//System.out.println("doRealize buf size=" + buffer.length);
+			//System.out.println("doRealize baos size=" + baos.size());
 			music = SDLMixer.loadMUS(baos.toByteArray());
 
 		} catch (Exception e) {
@@ -91,26 +100,32 @@ public class SDLMusicPlayer extends SDLPlayer {
 			throw new MediaException(e.getMessage());
 		}
 
+//System.out.println("coming out of doRealize");
 	}
 
 	protected long doSetMediaTime(long now) throws MediaException {
 
+//System.out.println("doSetMediaTime - " + now);
 		try {
 			if (!SDLMixer.setMusicPosition(now)) {
-				throw new MediaException("Can't set position on this media");
+				//throw new MediaException("Can't set position on this media - " + SDLMain.getError());
+				System.out.println("Can't set position on this media - " + SDLMain.getError());
 			}
-		} catch (SDLException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			throw new MediaException("Can't set position on this media");
-			//e.printStackTrace();
 		}
 
+//System.out.println("coming out of doSetMediaTime");
 		return now;
 	}
 
 	protected boolean doStart() {
 
+//System.out.println("doStart()");
 		if (SDLMixer.pausedMusic()) {
 			SDLMixer.resumeMusic();
+//System.out.println("coming out of doStart():1");
 			return true;
 		}
 
@@ -119,16 +134,19 @@ public class SDLMusicPlayer extends SDLPlayer {
 			
 			eomChecker = new EndOfMediaChecker();
 			eomChecker.start();
+//System.out.println("coming out of doStart():2");
 			return true;
 		} catch (SDLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
 
 	}
 
 	protected void doStop() throws MediaException {
+//System.out.println("doStop()");
 		SDLMixer.pauseMusic();
+//System.out.println("coming out of doStop()");
 	}
 
 	class SDLToneControl implements ToneControl {
