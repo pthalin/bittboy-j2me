@@ -32,7 +32,7 @@ A =  (5) FIRE
 B =  (3)
 TA = (7)
 TB = (1) 
-R  = (0)
+R  = Force Exit
 SELECT = SOFTKEY LEFT 
 START  = SOFTKEY RIGHT 
 
