@@ -22,6 +22,10 @@ Installation:
 3. Create folder main/roms/j2me
    (put jar files here)
 
+4. Sound will only work if libSDL_mixer-1.2.so.0.12.1 is installed. 
+   !!! ONLY DO THIS IF YOU KNOW WHAT YOU ARE DOING !!!
+   copy it to /usr/lib/
+   update the symlink libSDL_mixer-1.2.so.0 to point to this file.
 
 Keys:
 A =  (5) FIRE
