@@ -64,6 +64,8 @@ public class SDLMixer {
 	public final static int AUDIO_S16SYS = SDLAudio.AUDIO_S16SYS;
 	public final static int AUDIO_U16SYS = SDLAudio.AUDIO_U16SYS;
 
+        public final static boolean DEBUG = false;
+    
 	////////////////////////////////////////////////////////////////////////////////
 	// GENERAL
 
@@ -150,7 +152,20 @@ public class SDLMixer {
 	 * @exception SDLException if an error occurs
 	 */
 	public static void close() throws SDLException {
-		SWIG_SDLMixer.Mix_CloseAudio();
+	    int[] frequency = { -1 };
+	    int[] format = { -1 };
+	    int[] channels = { -1 };
+	    
+	    int result = SWIG_SDLMixer.Mix_QuerySpec(frequency, format, channels);
+	    if (result == -1) {
+		throw new SDLException(SDLMain.getError());
+	    } else {
+		if (DEBUG) {
+		    System.out.println("*** Mixer inst open: " + result);
+		}
+	    }
+	
+	    SWIG_SDLMixer.Mix_CloseAudio();
 	}
 
 	/**
@@ -801,17 +816,39 @@ public class SDLMixer {
 	     * <P>
 	     */
 	    public static MixMusic loadMUS(byte[] data) throws SDLException, IOException {
+	        long hd_len = 0;
+		int format = 0;
+		int tracks = 0;
+		int divisor = 0;
+		long tr_len = 0;
 	    	SWIGTYPE_p__Mix_Music mixMusic = SWIG_SDLMixer.Mix_LoadMUS(data, data.length);
-	    	
+		if (DEBUG) {
+		    System.out.println("*** loadMUS byte stream: length: " + data.length);
+		    System.out.println("data =");
+		    for (int i = 0; i < 32; i++) {
+			System.out.println(data[i]);
+		    }
+		    hd_len =  (data[4] << 24) + (data[5] << 16) + (data[6] << 8) + data[7];
+		    format =  (data[8] << 8)  + data[9];
+		    tracks =  (data[10] << 8) + data[11];
+		    divisor = (data[12] << 8) + data[13]; 
+		    System.out.println("*** loadMUS hd len=" + hd_len);
+		    System.out.println("*** loadMUS tracks=" + tracks);
+		    System.out.println("*** loadMUS format=" + format);
+		    if (0x80 == (divisor & 0x80)) {
+			System.out.println("*** loadMUS hd divisor: SMPTE=" + ((0x7f00 & divisor)>>8) + ", ticks" + (0x00ff & divisor));
+		    } else {
+			System.out.println("*** loadMUS divisor: ticks" + (0x7fff & divisor) );
+		    }
+		    
+		    tr_len =  (data[18] << 24) + (data[19] << 16) + (data[20] << 8) + data[21];
+		    System.out.println("*** loadMUS tr len=" + tr_len);
+		}
 	    	if (mixMusic == null) {
-		    		        //System.out.println("*** loadMUS byte stream: length: " + data.length);
-					//System.out.println("data =");
-					//for (int i = 0; i < 32; i++) {
-					//    System.out.println(data[i]);
-					//}
-				throw new SDLException(SDLMain.getError());
-			}
-			return new MixMusic(mixMusic);
+		    System.out.println("*** loadMUS failed ***");
+		    throw new SDLException(SDLMain.getError());
+		}
+		return new MixMusic(mixMusic);
 	    }
 	
 	

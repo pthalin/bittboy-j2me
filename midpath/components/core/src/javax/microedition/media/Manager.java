@@ -488,7 +488,7 @@ public final class Manager {
 
 	private final static String REDIRECTED_MSG = " with exception message: ";
 
-	private final static boolean DEBUG = false;
+	private final static boolean DEBUG = true;
 
 	static List players = new ArrayList();
 
@@ -578,8 +578,7 @@ public final class Manager {
 		String validLoc;
 		BasicPlayer p;
 
-		if (DEBUG)
-			System.out.println("[mmapi] createPlayer with " + locator);
+		if (DEBUG) System.out.println("[mmapi] createPlayer with " + locator);
 
 		/*
 		 * TBD: in general all capture devices 
@@ -634,12 +633,14 @@ public final class Manager {
 						if (p.getState() == BasicPlayer.CLOSED) {
 							p = null;
 							it.remove();
+							//System.out.println("Removed closed Player");
 						}
 					}
 				}
 				if (p == null) {
 					p = (BasicPlayer) protoClass.newInstance();
 					players.add(p);
+					//System.out.println("Added new Player");
 				}
 				p.setLocator(locator.toLowerCase());
 				return p;
@@ -669,6 +670,7 @@ public final class Manager {
 			}
 
 			if (!found) {
+			        System.out.println("Player cannot be created for " + locator);
 				throw new MediaException("Player cannot be created for " + locator);
 			}
 
@@ -713,6 +715,8 @@ public final class Manager {
 	 */
 	public static Player createPlayer(InputStream stream, String type) throws IOException, MediaException {
 
+	        if (DEBUG) System.out.println("[mmapi] createPlayer for stream. Type=" + type);
+
 		if (stream == null) {
 			throw new IllegalArgumentException();
 		}
@@ -755,8 +759,7 @@ public final class Manager {
 
 		BasicPlayer p = null;
 
-		if (DEBUG)
-			System.out.println("getPlayerFromType " + className);
+		if (DEBUG) System.out.println("getPlayerFromType " + className);
 
 		try {
 			// ... try and instantiate the handler ...
@@ -771,16 +774,17 @@ public final class Manager {
 					if (p.getState() == BasicPlayer.CLOSED) {
 						p = null;
 						it.remove();
+						if (DEBUG) System.out.println("Removed closed Player");
 					}
 				}
 			}
 			if (p == null) {
 				p = (BasicPlayer) handlerClass.newInstance();
 				players.add(p);
+				if (DEBUG) System.out.println("Added Player");
 			}
 		} catch (Exception e) {
-			//if (DEBUG)
-				System.out.println("Class not found " + className);
+			if (DEBUG) System.out.println("Class not found " + className);
 			e.printStackTrace();
 			throw new MediaException(PL_ERR + e.getMessage());
 		}
@@ -813,6 +817,8 @@ public final class Manager {
 		}
 		String contentType = source.getContentType();
 
+		if (DEBUG) System.out.println("createPlayer(): contentType=" + contentType);
+		
 		if (contentType == null)
 			throw new MediaException(PL_ERR_SH + "Unknown or unsupported media type");
 
