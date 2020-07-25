@@ -1,5 +1,8 @@
 # Bittboy J2ME
 
+## Usage & Device installation
+
+See [INSTALL.txt](INSTALL.txt)
 
 ## Building project
 

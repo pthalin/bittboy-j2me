@@ -13,7 +13,7 @@ Keys mapping:
 
 Notes:
  - Resolution of games must be 176x220.
- - Sound support may need udate of system files.
+ - Sound support if CFW 1.3.3 or later. For older CFW you need update some system files.
  - You may have to try several versions of a game to find a compatible version.
 
 Installation:
