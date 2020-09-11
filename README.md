@@ -25,7 +25,7 @@ git clone https://github.com/pthalin/bittboy-j2me.git
 cd /opt
 sudo mkdir buildroot-bittboy
 sudo chown <USERNAME HERE> buildroot-bittboy
-git clone https://github.com/bittboy/buildroot.git buildroot-bittboy
+git clone https://github.com/bittboy/buildroot.git ./buildroot-bittboy
 cp <my-dev-folder>/bittboy-j2me/buildroot_cfg/config buildroot-bittboy/.config 
 cd buildroot-bittboy
 make sdk
