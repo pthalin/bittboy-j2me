@@ -53,6 +53,7 @@ sudo mv jdk1.6.0_45_x86 /usr/lib/jvm/
 To install the Java source run the following commands:
 sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_45_x86/bin/java 1
 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_45_x86/bin/javac 1
+sudo update-alternatives --install /usr/bin/javah javah /usr/lib/jvm/jdk1.6.0_45_x86/bin/javah 1
 sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_45_x86/bin/javaws 1
 sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_45_x86/bin/jar 1
 
@@ -60,6 +61,7 @@ To make this default java:
  
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
+sudo update-alternatives --config javah
 sudo update-alternatives --config javaws
 sudo update-alternatives --config jar
 
